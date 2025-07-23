@@ -1,0 +1,132 @@
+[22-Jul-2025 12:16:51 UTC] PHP Fatal error:  Uncaught Exception: Table 'web-tools.domains' doesn't exist query: SELECT  * FROM domains WHERE  host = ?  LIMIT 1 in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php:2066
+Stack trace:
+#0 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(1654): Altum\Helpers\MysqliDb->_prepareQuery()
+#1 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(764): Altum\Helpers\MysqliDb->_buildQuery(1)
+#2 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(798): Altum\Helpers\MysqliDb->get('domains', 1, '*')
+#3 C:\xampp\htdocs\project-website\web-tools\app\models\Domain.php(149): Altum\Helpers\MysqliDb->getOne('domains')
+#4 C:\xampp\htdocs\project-website\web-tools\app\core\Router.php(1660): Altum\Models\Domain->get_domain_by_host('web-tools.test')
+#5 C:\xampp\htdocs\project-website\web-tools\app\core\App.php(37): Altum\Router::parse_controller()
+#6 C:\xampp\htdocs\project-website\web-tools\index.php(22): Altum\App->__construct()
+#7 C:\Program Files\Herd\resources\app.asar.unpacked\resources\valet\server.php(139): require('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php on line 2066
+[22-Jul-2025 12:16:54 UTC] PHP Fatal error:  Uncaught Exception: Table 'web-tools.domains' doesn't exist query: SELECT  * FROM domains WHERE  host = ?  LIMIT 1 in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php:2066
+Stack trace:
+#0 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(1654): Altum\Helpers\MysqliDb->_prepareQuery()
+#1 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(764): Altum\Helpers\MysqliDb->_buildQuery(1)
+#2 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(798): Altum\Helpers\MysqliDb->get('domains', 1, '*')
+#3 C:\xampp\htdocs\project-website\web-tools\app\models\Domain.php(149): Altum\Helpers\MysqliDb->getOne('domains')
+#4 C:\xampp\htdocs\project-website\web-tools\app\core\Router.php(1660): Altum\Models\Domain->get_domain_by_host('web-tools.test')
+#5 C:\xampp\htdocs\project-website\web-tools\app\core\App.php(37): Altum\Router::parse_controller()
+#6 C:\xampp\htdocs\project-website\web-tools\index.php(22): Altum\App->__construct()
+#7 C:\Program Files\Herd\resources\app.asar.unpacked\resources\valet\server.php(139): require('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php on line 2066
+[22-Jul-2025 12:16:55 UTC] PHP Fatal error:  Uncaught Exception: Table 'web-tools.domains' doesn't exist query: SELECT  * FROM domains WHERE  host = ?  LIMIT 1 in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php:2066
+Stack trace:
+#0 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(1654): Altum\Helpers\MysqliDb->_prepareQuery()
+#1 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(764): Altum\Helpers\MysqliDb->_buildQuery(1)
+#2 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(798): Altum\Helpers\MysqliDb->get('domains', 1, '*')
+#3 C:\xampp\htdocs\project-website\web-tools\app\models\Domain.php(149): Altum\Helpers\MysqliDb->getOne('domains')
+#4 C:\xampp\htdocs\project-website\web-tools\app\core\Router.php(1660): Altum\Models\Domain->get_domain_by_host('web-tools.test')
+#5 C:\xampp\htdocs\project-website\web-tools\app\core\App.php(37): Altum\Router::parse_controller()
+#6 C:\xampp\htdocs\project-website\web-tools\index.php(22): Altum\App->__construct()
+#7 C:\Program Files\Herd\resources\app.asar.unpacked\resources\valet\server.php(139): require('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php on line 2066
+[22-Jul-2025 12:17:03 UTC] PHP Fatal error:  Uncaught Exception: Table 'web-tools.domains' doesn't exist query: SELECT  * FROM domains WHERE  host = ?  LIMIT 1 in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php:2066
+Stack trace:
+#0 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(1654): Altum\Helpers\MysqliDb->_prepareQuery()
+#1 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(764): Altum\Helpers\MysqliDb->_buildQuery(1)
+#2 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(798): Altum\Helpers\MysqliDb->get('domains', 1, '*')
+#3 C:\xampp\htdocs\project-website\web-tools\app\models\Domain.php(149): Altum\Helpers\MysqliDb->getOne('domains')
+#4 C:\xampp\htdocs\project-website\web-tools\app\core\Router.php(1660): Altum\Models\Domain->get_domain_by_host('web-tools.test')
+#5 C:\xampp\htdocs\project-website\web-tools\app\core\App.php(37): Altum\Router::parse_controller()
+#6 C:\xampp\htdocs\project-website\web-tools\index.php(22): Altum\App->__construct()
+#7 C:\Program Files\Herd\resources\app.asar.unpacked\resources\valet\server.php(139): require('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php on line 2066
+[22-Jul-2025 12:17:03 UTC] PHP Fatal error:  Uncaught Exception: Table 'web-tools.domains' doesn't exist query: SELECT  * FROM domains WHERE  host = ?  LIMIT 1 in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php:2066
+Stack trace:
+#0 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(1654): Altum\Helpers\MysqliDb->_prepareQuery()
+#1 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(764): Altum\Helpers\MysqliDb->_buildQuery(1)
+#2 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(798): Altum\Helpers\MysqliDb->get('domains', 1, '*')
+#3 C:\xampp\htdocs\project-website\web-tools\app\models\Domain.php(149): Altum\Helpers\MysqliDb->getOne('domains')
+#4 C:\xampp\htdocs\project-website\web-tools\app\core\Router.php(1660): Altum\Models\Domain->get_domain_by_host('web-tools.test')
+#5 C:\xampp\htdocs\project-website\web-tools\app\core\App.php(37): Altum\Router::parse_controller()
+#6 C:\xampp\htdocs\project-website\web-tools\index.php(22): Altum\App->__construct()
+#7 C:\Program Files\Herd\resources\app.asar.unpacked\resources\valet\server.php(139): require('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php on line 2066
+[22-Jul-2025 12:17:03 UTC] PHP Fatal error:  Uncaught Exception: Table 'web-tools.domains' doesn't exist query: SELECT  * FROM domains WHERE  host = ?  LIMIT 1 in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php:2066
+Stack trace:
+#0 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(1654): Altum\Helpers\MysqliDb->_prepareQuery()
+#1 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(764): Altum\Helpers\MysqliDb->_buildQuery(1)
+#2 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(798): Altum\Helpers\MysqliDb->get('domains', 1, '*')
+#3 C:\xampp\htdocs\project-website\web-tools\app\models\Domain.php(149): Altum\Helpers\MysqliDb->getOne('domains')
+#4 C:\xampp\htdocs\project-website\web-tools\app\core\Router.php(1660): Altum\Models\Domain->get_domain_by_host('web-tools.test')
+#5 C:\xampp\htdocs\project-website\web-tools\app\core\App.php(37): Altum\Router::parse_controller()
+#6 C:\xampp\htdocs\project-website\web-tools\index.php(22): Altum\App->__construct()
+#7 C:\Program Files\Herd\resources\app.asar.unpacked\resources\valet\server.php(139): require('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php on line 2066
+[22-Jul-2025 12:17:03 UTC] PHP Fatal error:  Uncaught Exception: Table 'web-tools.domains' doesn't exist query: SELECT  * FROM domains WHERE  host = ?  LIMIT 1 in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php:2066
+Stack trace:
+#0 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(1654): Altum\Helpers\MysqliDb->_prepareQuery()
+#1 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(764): Altum\Helpers\MysqliDb->_buildQuery(1)
+#2 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(798): Altum\Helpers\MysqliDb->get('domains', 1, '*')
+#3 C:\xampp\htdocs\project-website\web-tools\app\models\Domain.php(149): Altum\Helpers\MysqliDb->getOne('domains')
+#4 C:\xampp\htdocs\project-website\web-tools\app\core\Router.php(1660): Altum\Models\Domain->get_domain_by_host('web-tools.test')
+#5 C:\xampp\htdocs\project-website\web-tools\app\core\App.php(37): Altum\Router::parse_controller()
+#6 C:\xampp\htdocs\project-website\web-tools\index.php(22): Altum\App->__construct()
+#7 C:\Program Files\Herd\resources\app.asar.unpacked\resources\valet\server.php(139): require('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php on line 2066
+[22-Jul-2025 12:17:03 UTC] PHP Fatal error:  Uncaught Exception: Table 'web-tools.domains' doesn't exist query: SELECT  * FROM domains WHERE  host = ?  LIMIT 1 in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php:2066
+Stack trace:
+#0 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(1654): Altum\Helpers\MysqliDb->_prepareQuery()
+#1 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(764): Altum\Helpers\MysqliDb->_buildQuery(1)
+#2 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(798): Altum\Helpers\MysqliDb->get('domains', 1, '*')
+#3 C:\xampp\htdocs\project-website\web-tools\app\models\Domain.php(149): Altum\Helpers\MysqliDb->getOne('domains')
+#4 C:\xampp\htdocs\project-website\web-tools\app\core\Router.php(1660): Altum\Models\Domain->get_domain_by_host('web-tools.test')
+#5 C:\xampp\htdocs\project-website\web-tools\app\core\App.php(37): Altum\Router::parse_controller()
+#6 C:\xampp\htdocs\project-website\web-tools\index.php(22): Altum\App->__construct()
+#7 C:\Program Files\Herd\resources\app.asar.unpacked\resources\valet\server.php(139): require('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php on line 2066
+[22-Jul-2025 12:17:03 UTC] PHP Fatal error:  Uncaught Exception: Table 'web-tools.domains' doesn't exist query: SELECT  * FROM domains WHERE  host = ?  LIMIT 1 in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php:2066
+Stack trace:
+#0 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(1654): Altum\Helpers\MysqliDb->_prepareQuery()
+#1 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(764): Altum\Helpers\MysqliDb->_buildQuery(1)
+#2 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(798): Altum\Helpers\MysqliDb->get('domains', 1, '*')
+#3 C:\xampp\htdocs\project-website\web-tools\app\models\Domain.php(149): Altum\Helpers\MysqliDb->getOne('domains')
+#4 C:\xampp\htdocs\project-website\web-tools\app\core\Router.php(1660): Altum\Models\Domain->get_domain_by_host('web-tools.test')
+#5 C:\xampp\htdocs\project-website\web-tools\app\core\App.php(37): Altum\Router::parse_controller()
+#6 C:\xampp\htdocs\project-website\web-tools\index.php(22): Altum\App->__construct()
+#7 C:\Program Files\Herd\resources\app.asar.unpacked\resources\valet\server.php(139): require('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php on line 2066
+[22-Jul-2025 12:17:03 UTC] PHP Fatal error:  Uncaught Exception: Table 'web-tools.domains' doesn't exist query: SELECT  * FROM domains WHERE  host = ?  LIMIT 1 in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php:2066
+Stack trace:
+#0 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(1654): Altum\Helpers\MysqliDb->_prepareQuery()
+#1 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(764): Altum\Helpers\MysqliDb->_buildQuery(1)
+#2 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(798): Altum\Helpers\MysqliDb->get('domains', 1, '*')
+#3 C:\xampp\htdocs\project-website\web-tools\app\models\Domain.php(149): Altum\Helpers\MysqliDb->getOne('domains')
+#4 C:\xampp\htdocs\project-website\web-tools\app\core\Router.php(1660): Altum\Models\Domain->get_domain_by_host('web-tools.test')
+#5 C:\xampp\htdocs\project-website\web-tools\app\core\App.php(37): Altum\Router::parse_controller()
+#6 C:\xampp\htdocs\project-website\web-tools\index.php(22): Altum\App->__construct()
+#7 C:\Program Files\Herd\resources\app.asar.unpacked\resources\valet\server.php(139): require('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php on line 2066
+[22-Jul-2025 12:17:04 UTC] PHP Fatal error:  Uncaught Exception: Table 'web-tools.domains' doesn't exist query: SELECT  * FROM domains WHERE  host = ?  LIMIT 1 in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php:2066
+Stack trace:
+#0 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(1654): Altum\Helpers\MysqliDb->_prepareQuery()
+#1 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(764): Altum\Helpers\MysqliDb->_buildQuery(1)
+#2 C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php(798): Altum\Helpers\MysqliDb->get('domains', 1, '*')
+#3 C:\xampp\htdocs\project-website\web-tools\app\models\Domain.php(149): Altum\Helpers\MysqliDb->getOne('domains')
+#4 C:\xampp\htdocs\project-website\web-tools\app\core\Router.php(1660): Altum\Models\Domain->get_domain_by_host('web-tools.test')
+#5 C:\xampp\htdocs\project-website\web-tools\app\core\App.php(37): Altum\Router::parse_controller()
+#6 C:\xampp\htdocs\project-website\web-tools\index.php(22): Altum\App->__construct()
+#7 C:\Program Files\Herd\resources\app.asar.unpacked\resources\valet\server.php(139): require('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\project-website\web-tools\app\helpers\MysqliDb.php on line 2066
