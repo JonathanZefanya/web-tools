@@ -2,7 +2,7 @@
 
 Semua perubahan penting pada proyek **Web Tools** akan didokumentasikan di file ini. Proyek ini telah menerima **6 pembaruan** sejak rilis perdananya pada 10 Februari 2025.
 
-## [4.0.0] - 2025-07-23
+## [4.0.0] - 23-07-2025
 
 ### ✨ Ditambahkan (Added)
 - Menambahkan kemampuan untuk menyalin URL hasil secara otomatis setelah tautan dibuat.
@@ -45,7 +45,7 @@ Semua perubahan penting pada proyek **Web Tools** akan didokumentasikan di file 
 
 ---
 
-## [3.1.0] - 2025-06-26
+## [3.1.0] - 26-06-2025
 
 ### 🐞 Diperbaiki (Fixed)
 - Memperbaiki lebar kontainer yang terlalu kecil pada halaman dan post blog di perangkat kecil.
@@ -56,7 +56,7 @@ Semua perubahan penting pada proyek **Web Tools** akan didokumentasikan di file 
 
 ---
 
-## [3.0.0] - 2025-05-11
+## [3.0.0] - 11-05-2025
 
 ### ⚠️ Perubahan Penting
 - Persyaratan PHP minimum sekarang adalah **PHP 8.1** (sebelumnya PHP 8.0).
@@ -117,7 +117,7 @@ Semua perubahan penting pada proyek **Web Tools** akan didokumentasikan di file 
 
 ---
 
-## [2.0.0] - 2025-03-06
+## [2.0.0] - 06-03-2025
 
 ### ✨ Ditambahkan (Added)
 - Menambahkan **+18 gaya Kode QR** baru.
@@ -155,7 +155,7 @@ Semua perubahan penting pada proyek **Web Tools** akan didokumentasikan di file 
 
 ---
 
-## [1.1.0] - 2025-02-20
+## [1.1.0] - 20-02-2025
 
 ### 🚀 Ditingkatkan (Improved)
 - Meningkatkan tampilan tabel entri pada halaman statistik.
@@ -173,7 +173,8 @@ Semua perubahan penting pada proyek **Web Tools** akan didokumentasikan di file 
 
 ---
 
-## [1.0.0] - 2025-02-10
+## [1.0.0] - 10-02-2025
 
 ### 🎉 Rilis Awal (Initial Release)
 - Rilis pertama **Web Tools**.
+
