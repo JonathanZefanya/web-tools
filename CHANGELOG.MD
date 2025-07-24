@@ -25,7 +25,7 @@ Semua perubahan penting pada proyek **Web Tools** akan didokumentasikan di file 
 - Meningkatkan filter pencarian dengan menambahkan pintasan keyboard untuk memicunya.
 - Meningkatkan performa fitur pembersihan otomatis untuk log pengguna.
 - Meningkatkan performa beberapa tabel database dalam beberapa kasus penggunaan.
-- Meningkatkan editor kode mentah (`raw code editor`) untuk sistem halaman & blog di panel admin.
+- Meningkatkan editor kode mentah (`raw code editor `) untuk sistem halaman & blog di panel admin.
 - Memperbarui pustaka sistem 2FA (Two-Factor Authentication) dengan kode terbaru.
 - Meningkatkan tampilan halaman Pembayaran, Pajak, dan Bahasa di panel admin.
 
