@@ -6,9 +6,6 @@
 
 **Web Tools** adalah platform bio link sosial lengkap yang Anda butuhkan, mencakup Penyingkat URL, sistem Kode QR, & sistem Alat Web dengan 120+ fitur berguna. Solusi all-in-one untuk kebutuhan online Anda\!
 
-\<p align="center"\>
-\</p\>
-
 -----
 
 ## ✨ Fitur Utama
