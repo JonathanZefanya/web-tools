@@ -44,7 +44,7 @@ Ikuti langkah-langkah berikut untuk menginstal **Web Tools** di server Anda.
 
 ### 2\. Unggah Produk
 
-  - Unggah seluruh konten dari folder `product/` ke direktori tujuan di hosting web Anda.
+  - Unggah seluruh konten dari folder `web-tools-main/` ke direktori tujuan di hosting web Anda.
   - Produk dapat diunggah di domain utama, subdomain, atau subfolder, sesuai kebutuhan Anda.
 
 > **Catatan Penting:**
