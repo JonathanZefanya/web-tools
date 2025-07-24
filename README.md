@@ -4,22 +4,22 @@
 [](https://www.mysql.com/)
 [](https://www.google.com/search?q=LICENSE)
 
-**Web Tools** adalah platform bio link sosial lengkap yang Anda butuhkan, mencakup Penyingkat URL, sistem Kode QR, & sistem Alat Web dengan 120+ fitur berguna. Solusi all-in-one untuk kebutuhan online Anda\!
+**Web Tools** adalah platform bio link sosial yang punya banyak fitur keren, mulai dari Penyingkat URL, Kode QR, sampai 120+ alat web yang bermanfaat. Semua kebutuhan online kamu ada di sini!
 
 -----
 
 ## ✨ Fitur Utama
 
-  - **🔗 Platform Bio Link**: Buat halaman bio link yang menarik dan dapat disesuaikan.
-  - **✂️ Penyingkat URL**: Persingkat URL yang panjang menjadi tautan yang pendek dan mudah dibagikan.
-  - **📱 Generator Kode QR**: Buat kode QR kustom dengan mudah untuk berbagai keperluan.
-  - **🛠️ 120+ Alat Web**: Kumpulan alat daring yang berguna untuk berbagai tugas, mulai dari konverter hingga generator.
+  - **🔗 Bio Link**: Bikin halaman bio link yang unik dan bisa kamu atur sesuka hati.
+  - **✂️ Penyingkat URL**: Ubah link panjang jadi pendek biar gampang dibagikan.
+  - **📱 QR Code Generator**: Buat kode QR custom dengan cepat untuk berbagai keperluan.
+  - **🛠️ 120+ Web Tools**: Kumpulan alat online buat bantu kerjaan kamu, dari konverter sampai generator.
 
 -----
 
 ## 📋 Persyaratan
 
-Pastikan server Anda memenuhi persyaratan berikut sebelum memulai instalasi.
+Sebelum mulai install, pastikan server kamu udah sesuai sama syarat di bawah ini.
 
   - **PHP**: `8.3` - `8.4`
   - **Ekstensi PHP**:
@@ -27,57 +27,58 @@ Pastikan server Anda memenuhi persyaratan berikut sebelum memulai instalasi.
       - `OpenSSL`
       - `mbstring`
       - `MySQLi`
-  - **Database**: `MySQL 5.7.3+` atau `MariaDB` yang setara.
+  - **Database**: `MySQL 5.7.3+` atau `MariaDB` setara.
   - **Server**: `Apache` atau `Nginx`.
 
 -----
 
-## ⚙️ Panduan Instalasi
+## ⚙️ Cara Install
 
-Ikuti langkah-langkah berikut untuk menginstal **Web Tools** di server Anda.
+Ikuti langkah-langkah ini buat install **Web Tools** di server kamu.
 
-### 1\. Siapkan Database
+### 1. Siapkan Database
 
-  - Buat Pengguna Database baru (opsional).
-  - Buat Database baru.
-  - Siapkan **Host**, **Nama**, **Username**, dan **Password** Database untuk langkah selanjutnya.
+  - Bikin user database baru (opsional).
+  - Bikin database baru.
+  - Catat host, nama, username, dan password database buat dipakai nanti.
 
-### 2\. Unggah Produk
+### 2. Upload File
 
-  - Unggah seluruh konten dari folder `web-tools-main/` ke direktori tujuan di hosting web Anda.
-  - Produk dapat diunggah di domain utama, subdomain, atau subfolder, sesuai kebutuhan Anda.
+  - Upload semua isi folder `web-tools-main/` ke folder tujuan di hosting kamu.
+  - Bisa di domain utama, subdomain, atau subfolder, sesuai kebutuhan.
 
 > **Catatan Penting:**
 >
->   - **Server Apache**: Pastikan file `.htaccess` juga terunggah. File ini mungkin tersembunyi secara default di komputer Anda.
->   - **Server Nginx**: Pastikan Anda melakukan konfigurasi Nginx yang sesuai setelah proses instalasi selesai.
+>   - **Apache**: Pastikan file `.htaccess` ikut terupload. File ini kadang tersembunyi di komputer.
+>   - **Nginx**: Jangan lupa konfigurasi Nginx setelah install selesai.
 
-### 3\. Mulai Proses Instalasi
+### 3. Mulai Instalasi
 
-1.  Akses alamat web Anda dan buka path `/install` (contoh: `domainanda.com/install`).
-2.  Atur izin (CHMOD) untuk file dan folder yang disebutkan selama proses instalasi. Umumnya menggunakan `755`, `775`, atau `777`, tergantung pada konfigurasi server Anda.
-3.  Ikuti petunjuk yang ditampilkan di layar instalasi.
-4.  Jika instalasi berhasil, Anda akan melihat **kredensial login admin**. Simpan informasi ini dengan baik\!
+1.  Buka alamat web kamu dan akses `/install` (misal: `domainkamu.com/install`).
+2.  Atur izin (CHMOD) file dan folder sesuai petunjuk instalasi. Biasanya pakai `755`, `775`, atau `777`, tergantung server.
+3.  Ikuti instruksi di layar instalasi.
+4.  Kalau instalasi sukses, kamu bakal dapat info login admin. Simpan baik-baik ya!
 
 -----
 
-## 🔧 Konfigurasi Pasca-Instalasi
+## 🔧 Setelah Instalasi
 
-Setelah instalasi selesai, ada beberapa hal penting yang perlu Anda atur agar aplikasi berjalan optimal.
+Setelah install, ada beberapa hal yang perlu kamu atur biar aplikasi makin lancar.
 
-### 1\. Pengaturan Cron Job
+### 1. Cron Job
 
-Cron job sangat penting karena bertanggung jawab untuk menangani tugas-tugas di latar belakang (seperti pembaruan terjadwal, statistik, dll).
+Cron job penting buat tugas-tugas otomatis (kayak update, statistik, dll).
 
 1.  Login ke **Panel Admin** -\> **Pengaturan Situs Web** -\> tab **Cron**.
-2.  Anda akan melihat daftar perintah cron yang perlu ditambahkan.
-3.  Buat cron job baru di panel kontrol hosting Anda untuk setiap perintah tersebut.
-    > Proses penambahan cron job bervariasi tergantung penyedia hosting. Silakan merujuk ke dokumentasi hosting Anda untuk instruksi lebih lanjut.
+2.  Lihat daftar perintah cron yang harus ditambah.
+3.  Tambahkan cron job di panel hosting kamu sesuai instruksi.
+    > Cara nambah cron job beda-beda tiap hosting. Cek dokumentasi hosting kamu ya.
 
-### 2\. Pengaturan Email (SMTP)
+### 2. Setting Email (SMTP)
 
-Jika Anda ingin situs Anda dapat mengirim email (misalnya untuk verifikasi pengguna, notifikasi, dll.), Anda harus mengatur SMTP.
+Biar situs bisa kirim email (misal buat verifikasi, notifikasi, dll), kamu perlu setting SMTP.
 
 1.  Login ke **Panel Admin** -\> **Pengaturan Situs Web** -\> tab **SMTP (Email)**.
-2.  Isi kolom yang tersedia dengan kredensial dari penyedia SMTP Anda (seperti Gmail, SendGrid, Mailgun, dll).
-3.  Klik **Simpan & Uji** untuk memastikan konfigurasi Anda sudah benar dan email dapat terkirim.
+2.  Isi data SMTP dari penyedia kamu (Gmail, SendGrid, Mailgun, dll).
+3.  Klik **Simpan & Uji** buat cek apakah email bisa terkirim.
+
