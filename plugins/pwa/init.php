@@ -71,15 +71,20 @@ if(!function_exists('pwa_generate_manifest')) {
         if(count($options['shortcuts'])) {
             foreach($options['shortcuts'] as $shortcut) {
                 if(!empty($shortcut['name'])) {
-                    $manifest['shortcuts'][] = [
+                    $new_shortcut = [
                         'name' => $shortcut['name'],
                         'description' => $shortcut['description'],
                         'url' => $shortcut['url'],
-                        'icons' => [[
+                    ];
+
+                    if($shortcut['icon_url']) {
+                        $new_shortcut['icons'] = [[
                             'src' => $shortcut['icon_url'],
                             'sizes' => '192x192',
-                        ]]
-                    ];
+                        ]];
+                    }
+
+                    $manifest['shortcuts'][] = $new_shortcut;
                 }
             }
         }
@@ -89,7 +94,7 @@ if(!function_exists('pwa_generate_manifest')) {
 }
 
 if(!function_exists('pwa_save_manifest')) {
-    function pwa_save_manifest($manifest_content) {
-        file_put_contents(\Altum\Uploads::get_full_path('pwa') . 'manifest.json', $manifest_content);
+    function pwa_save_manifest($manifest_content, $file_name = 'manifest') {
+        file_put_contents(\Altum\Uploads::get_full_path('pwa') . $file_name . '.json', $manifest_content);
     }
 }
