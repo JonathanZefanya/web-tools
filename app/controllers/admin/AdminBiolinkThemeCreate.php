@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -15,7 +14,7 @@ class AdminBiolinkThemeCreate extends Controller {
         $links_types = require APP_PATH . 'includes/links_types.php';
 
         if(!empty($_POST)) {
-            /* Filter some the variables */
+            /* Filter some of the variables */
             $_POST['name'] = input_clean($_POST['name']);
             $_POST['order'] = (int) $_POST['order'] ?? 0;
             $_POST['is_enabled'] = (int) isset($_POST['is_enabled']);

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Response;
@@ -119,7 +118,7 @@ class ApiStatistics extends Controller {
                         `{$type}`
                     ORDER BY
                         `pageviews` DESC
-                    LIMIT 250
+                    
                 ");
 
                 while($row = $result->fetch_object()) {
@@ -152,7 +151,7 @@ class ApiStatistics extends Controller {
                         `referrer_path`
                     ORDER BY
                         `pageviews` DESC
-                    LIMIT 250
+                    
                 ");
 
                 while($row = $result->fetch_object()) {
@@ -185,7 +184,7 @@ class ApiStatistics extends Controller {
                         `city_name`
                     ORDER BY
                         `pageviews` DESC
-                    LIMIT 250
+                    
                 ");
 
                 while($row = $result->fetch_object()) {
@@ -215,7 +214,7 @@ class ApiStatistics extends Controller {
                         `utm_source`
                     ORDER BY
                         `pageviews` DESC
-                    LIMIT 250
+                    
                 ");
 
                 while($row = $result->fetch_object()) {
@@ -247,7 +246,7 @@ class ApiStatistics extends Controller {
                         `utm_medium`
                     ORDER BY
                         `pageviews` DESC
-                    LIMIT 250
+                    
                 ");
 
                 while($row = $result->fetch_object()) {
@@ -284,7 +283,7 @@ class ApiStatistics extends Controller {
                         `utm_campaign`
                     ORDER BY
                         `pageviews` DESC
-                    LIMIT 250
+                    
                 ");
 
                 while($row = $result->fetch_object()) {

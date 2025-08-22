@@ -1,6 +1,5 @@
 <?php
 
-
 return [
     'admin_blog.menu' => 'Blog',
     'admin_blog.advanced' => 'Advanced settings',
@@ -86,6 +85,8 @@ return [
     'admin_resources.type_external' => 'Link',
     'admin_resources.pages_category_id' => 'Category',
     'admin_resources.order_help' => 'Easily arrange with numbers in ascending order.',
+    'admin_resources.plans_ids' => 'Exclusive to page plans',
+    'admin_resources.plans_ids_help' => 'Select the plans that you wish to display this page exclusively to. Leave empty to display for everyone.',
     'admin_resources.is_published' => 'Is published',
     'admin_resources.error_message.url_exists' => 'This URL alias is already taken.',
     'admin_resources.warning_message.disabled' => 'The pages system is currently disabled. Enable it from the %sWebsite settings page%s.',
@@ -144,6 +145,8 @@ return [
     'admin_plans.table.price' => 'Price',
     'admin_plans.table.users' => 'Users',
 
+    'admin_plans.custom_redirect_url' => 'Success payment redirect URL',
+    'admin_plans.custom_redirect_url_help' => 'Redirect the user to a custom URL after a successful payment. It will override the default thank you page and not work for the Offline payment method.',
     'admin_plans.plan_id' => 'Plan ID',
     'admin_plans.price' => 'Price',
     'admin_plans.custom_contact_value' => 'Contact button value',
@@ -486,6 +489,13 @@ return [
     'admin_user_login_modal.subheader' => 'By logging in as another user, you will be logged out of the current account and fully logged in to this user.',
     'admin_user_login_modal.success_message' => 'Successfully logged in as %s! To get out of this account simply use the logout function.',
     'admin_user_login_modal.error_message.disabled' => 'You can only login if the status of the user is active.',
+
+
+    'admin_users_bulk_resend_activation_modal.header' => 'Resend email activations in bulk',
+    'admin_users_bulk_resend_activation_modal.button' => 'Resend email activations',
+    'admin_users_bulk_resend_activation_modal.subheader' => 'You\'ve selected multiple entries. This may take a while & it action cannot be undone.',
+    'admin_users_bulk_resend_activation_modal.success_message' => 'We\'ve sent %s email activations to unconfirmed users successfully.',
+
 
     'admin_user_create.breadcrumb' => 'Create user',
     'admin_user_create.title' => 'Create user',
@@ -1073,6 +1083,8 @@ return [
     'admin_settings.email_notifications.delete_user_help' => 'Receive an email when any user deletes their account.',
     'admin_settings.email_notifications.new_payment' => 'New payment',
     'admin_settings.email_notifications.new_payment_help' => 'Receive an email when a new payment is successfully processed.',
+    'admin_settings.email_notifications.new_code_redeemed' => 'New code redeemed',
+    'admin_settings.email_notifications.new_code_redeemed_help' => 'Receive an email when a redeemable code is used.',
     'admin_settings.email_notifications.new_domain' => 'New custom domain',
     'admin_settings.email_notifications.new_domain_help' => 'Receive an email when a new custom domain is pending approval.',
     'admin_settings.email_notifications.contact' => 'Contact page emails',
@@ -1174,6 +1186,8 @@ return [
     'admin_settings.email_shield.email_shield_api_key_help2' => 'Subscribe to any <a href="https://altumco.de/subscribe-club" target="_blank">AltumCode Club</a> subscriptions to get access.',
     'admin_settings.email_shield.statistics_is_enabled' => 'Enable statistics',
     'admin_settings.email_shield.statistics_is_enabled_help' => 'Track how many valid and invalid email domain results your site gets on a daily basis.',
+    'admin_settings.email_shield.whitelisted_domains' => 'Whitelisted domains',
+    'admin_settings.email_shield.whitelisted_domains_help' => 'Domains that you wish to always allow that might get blocked. Comma separated values of domains ( domain.com, domain2.com ..etc ).',
 
     'admin_settings.dynamic_og_images.tab' => 'Dynamic OG images',
     'admin_settings.dynamic_og_images.info' => 'You must make sure your server does not block incoming requests from the following ip: <strong>178.156.142.190</strong>',
@@ -1392,7 +1406,7 @@ return [
     'admin_settings.links.product_file_size_limit' => 'Biolink product file block size limit',
     'admin_settings.links.static_size_limit' => 'Static files size limit',
     'admin_settings.links.pwa_icon_size_limit' => 'PWA icons size limit',
-    'admin_settings.links.blacklisted_domains' => 'Blacklisted Domains',
+    'admin_settings.links.blacklisted_domains' => 'Blacklisted domains',
     'admin_settings.links.blacklisted_domains_help' => 'Comma separated values of domains ( domain.com, domain2.com ..etc ). People will not be able to shorten / add any domain that is included in this list.',
     'admin_settings.links.blacklisted_keywords' => 'Blacklisted Keywords',
     'admin_settings.links.blacklisted_keywords_help' => 'Comma separated values of domains ( word1, word2, word3 ..etc ). People will not be able to use any custom url that is included in this list.',
@@ -1407,6 +1421,7 @@ return [
     'admin_settings.links.email_reports_is_enabled_weekly' => 'Weekly',
     'admin_settings.links.email_reports_is_enabled_monthly' => 'Monthly',
     'admin_settings.links.email_reports_is_enabled_help' => 'Enabling the email reports will give your users the ability to get email reports of their links statistics.',
+
 
     'admin_settings.tools.tab' => 'Tools',
     'admin_settings.tools.is_enabled' => 'Enable tools system',
@@ -1536,6 +1551,7 @@ return [
     'admin_statistics.email_shield.header' => 'Email shield',
     'admin_statistics.email_shield.chart.valid' => 'Valid email domains',
     'admin_statistics.email_shield.chart.invalid' => 'Invalid email domains',
+
 
     'admin_statistics.image_optimizer.menu' => 'Image optimizer',
     'admin_statistics.image_optimizer.header' => 'Image optimizer',

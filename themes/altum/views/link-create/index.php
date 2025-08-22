@@ -43,7 +43,7 @@
                             <?php if(count($data->domains)): ?>
                                 <select name="domain_id" class="appearance-none custom-select form-control input-group-text">
                                     <?php if(settings()->links->main_domain_is_enabled || \Altum\Authentication::is_admin()): ?>
-                                        <option value="" <?= $data->values['domain_id'] ? 'selected="selected"' : null ?> data-full-url="<?= SITE_URL ?>"><?= remove_url_protocol_from_url(SITE_URL) ?></option>
+                                        <option value=" " <?= $data->values['domain_id'] ? 'selected="selected"' : null ?> data-full-url="<?= SITE_URL ?>"><?= remove_url_protocol_from_url(SITE_URL) ?></option>
                                     <?php endif ?>
 
                                     <?php foreach($data->domains as $row): ?>
@@ -1067,7 +1067,7 @@
     /* Daterangepicker */
     let locale = <?= json_encode(require APP_PATH . 'includes/daterangepicker_translations.php') ?>;
     $('[data-daterangepicker]').daterangepicker({
-        minDate: new Date(),
+        minDate: "<?= (new \DateTime('', new \DateTimeZone(\Altum\Date::$default_timezone)))->setTimezone(new \DateTimeZone($this->user->timezone))->format('Y-m-d H:i:s'); ?>",
         alwaysShowCalendars: true,
         singleCalendar: true,
         singleDatePicker: true,

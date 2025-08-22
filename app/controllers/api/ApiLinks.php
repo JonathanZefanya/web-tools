@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Date;
@@ -405,6 +404,8 @@ class ApiLinks extends Controller {
                 'domain_id' => $domain_id,
                 'pixels_ids' => $_POST['pixels_ids'],
                 'email_reports' => json_encode($_POST['email_reports']),
+                'email_reports_last_datetime' => get_date(),
+                'email_reports_count' => count($_POST['email_reports']),
                 'type' => 'link',
                 'url' => $url,
                 'location_url' => $_POST['location_url'],
@@ -468,6 +469,8 @@ class ApiLinks extends Controller {
                     'domain_id' => $domain_id,
                     'pixels_ids' => $_POST['pixels_ids'],
                     'email_reports' => json_encode($_POST['email_reports']),
+                    'email_reports_last_datetime' => get_date(),
+                    'email_reports_count' => count($_POST['email_reports']),
                     'type' => 'link',
                     'url' => $url,
                     'location_url' => $location_url,
@@ -684,6 +687,8 @@ class ApiLinks extends Controller {
             'domain_id' => $domain_id,
             'pixels_ids' => $_POST['pixels_ids'],
             'email_reports' => json_encode($_POST['email_reports']),
+            'email_reports_last_datetime' => !$link->email_reports_last_datetime ? get_date() : $link->email_reports_last_datetime,
+            'email_reports_count' => count($_POST['email_reports']),
             'url' => $url,
             'location_url' => $_POST['location_url'],
             'settings' => $settings,

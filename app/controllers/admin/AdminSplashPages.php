@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -41,8 +40,8 @@ class AdminSplashPages extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($splash_pages, 'include', ['splash_page_id', 'user_id', 'name', 'title', 'description', 'last_datetime', 'datetime'], sprintf(l('admin_splash_pages.title')));
-        process_export_json($splash_pages, 'include', ['splash_page_id', 'user_id', 'name', 'title', 'description', 'settings', 'last_datetime', 'datetime'], sprintf(l('admin_splash_pages.title')));
+        process_export_csv($splash_pages, ['splash_page_id', 'user_id', 'name', 'title', 'description', 'last_datetime', 'datetime'], sprintf(l('admin_splash_pages.title')));
+        process_export_json($splash_pages, ['splash_page_id', 'user_id', 'name', 'title', 'description', 'settings', 'last_datetime', 'datetime'], sprintf(l('admin_splash_pages.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -85,6 +84,8 @@ class AdminSplashPages extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -96,6 +97,8 @@ class AdminSplashPages extends Controller {
 
                     break;
             }
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

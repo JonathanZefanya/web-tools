@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Models;
 
 defined('ZEFANYA') || die();
@@ -148,8 +147,16 @@ class Payments extends Model {
                     '{{NAME}}' => $user->email,
                     '{{EMAIL}}' => $user->email,
                     '{{PLAN_NAME}}' => $plan->name,
-                    '{{PAYMENT_FREQUENCY}}' => l('plan.custom_plan.' . $_POST['payment_frequency']),
-                    '{{PAYMENT_LINK}}' => url('admin/payments?id=' . $payment_id)
+                    '{{PAYMENT_FREQUENCY}}' => l('plan.custom_plan.' . $payment_frequency),
+                    '{{PAYMENT_TYPE}}' => l('pay.custom_plan.' . $payment_type . '_type'),
+                    '{{PAYMENT_ID}}' => $payment_id,
+                    '{{EXTERNAL_PAYMENT_ID}}' => $external_payment_id,
+                    '{{PAYMENT_LINK}}' => url('admin/payments?id=' . $payment_id),
+                    '{{DATE}}' => get_date(),
+                    '{{DATE_TIMEZONE}}' => \Altum\Date::$default_timezone,
+                    '{{CODE}}' => $code ?: l('global.none'),
+                    '{{DISCOUNT_AMOUNT}}' => $discount_amount,
+                    '{{PAYMENT_STATUS}}' => l('account_payments.status_approved'),
                 ],
                 l('global.emails.admin_new_payment_notification.body')
             );

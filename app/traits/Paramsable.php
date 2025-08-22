@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Traits;
 
 defined('ZEFANYA') || die();

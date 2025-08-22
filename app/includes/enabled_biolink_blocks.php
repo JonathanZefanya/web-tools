@@ -1,6 +1,5 @@
 <?php
 
-
 defined('ZEFANYA') || die();
 
 $enabled_biolink_blocks = [];

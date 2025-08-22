@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -46,8 +45,8 @@ class AdminDocuments extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($documents, 'include', ['document_id', 'template_id', 'template_category_id', 'project_id', 'user_id', 'name', 'type', 'content', 'words', 'model', 'api_response_time', 'datetime', 'last_datetime'], sprintf(l('documents.title')));
-        process_export_json($documents, 'include', ['document_id', 'template_id', 'template_category_id', 'project_id', 'user_id', 'name', 'type', 'content', 'words', 'model', 'api_response_time', 'settings', 'datetime', 'last_datetime'], sprintf(l('documents.title')));
+        process_export_csv($documents, ['document_id', 'template_id', 'template_category_id', 'project_id', 'user_id', 'name', 'type', 'content', 'words', 'model', 'api_response_time', 'datetime', 'last_datetime'], sprintf(l('documents.title')));
+        process_export_json($documents, ['document_id', 'template_id', 'template_category_id', 'project_id', 'user_id', 'name', 'type', 'content', 'words', 'model', 'api_response_time', 'settings', 'datetime', 'last_datetime'], sprintf(l('documents.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -98,6 +97,8 @@ class AdminDocuments extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -112,6 +113,8 @@ class AdminDocuments extends Controller {
 
                     break;
             }
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

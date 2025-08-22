@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -25,7 +24,7 @@ class AdminUserUpdate extends Controller {
         $biolinks_themes = (new \Altum\Models\BiolinksThemes())->get_biolinks_themes();
 
         if(!empty($_POST)) {
-            /* Filter some the variables */
+            /* Filter some of the variables */
             $_POST['name'] = input_clean($_POST['name']);
             $_POST['status'] = (int) $_POST['status'];
             $_POST['type'] = (int) $_POST['type'];

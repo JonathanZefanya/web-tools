@@ -1,6 +1,5 @@
 <?php
 
-
 defined('ZEFANYA') || die();
 
 function get_custom_image_if_any($image_key) {
@@ -75,33 +74,30 @@ function get_aws_s3_config() {
 }
 
 /* Generate chart data for based on the date key and each of keys inside */
-function get_chart_data(Array $main_array) {
+function get_chart_data(array $main_array) {
 
-    $results = [];
+    $dataset_arrays = [];
 
-    foreach($main_array as $date_label => $data) {
-
-        foreach($data as $label_key => $label_value) {
-
-            if(!isset($results[$label_key])) {
-                $results[$label_key] = [];
-            }
-
-            $results[$label_key][] = $label_value;
-
+    /* collect values for every dataset label */
+    foreach ($main_array as $date_label => $data_row) {
+        foreach ($data_row as $dataset_label => $dataset_value) {
+            $dataset_arrays[$dataset_label][] = $dataset_value;
         }
-
     }
 
-    foreach($results as $key => $value) {
-        $results[$key] = '["' . implode('", "', $value) . '"]';
+    /* no datasets ⇒ chart is empty */
+    $is_empty = empty($dataset_arrays);
+
+    /* json-encode every dataset */
+    foreach ($dataset_arrays as $dataset_label => $dataset_values) {
+        $dataset_arrays[$dataset_label] = json_encode($dataset_values);
     }
 
-    $results['labels'] = '["' . implode('", "', array_keys($main_array)) . '"]';
+    /* generate labels */
+    $dataset_arrays['labels']   = json_encode(array_keys($main_array));
+    $dataset_arrays['is_empty'] = $is_empty;
 
-    $results['is_empty'] = count($results) > 1 ? false : true;
-
-    return $results;
+    return $dataset_arrays;
 }
 
 function get_user_avatar($avatar, $email) {
@@ -196,6 +192,20 @@ function get_maxmind_reader_city() {
     return $cached = (new \MaxMind\Db\Reader(APP_PATH . 'includes/GeoLite2-City.mmdb'));
 }
 
+function is_https_request() {
+    /* Native HTTPS */
+    if (!empty($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] === 'on' || $_SERVER['HTTPS'] === '1')) { return true; }
+    if (!empty($_SERVER['REQUEST_SCHEME']) && $_SERVER['REQUEST_SCHEME'] === 'https') { return true; }
+    if (!empty($_SERVER['SERVER_PORT']) && (int) $_SERVER['SERVER_PORT'] === 443) { return true; }
+
+    /* Common proxy/CDN headers */
+    if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https') { return true; }
+    if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') { return true; }
+    if (!empty($_SERVER['HTTP_CF_VISITOR']) && strpos($_SERVER['HTTP_CF_VISITOR'], '"https"') !== false) { return true; }
+
+    return false;
+}
+
 function get_ip() {
     static $cached_ip_address = null;
 
@@ -264,7 +274,7 @@ function get_device_type($user_agent) {
     return 'desktop';
 }
 
-function process_export_json($array_of_objects, $type = '', $type_array = [], $file_name = 'data') {
+function process_export_json($array_of_objects, $type_array = [], $file_name = 'data') {
 
     if(isset($_GET['export']) && $_GET['export'] == 'json') {
         //ZEFANYA:DEMO if(DEMO) exit('This command is blocked on the demo.');
@@ -273,6 +283,7 @@ function process_export_json($array_of_objects, $type = '', $type_array = [], $f
         header('Content-Disposition: attachment; filename="' . $file_name . '.json";');
         header('Content-Type: application/json; charset=UTF-8');
 
+        $type = count($type_array) ? 'include' : 'basic';
         $json = json_exporter($array_of_objects, $type, $type_array);
 
         die($json);
@@ -280,24 +291,28 @@ function process_export_json($array_of_objects, $type = '', $type_array = [], $f
 
 }
 
-function json_exporter($array_of_objects, $type = 'basic', $type_array = []) {
+function json_exporter($array_of_objects, $type = 'basic', $include_keys_array = []) {
 
-    foreach($array_of_objects as $object) {
+    /* Quick early return */
+    if($type !== 'include' || empty($include_keys_array)) {
+        return json_encode($array_of_objects);
+    }
 
-        foreach($object as $key => $value) {
+    /* Lookups */
+    $include_keys_lookup = array_flip($include_keys_array);
 
-            if(($type == 'exclude' && in_array($key, $type_array)) || ($type == 'include' && !in_array($key, $type_array))) {
-                unset($object->{$key});
-            }
+    foreach($array_of_objects as $index => $object) {
+        $object_as_array   = (array) $object;
+        $filtered_array    = array_intersect_key($object_as_array, $include_keys_lookup);
 
-        }
-
+        /* Regenerate original array */
+        $array_of_objects[$index] = (object) $filtered_array;
     }
 
     return json_encode($array_of_objects);
 }
 
-function process_export_csv($array, $type = '', $type_array = [], $file_name = 'data') {
+function process_export_csv($array, $type_array = [], $file_name = 'data') {
 
     if(isset($_GET['export']) && $_GET['export'] == 'csv') {
         //ZEFANYA:DEMO if(DEMO) exit('This command is blocked on the demo.');
@@ -306,11 +321,107 @@ function process_export_csv($array, $type = '', $type_array = [], $file_name = '
         header('Content-Disposition: attachment; filename="' . $file_name . '.csv";');
         header('Content-Type: application/csv; charset=UTF-8');
 
+        $type = count($type_array) ? 'include' : 'basic';
         $csv = csv_exporter($array, $type, $type_array);
 
         die($csv);
     }
 
+}
+
+function process_export_csv_new($array, $item_list, $json_item_list = [], $file_name = 'data') {
+
+    if(isset($_GET['export']) && $_GET['export'] == 'csv') {
+        //ZEFANYA:DEMO if(DEMO) exit('This command is blocked on the demo.');
+
+        if(\Altum\Title::get()) $file_name = \Altum\Title::get();
+        header('Content-Disposition: attachment; filename="' . $file_name . '.csv";');
+        header('Content-Type: application/csv; charset=UTF-8');
+
+        $csv = csv_exporter_new($array, $item_list, $json_item_list);
+
+        die($csv);
+    }
+
+}
+
+function csv_exporter_new($array_of_rows, $field_list, $json_field_list = []) {
+
+    /* early exit when no JSON columns to keep hot-path minimal */
+    $has_json          = !empty($json_field_list);
+    $json_field_lookup = $has_json ? array_flip($json_field_list) : [];
+
+    /* pass #1 – discover all JSON sub-keys so we can build the header */
+    $json_keys_per_column = [];
+    if($has_json) {
+        foreach($array_of_rows as $row) {
+            foreach($json_field_list as $json_column) {
+                if(isset($row->$json_column)) {
+                    foreach((array) $row->$json_column as $json_key => $_) {
+                        $json_keys_per_column[$json_column][$json_key] = true;
+                    }
+                }
+            }
+        }
+        /* normalise to numerically-indexed arrays */
+        foreach($json_keys_per_column as $column => $keys) {
+            $json_keys_per_column[$column] = array_keys($keys);
+        }
+    }
+
+    /* use an in-memory stream */
+    $fp = fopen('php://temp', 'r+');
+
+    /* build header */
+    $header_row = [];
+    foreach($field_list as $field) {
+        if($has_json && isset($json_field_lookup[$field]) && !empty($json_keys_per_column[$field])) {
+            foreach($json_keys_per_column[$field] as $json_key) {
+                $header_row[] = $field . '[' . $json_key . ']';
+            }
+        } elseif(!$has_json || !isset($json_field_lookup[$field])) {
+            $header_row[] = $field;
+        }
+    }
+
+    /* add into file */
+    fputcsv($fp, $header_row);
+
+    /* data rows */
+    foreach($array_of_rows as $row) {
+        $row = (array) $row;
+        $csv_row = [];
+
+        foreach($field_list as $field) {
+
+            /* JSON column */
+            if($has_json && isset($json_field_lookup[$field]) && !empty($json_keys_per_column[$field])) {
+
+                $json_data = isset($row[$field]) ? (array) $row[$field] : [];
+                foreach($json_keys_per_column[$field] as $json_sub_key) {
+                    $csv_row[] = html_entity_decode($json_data[$json_sub_key] ?? '', ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                }
+
+            /* regular column */
+            } elseif(!$has_json || !isset($json_field_lookup[$field])) {
+                $csv_row[] = html_entity_decode($row[$field] ?? '', ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            }
+        }
+
+        /* add into file */
+        fputcsv($fp, $csv_row);
+    }
+
+    /* Go back to the start of the temp file */
+    rewind($fp);
+
+    /* Get content */
+    $csv_string = stream_get_contents($fp);
+
+    /* Close temp file */
+    fclose($fp);
+
+    return $csv_string;
 }
 
 function csv_exporter($array, $type = 'basic', $type_array = []) {
@@ -1336,12 +1447,32 @@ function get_plan_feature_limit_info($used, $total, $should_display = true) {
     return sprintf(l('global.info_message.plan_feature_limit_info'), '<strong>' . nr($used) . '</strong>', '<strong>' . ($total == -1 ? l('global.unlimited') : nr($total)) . '</strong>', '<strong>' . $percentage_remaining . '</strong>');
 }
 
+function get_plan_feature_limit_reached_info($has_upgrade_link = true) {
+    $tooltip_title = l('global.info_message.plan_feature_limit');
+    $onclick_html = null;
+
+    if($has_upgrade_link && settings()->payment->is_enabled) {
+        $tooltip_title .= '<br /><br /><strong>' . l('global.info_message.plan_upgrade') . '</strong>';
+        $onclick_html = '
+            onclick="window.location.href=\'' . url('plan') . '\';return false;"
+            class="cursor-pointer"    
+        ';
+    }
+
+    return <<<ALTUM
+        data-toggle="tooltip"
+        data-html="true"
+        title="{$tooltip_title}"
+        {$onclick_html}
+    ALTUM;
+}
+
 function get_plan_feature_disabled_info($has_upgrade_link = true) {
     $tooltip_title = l('global.info_message.plan_feature_no_access');
     $onclick_html = null;
 
-    if($has_upgrade_link) {
-        $tooltip_title .= '<br /><strong>' . l('global.info_message.plan_upgrade') . '</strong>';
+    if($has_upgrade_link && settings()->payment->is_enabled) {
+        $tooltip_title .= '<br /><br /><strong>' . l('global.info_message.plan_upgrade') . '</strong>';
         $onclick_html = '
             onclick="window.location.href=\'' . url('plan') . '\';return false;"
             class="cursor-pointer"    
@@ -1690,4 +1821,55 @@ function bootstrap_to_quilljs($html_content) {
     );
 
     return $html_content;
+}
+
+function generate_prefilled_dynamic_names($type, $timezone_identifier = null) {
+    if(!$timezone_identifier && is_logged_in()) $timezone_identifier = user()->timezone;
+
+    $is_valid_timezone = $timezone_identifier && in_array($timezone_identifier, timezone_identifiers_list(), true);
+    $timezone_object = $is_valid_timezone ? new DateTimeZone($timezone_identifier) : new DateTimeZone(date_default_timezone_get());
+
+    /* get current datetime in chosen timezone */
+    $current_datetime = new DateTime('now', $timezone_object);
+    $current_hour = (int) $current_datetime->format('G');
+
+    /* define time ranges for day parts with translations */
+    $day_parts = [
+        l('global.day_part_late_night') => [0, 2],
+        l('global.day_part_early_morning') => [2, 5],
+        l('global.day_part_morning') => [5, 12],
+        l('global.day_part_afternoon') => [12, 17],
+        l('global.day_part_evening') => [17, 20],
+        l('global.day_part_night') => [20, 24]
+    ];
+
+    /* emojis for each day part */
+    $day_part_emojis = [
+        l('global.day_part_late_night') => '🌙',
+        l('global.day_part_early_morning') => '🌅',
+        l('global.day_part_morning') => '🌤️',
+        l('global.day_part_afternoon') => '☀️',
+        l('global.day_part_evening') => '🌇',
+        l('global.day_part_night') => '🌙'
+    ];
+
+    /* find the matching day part */
+    $day_part_name = l('global.day_part_morning'); /* default fallback */
+    foreach ($day_parts as $day_part => $hours) {
+        if ($current_hour >= $hours[0] && $current_hour < $hours[1]) {
+            $day_part_name = $day_part;
+            break;
+        }
+    }
+
+    /* prepend emoji */
+    $day_part_with_emoji = (isset($day_part_emojis[$day_part_name]) ? $day_part_emojis[$day_part_name] . ' ' : '') . $day_part_name;
+
+    /* format hour in 12-hour with AM/PM */
+    $formatted_hour = $current_datetime->format('g A');
+
+    /* format date */
+    $formatted_date = $current_datetime->format('j M Y');
+
+    return sprintf(l('global.prefilled_dynamic_name'), $day_part_with_emoji, $type, $formatted_hour, $formatted_date);
 }

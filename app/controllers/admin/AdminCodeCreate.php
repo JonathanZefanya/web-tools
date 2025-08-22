@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -17,7 +16,7 @@ class AdminCodeCreate extends Controller {
         $plans = (new \Altum\Models\Plan())->get_plans();
 
         if(!empty($_POST)) {
-            /* Filter some the variables */
+            /* Filter some of the variables */
             $_POST['name'] = input_clean($_POST['name'], 64);
             $_POST['type'] = in_array($_POST['type'], ['discount', 'redeemable']) ? input_clean($_POST['type']) : 'discount';
             $_POST['days'] = $_POST['type'] == 'redeemable' ? (int) $_POST['days'] : null;

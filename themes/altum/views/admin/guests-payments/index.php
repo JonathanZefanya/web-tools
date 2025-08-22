@@ -6,7 +6,13 @@
     <h1 class="h3 mb-3 mb-md-0 text-truncate"><i class="fas fa-fw fa-xs fa-coins text-primary-900 mr-2"></i> <?= l('admin_guests_payments.header') ?></h1>
 
     <div class="d-flex position-relative d-print-none">
-        <div>
+        <div class="ml-3">
+            <a href="<?= url('admin/statistics/guests_payments') ?>" class="btn btn-gray-300" data-tooltip title="<?= l('global.statistics') ?>">
+                <i class="fas fa-fw fa-sm fa-chart-bar"></i>
+            </a>
+        </div>
+
+        <div class="ml-3">
             <div class="dropdown">
                 <button type="button" class="btn btn-gray-300 dropdown-toggle-simple" data-toggle="dropdown" data-boundary="viewport" data-tooltip title="<?= l('global.export') ?>" data-tooltip-hide-on-click>
                     <i class="fas fa-fw fa-sm fa-download"></i>
@@ -19,7 +25,7 @@
                     <a href="<?= url('admin/guests-payments?' . $data->filters->get_get() . '&export=json') ?>" target="_blank" class="dropdown-item <?= $this->user->plan_settings->export->json ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->json ? null : get_plan_feature_disabled_info() ?>>
                         <i class="fas fa-fw fa-sm fa-file-code mr-2"></i> <?= sprintf(l('global.export_to'), 'JSON') ?>
                     </a>
-                    <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? 'onclick="window.print();return false;"' : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? null : get_plan_feature_disabled_info() ?>>
+                    <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? $this->user->plan_settings->export->pdf ? 'onclick="event.preventDefault(); window.print();"' : 'disabled pointer-events-all' : get_plan_feature_disabled_info() ?>>
                         <i class="fas fa-fw fa-sm fa-file-pdf mr-2"></i> <?= sprintf(l('global.export_to'), 'PDF') ?>
                     </a>
                 </div>
@@ -76,6 +82,15 @@
                                 <?php foreach(['paypal', 'stripe', 'crypto_com', 'razorpay', 'paystack', 'mollie'] as $processor): ?>
                                     <option value="<?= $processor ?>" <?= isset($data->filters->filters['processor']) && $data->filters->filters['processor'] == $processor ? 'selected="selected"' : null ?>><?= l('pay.custom_plan.' . $processor) ?></option>
                                 <?php endforeach ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group px-4">
+                            <label for="filters_status" class="small"><?= l('global.status') ?></label>
+                            <select name="status" id="filters_status" class="custom-select custom-select-sm">
+                                <option value=""><?= l('global.all') ?></option>
+                                <option value="1" <?= isset($data->filters->filters['status']) && $data->filters->filters['status'] == '1' ? 'selected="selected"' : null ?>><?= l('account_payments.status_approved') ?></option>
+                                <option value="0" <?= isset($data->filters->filters['status']) && $data->filters->filters['status'] == '0' ? 'selected="selected"' : null ?>><?= l('account_payments.status_pending') ?></option>
                             </select>
                         </div>
 
@@ -154,9 +169,9 @@
                 <th><?= l('global.user') ?></th>
                 <th><?= l('global.name') ?></th>
                 <th><?= l('guests_payments.biolink_block') ?></th>
-                <th><?= l('global.type') ?></th>
                 <th><?= l('guests_payments.total_amount') ?></th>
                 <th><?= l('guests_payments.processor') ?></th>
+                <th><?= l('global.status') ?></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -194,15 +209,15 @@
                     </td>
 
                     <td class="text-nowrap">
-                        <span data-toggle="tooltip" title="<?= $row->settings->name ?? l('global.unknown') ?>"><?= string_truncate($row->settings->name ?? l('global.unknown'), 30) ?></span>
-                    </td>
+                        <div class="d-flex flex-column">
+                            <span data-toggle="tooltip" title="<?= $row->settings->name ?? l('global.unknown') ?>"><?= string_truncate($row->settings->name ?? l('global.unknown'), 30) ?></span>
 
-                    <td class="text-nowrap">
-                        <span class="badge badge-secondary">
-                            <i class="<?= $data->biolink_blocks[$row->type]['icon'] ?> fa-fw fa-sm mr-1"></i>
+                            <div class="small text-muted">
+                                <i class="<?= $data->biolink_blocks[$row->type]['icon'] ?> fa-fw fa-sm mr-1"></i>
 
-                            <?= l('link.biolink.blocks.' . $row->type) ?>
-                        </span>
+                                <?= l('link.biolink.blocks.' . $row->type) ?>
+                            </div>
+                        </div>
                     </td>
 
                     <td class="text-nowrap">
@@ -223,6 +238,14 @@
                                 <?= l('global.none') ?>
                             <?php endif ?>
                         </span>
+                    </td>
+
+                    <td class="text-nowrap">
+                        <?php if($row->status): ?>
+                            <span class="badge badge-success"><?= l('account_payments.status_approved') ?></span>
+                        <?php else: ?>
+                            <span class="badge badge-warning"><?= l('account_payments.status_pending') ?></span>
+                        <?php endif ?>
                     </td>
 
                     <td class="text-nowrap">

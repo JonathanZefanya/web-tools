@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -25,7 +24,7 @@ class AdminPushNotificationUpdate extends Controller {
         $push_notification->push_subscribers_ids = implode(',', json_decode($push_notification->push_subscribers_ids));
 
         if(!empty($_POST)) {
-            /* Filter some the variables */
+            /* Filter some of the variables */
             $_POST['title'] = input_clean($_POST['title'], 64);
             $_POST['description'] = input_clean($_POST['description'], 128);
             $_POST['url'] = get_url($_POST['url'], 512);

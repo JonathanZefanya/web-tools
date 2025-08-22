@@ -92,7 +92,7 @@
             "total_amount": "4.99",
             "currency": "USD",
             "status": true,
-            "datetime": <?= get_date() ?>
+            "datetime": "<?= get_date() ?>",
         },
     ],
     "meta": {
@@ -102,11 +102,11 @@
         "total_pages": 1
     },
     "links": {
-        "first": "<?= SITE_URL ?>api/payments?&page=1",
-        "last": "<?= SITE_URL ?>api/payments?&page=1",
+        "first": "<?= SITE_URL ?>api/payments?page=1",
+        "last": "<?= SITE_URL ?>api/payments?page=1",
         "next": null,
         "prev": null,
-        "self": "<?= SITE_URL ?>api/payments?&page=1"
+        "self": "<?= SITE_URL ?>api/payments?page=1"
     }
 }
                         </div>
@@ -162,7 +162,7 @@
         "total_amount": "4.99",
         "currency": "USD",
         "status": true,
-        "datetime": <?= get_date() ?>
+        "datetime": "<?= get_date() ?>",
     }
 }
                         </div>

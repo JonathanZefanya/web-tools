@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -49,8 +48,8 @@ class Transcriptions extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($transcriptions, 'include', ['transcription_id', 'project_id', 'user_id', 'name', 'input', 'content', 'words', 'language', 'datetime', 'last_datetime'], sprintf(l('transcriptions.title')));
-        process_export_json($transcriptions, 'include', ['transcription_id', 'project_id', 'user_id', 'name', 'input', 'content', 'words', 'language', 'settings', 'datetime', 'last_datetime'], sprintf(l('transcriptions.title')));
+        process_export_csv($transcriptions, ['transcription_id', 'project_id', 'user_id', 'name', 'input', 'content', 'words', 'language', 'datetime', 'last_datetime'], sprintf(l('transcriptions.title')));
+        process_export_json($transcriptions, ['transcription_id', 'project_id', 'user_id', 'name', 'input', 'content', 'words', 'language', 'settings', 'datetime', 'last_datetime'], sprintf(l('transcriptions.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/pagination', (array) $this))->run(['paginator' => $paginator]);

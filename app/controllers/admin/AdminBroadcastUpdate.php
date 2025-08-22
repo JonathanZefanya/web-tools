@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -28,7 +27,7 @@ class AdminBroadcastUpdate extends Controller {
         $plans = (new \Altum\Models\Plan())->get_plans();
 
         if(!empty($_POST)) {
-            /* Filter some the variables */
+            /* Filter some of the variables */
             $_POST['name'] = input_clean($_POST['name'], 64);
             $_POST['subject'] = input_clean($_POST['subject'], 128);
             $_POST['segment'] = in_array($_POST['segment'], ['all', 'subscribers', 'custom', 'filter']) ? input_clean($_POST['segment']) : 'subscribers';

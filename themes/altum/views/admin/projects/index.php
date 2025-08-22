@@ -4,7 +4,13 @@
     <h1 class="h3 mb-3 mb-md-0 text-truncate"><i class="fas fa-fw fa-xs fa-project-diagram text-primary-900 mr-2"></i> <?= l('admin_projects.header') ?></h1>
 
     <div class="d-flex position-relative d-print-none">
-        <div>
+        <div class="ml-3">
+            <a href="<?= url('admin/statistics/projects') ?>" class="btn btn-gray-300" data-tooltip title="<?= l('global.statistics') ?>">
+                <i class="fas fa-fw fa-sm fa-chart-bar"></i>
+            </a>
+        </div>
+
+        <div class="ml-3">
             <div class="dropdown">
                 <button type="button" class="btn btn-gray-300 dropdown-toggle-simple" data-toggle="dropdown" data-boundary="viewport" data-tooltip title="<?= l('global.export') ?>" data-tooltip-hide-on-click>
                     <i class="fas fa-fw fa-sm fa-download"></i>
@@ -17,7 +23,7 @@
                     <a href="<?= url('admin/projects?' . $data->filters->get_get() . '&export=json') ?>" target="_blank" class="dropdown-item <?= $this->user->plan_settings->export->json ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->json ? null : get_plan_feature_disabled_info() ?>>
                         <i class="fas fa-fw fa-sm fa-file-code mr-2"></i> <?= sprintf(l('global.export_to'), 'JSON') ?>
                     </a>
-                    <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? 'onclick="window.print();return false;"' : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? null : get_plan_feature_disabled_info() ?>>
+                    <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? $this->user->plan_settings->export->pdf ? 'onclick="event.preventDefault(); window.print();"' : 'disabled pointer-events-all' : get_plan_feature_disabled_info() ?>>
                         <i class="fas fa-fw fa-sm fa-file-pdf mr-2"></i> <?= sprintf(l('global.export_to'), 'PDF') ?>
                     </a>
                 </div>
@@ -204,7 +210,7 @@
                             <i class="fas fa-fw fa-calendar text-muted"></i>
                         </span>
 
-                        <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= sprintf(l('global.last_datetime_tooltip'), ($row->last_datetime ? '<br />' . \Altum\Date::get($row->last_datetime, 2) . '<br /><small>' . \Altum\Date::get($row->last_datetime, 3) . '</small>' . '<br /><small>(' . \Altum\Date::get_timeago($row->last_datetime) . ')</small>' : '<br />-')) ?>">
+                        <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= sprintf(l('global.last_datetime_tooltip'), ($row->last_datetime ? '<br />' . \Altum\Date::get($row->last_datetime, 2) . '<br /><small>' . \Altum\Date::get($row->last_datetime, 3) . '</small>' . '<br /><small>(' . \Altum\Date::get_timeago($row->last_datetime) . ')</small>' : '<br />' . l('global.na'))) ?>">
                             <i class="fas fa-fw fa-history text-muted"></i>
                         </span>
                     </td>

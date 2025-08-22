@@ -1,6 +1,5 @@
 <?php
 
-
 defined('ZEFANYA') || die();
 
 ini_set('display_errors', 'Off');

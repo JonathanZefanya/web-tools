@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -24,7 +23,7 @@ class AdminChatAssistantUpdate extends Controller {
         $chat_assistant->settings = json_decode($chat_assistant->settings ?? '');
 
         if(!empty($_POST)) {
-            /* Filter some the variables */
+            /* Filter some of the variables */
             $_POST['name'] = input_clean($_POST['name'], 64);
             $_POST['prompt'] = input_clean($_POST['prompt'], 5000);
             $_POST['order'] = (int) $_POST['order'] ?? 0;

@@ -35,7 +35,7 @@
                 <input type="text" id="subject" name="subject" value="<?= $data->values['subject'] ?>" class="form-control <?= \Altum\Alerts::has_field_errors('subject') ? 'is-invalid' : null ?>" maxlength="128" required="required" />
                 <?= \Altum\Alerts::output_field_error('subject') ?>
                 <small class="form-text text-muted"><?= l('admin_broadcasts.subject_help') ?></small>
-                <small class="form-text text-muted"><?= sprintf(l('global.variables'), '<code>' . implode('</code> , <code>',  ['{{WEBSITE_TITLE}}', '{{USER:NAME}}', '{{USER:EMAIL}}', '{{USER:CONTINENT_NAME}}', '{{USER:COUNTRY_NAME}}', '{{USER:CITY_NAME}}', '{{USER:DEVICE_TYPE}}', '{{USER:OS_NAME}}', '{{USER:BROWSER_NAME}}', '{{USER:BROWSER_LANGUAGE}}']) . '</code>') ?></small>
+                <small class="form-text text-muted"><?= sprintf(l('global.variables'), '<code data-copy>' . implode('</code> , <code data-copy>',  ['{{WEBSITE_TITLE}}', '{{USER:NAME}}', '{{USER:EMAIL}}', '{{USER:CONTINENT_NAME}}', '{{USER:COUNTRY_NAME}}', '{{USER:CITY_NAME}}', '{{USER:DEVICE_TYPE}}', '{{USER:OS_NAME}}', '{{USER:BROWSER_NAME}}', '{{USER:BROWSER_LANGUAGE}}']) . '</code>') ?></small>
             </div>
 
             <div class="form-group custom-control custom-switch" data-type="external">
@@ -226,7 +226,7 @@
                 <div class="bg-gray-100 rounded p-3" id="editorjs"></div>
                 <textarea name="content" id="content" class="form-control d-none <?= \Altum\Alerts::has_field_errors('content') ? 'is-invalid' : null ?>"><?= e($data->values['content']) ?></textarea>
                 <?= \Altum\Alerts::output_field_error('content') ?>
-                <small class="form-text text-muted"><?= sprintf(l('global.variables'), '<code>' . implode('</code> , <code>',  ['{{WEBSITE_TITLE}}', '{{USER:NAME}}', '{{USER:EMAIL}}', '{{USER:CONTINENT_NAME}}', '{{USER:COUNTRY_NAME}}', '{{USER:CITY_NAME}}', '{{USER:DEVICE_TYPE}}', '{{USER:OS_NAME}}', '{{USER:BROWSER_NAME}}', '{{USER:BROWSER_LANGUAGE}}']) . '</code>') ?></small>
+                <small class="form-text text-muted"><?= sprintf(l('global.variables'), '<code data-copy>' . implode('</code> , <code data-copy>',  ['{{WEBSITE_TITLE}}', '{{USER:NAME}}', '{{USER:EMAIL}}', '{{USER:CONTINENT_NAME}}', '{{USER:COUNTRY_NAME}}', '{{USER:CITY_NAME}}', '{{USER:DEVICE_TYPE}}', '{{USER:OS_NAME}}', '{{USER:BROWSER_NAME}}', '{{USER:BROWSER_LANGUAGE}}']) . '</code>') ?></small>
                 <small class="form-text text-muted"><?= l('global.spintax_help') ?></small>
             </div>
 
@@ -396,3 +396,5 @@
     get_segment_count();
 </script>
 <?php \Altum\Event::add_content(ob_get_clean(), 'javascript') ?>
+
+<?php include_view(THEME_PATH . 'views/partials/clipboard_js.php') ?>

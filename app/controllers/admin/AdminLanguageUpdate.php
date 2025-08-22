@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -26,9 +25,22 @@ class AdminLanguageUpdate extends Controller {
 
         $language = Language::$languages[$language_name];
 
+        /* count placeholders: numbered -> unique indexes; unnumbered -> exact occurrences */
         function count_matched_translation_variables($string) {
-            $re = '/(%\d+\$s|%s)+/';
-            return preg_match_all($re, $string, $matches);
+            /* ensure string */
+            $safe_string = (string) ($string ?? '');
+
+            /* numbered placeholders like %1$s, %2$s... */
+            preg_match_all('/%(\d+)\$s/', $safe_string, $numbered_matches);
+            if (!empty($numbered_matches[1])) {
+                /* allow repeats of the same index -> count unique indexes only */
+                $unique_indexes = array_unique(array_map('intval', $numbered_matches[1]));
+                return count($unique_indexes);
+            }
+
+            /* unnumbered placeholders like %s (ignore %%s) */
+            preg_match_all('/(?<!%)%s/', $safe_string, $unnumbered_matches);
+            return count($unnumbered_matches[0] ?? []);
         }
 
         if(!empty($_POST)) {

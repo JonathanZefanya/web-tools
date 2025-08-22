@@ -1,6 +1,5 @@
 <?php
 
-
 defined('ZEFANYA') || die();
 
 return array_merge(

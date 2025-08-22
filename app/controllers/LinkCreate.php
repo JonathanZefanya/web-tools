@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\controllers;
 
 use Altum\Alerts;
@@ -297,6 +296,8 @@ class LinkCreate extends Controller {
                         'domain_id' => $_POST['domain_id'],
                         'project_id' => $_POST['project_id'],
                         'email_reports' => json_encode($_POST['email_reports']),
+                        'email_reports_count' => count($_POST['email_reports']),
+                        'email_reports_last_datetime' => get_date(),
                         'splash_page_id' => $_POST['splash_page_id'],
                         'pixels_ids' => $_POST['pixels_ids'],
                         'type' => 'link',
@@ -363,6 +364,8 @@ class LinkCreate extends Controller {
                             'domain_id' => $_POST['domain_id'],
                             'project_id' => $_POST['project_id'],
                             'email_reports' => json_encode($_POST['email_reports']),
+                            'email_reports_count' => count($_POST['email_reports']),
+                            'email_reports_last_datetime' => get_date(),
                             'splash_page_id' => $_POST['splash_page_id'],
                             'pixels_ids' => $_POST['pixels_ids'],
                             'type' => 'link',

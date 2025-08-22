@@ -27,7 +27,7 @@
                     <a href="<?= url('admin/users?' . $data->filters->get_get() . '&export=json') ?>" target="_blank" class="dropdown-item <?= $this->user->plan_settings->export->json ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->json ? null : get_plan_feature_disabled_info() ?>>
                         <i class="fas fa-fw fa-sm fa-file-code mr-2"></i> <?= sprintf(l('global.export_to'), 'JSON') ?>
                     </a>
-                    <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? 'onclick="window.print();return false;"' : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? null : get_plan_feature_disabled_info() ?>>
+                    <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? $this->user->plan_settings->export->pdf ? 'onclick="event.preventDefault(); window.print();"' : 'disabled pointer-events-all' : get_plan_feature_disabled_info() ?>>
                         <i class="fas fa-fw fa-sm fa-file-pdf mr-2"></i> <?= sprintf(l('global.export_to'), 'PDF') ?>
                     </a>
                 </div>
@@ -196,6 +196,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="bulk_actions">
                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#bulk_delete_modal"><i class="fas fa-fw fa-sm fa-trash-alt mr-2"></i> <?= l('global.delete') ?></a>
+                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#bulk_resend_activation_modal"><i class="fas fa-fw fa-sm fa-paper-plane mr-2"></i> <?= l('admin_users_bulk_resend_activation_modal.button') ?></a>
                     </div>
                 </div>
 
@@ -331,4 +332,5 @@
 
 <?php require THEME_PATH . 'views/partials/js_bulk.php' ?>
 <?php \Altum\Event::add_content(include_view(THEME_PATH . 'views/partials/bulk_delete_modal.php'), 'modals'); ?>
+<?php \Altum\Event::add_content(include_view(THEME_PATH . 'views/admin/users/bulk_resend_activation_modal.php'), 'modals'); ?>
 

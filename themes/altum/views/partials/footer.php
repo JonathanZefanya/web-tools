@@ -104,7 +104,7 @@
             <?php \Altum\Event::add_content(ob_get_clean(), 'javascript') ?>
         <?php endif ?>
 
-        <?php if(is_logged_in() && (user()->type == 1 && settings()->main->admin_spotlight_is_enabled) || (settings()->main->user_spotlight_is_enabled && user()->type == 0)): ?>
+        <?php if(is_logged_in() && ((user()->type == 1 && settings()->main->admin_spotlight_is_enabled) || (settings()->main->user_spotlight_is_enabled && user()->type == 0))): ?>
         <div class="mb-2 ml-lg-3">
             <button type="button" class="btn btn-link text-decoration-none p-0" data-toggle="tooltip" title="<?= l('global.spotlight.tooltip') ?>" aria-label="<?= l('global.spotlight.tooltip') ?>" onclick="spotlight_display()" data-tooltip-hide-on-click>
                 <i class="fas fa-fw fa-sm fa-search"></i>

@@ -1,6 +1,5 @@
 <?php
 
-
 defined('ZEFANYA') || die();
 define('ROOT_PATH', realpath(__DIR__ . '/..') . '/');
 const APP_PATH = ROOT_PATH . 'app/';

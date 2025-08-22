@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Traits;
 
 use Altum\Response;

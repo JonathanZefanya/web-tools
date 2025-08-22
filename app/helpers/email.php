@@ -1,6 +1,5 @@
 <?php
 
-
 defined('ZEFANYA') || die();
 
 function get_email_template($email_template_subject_array, $email_template_subject, $email_template_body_array, $email_template_body) {

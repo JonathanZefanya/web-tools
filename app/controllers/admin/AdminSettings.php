@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -1341,6 +1340,7 @@ class AdminSettings extends Controller {
             $_POST['new_user'] = (int) isset($_POST['new_user']);
             $_POST['delete_user'] = (int) isset($_POST['delete_user']);
             $_POST['new_payment'] = (int) isset($_POST['new_payment']);
+            $_POST['new_code_redeemed'] = (int) isset($_POST['new_code_redeemed']);
             $_POST['new_domain'] = (int) isset($_POST['new_domain']);
             $_POST['new_affiliate_withdrawal'] = (int) isset($_POST['new_affiliate_withdrawal']);
             $_POST['contact'] = (int) isset($_POST['contact']);
@@ -1350,6 +1350,7 @@ class AdminSettings extends Controller {
                 'new_user' => $_POST['new_user'],
                 'delete_user' => $_POST['delete_user'],
                 'new_payment' => $_POST['new_payment'],
+                'new_code_redeemed' => $_POST['new_code_redeemed'],
                 'new_domain' => $_POST['new_domain'],
                 'new_affiliate_withdrawal' => $_POST['new_affiliate_withdrawal'],
                 'contact' => $_POST['contact'],
@@ -1666,11 +1667,13 @@ class AdminSettings extends Controller {
 
             /* :) */
             $_POST['email_shield_api_key'] = input_clean($_POST['email_shield_api_key']);
+            $_POST['whitelisted_domains'] = array_filter(array_map('trim', explode(',', $_POST['whitelisted_domains'])));
 
             $value = [
                 'is_enabled' => isset($_POST['is_enabled']),
                 'statistics_is_enabled' => isset($_POST['statistics_is_enabled']),
                 'email_shield_api_key' => $_POST['email_shield_api_key'],
+                'whitelisted_domains' => $_POST['whitelisted_domains'],
             ];
 
             $this->update_settings('email_shield', json_encode($value));
@@ -1786,7 +1789,7 @@ class AdminSettings extends Controller {
         if(!empty($_POST) && !empty($_POST['new_key'])) {
             //ZEFANYA:DEMO if(DEMO) Alerts::add_error('This command is blocked on the demo.');
 
-            $altumcode_api = 'https://api.altumcode.com/validate-support-extension';
+            $altumcode_api = 'https://api.xeadesta.com/validate-support-extension';
             //$altumcode_api = 'http://127.0.0.1/altumcode-api/validate-support-extension';
 
             /* Make sure the license is correct */

@@ -135,14 +135,3 @@ defined('ZEFANYA') || die();
         }
     }
 </style>
-<div class="ac-wrapper">
-    <a href="https://altumcode.com/" target="_blank" class="ac-altumcode-link">
-        <img src="https://altumcode.com/themes/altum/assets/images/altumcode.svg" alt="AltumCode logo" class="ac-altumcode-image" />
-        <span><?= $data->product_name . ' by <span class="ac-altumcode-link-brand">AltumCode</span>' ?></span>
-    </a>
-
-    <div class="ac-cta-wrapper">
-        <a href="https://altumcode.com/contact" target="_blank" class="ac-secondary"><span class="d-none d-lg-inline">Any questions? ✉️</span><span class="d-lg-none">Support</span></a>
-        <a href="<?= $data->product_url ?>" class="ac-primary ac-bg-gradient"><span class="d-none d-lg-inline"><?= 'Buy ' . $data->product_name ?> 🎁</span><span class="d-lg-none">Buy 🎁</span></a>
-    </div>
-</div>

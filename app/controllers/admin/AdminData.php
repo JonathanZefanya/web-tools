@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -40,12 +39,6 @@ class AdminData extends Controller {
         ");
         while($row = $data_result->fetch_object()) {
             $row->data = json_decode($row->data);
-
-            $row->processed_data = '';
-            foreach($row->data as $key => $value) {
-                $row->processed_data.= $key . ':' . $value . ';';
-            }
-
             $row->settings = json_decode($row->settings ?? '');
             $row->biolink_block_name = $row->settings->name ?? null;
 
@@ -53,8 +46,8 @@ class AdminData extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($data, 'include', ['datum_id', 'link_id', 'biolink_block_id', 'biolink_block_name', 'user_id', 'project_id', 'type', 'processed_data', 'datetime'], sprintf(l('data.title')));
-        process_export_json($data, 'include', ['datum_id', 'link_id', 'biolink_block_id', 'biolink_block_name', 'user_id', 'project_id', 'type', 'data', 'datetime'], sprintf(l('data.title')));
+        process_export_csv_new($data, ['datum_id', 'link_id', 'biolink_block_id', 'biolink_block_name', 'user_id', 'project_id', 'type', 'data', 'datetime'], ['data'], sprintf(l('data.title')));
+        process_export_json($data, ['datum_id', 'link_id', 'biolink_block_id', 'biolink_block_name', 'user_id', 'project_id', 'type', 'data', 'datetime'], sprintf(l('data.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -98,6 +91,8 @@ class AdminData extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -107,6 +102,8 @@ class AdminData extends Controller {
 
                     break;
             }
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

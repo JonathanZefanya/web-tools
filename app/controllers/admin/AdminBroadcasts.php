@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -41,8 +40,8 @@ class AdminBroadcasts extends Controller {
         }
 
         /* Export handler */
-        process_export_json($broadcasts, 'include', ['broadcast_id', 'name', 'subject', 'content', 'content_text', 'segment', 'users_ids', 'sent_users_ids', 'sent_emails', 'views', 'clicks', 'total_emails', 'status', 'last_sent_email_datetime', 'datetime', 'last_datetime']);
-        process_export_csv($broadcasts, 'include', ['broadcast_id', 'name', 'subject', 'content_text', 'segment', 'users_ids', 'sent_users_ids', 'sent_emails', 'views', 'clicks', 'total_emails', 'status', 'last_sent_email_datetime', 'datetime', 'last_datetime']);
+        process_export_json($broadcasts, ['broadcast_id', 'name', 'subject', 'content', 'content_text', 'segment', 'users_ids', 'sent_users_ids', 'sent_emails', 'views', 'clicks', 'total_emails', 'status', 'last_sent_email_datetime', 'datetime', 'last_datetime']);
+        process_export_csv($broadcasts, ['broadcast_id', 'name', 'subject', 'content_text', 'segment', 'users_ids', 'sent_users_ids', 'sent_emails', 'views', 'clicks', 'total_emails', 'status', 'last_sent_email_datetime', 'datetime', 'last_datetime']);
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -265,6 +264,8 @@ class AdminBroadcasts extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -273,6 +274,8 @@ class AdminBroadcasts extends Controller {
                     }
                     break;
             }
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

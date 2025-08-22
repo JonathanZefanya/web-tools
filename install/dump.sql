@@ -57,7 +57,7 @@ KEY `idx_users_next_cleanup_datetime` (`next_cleanup_datetime`)
 -- SEPARATOR --
 
 INSERT INTO `users` (`user_id`, `email`, `password`, `api_key`, `referral_key`, `name`, `type`, `status`, `plan_id`, `plan_expiration_date`, `plan_settings`, `datetime`, `ip`, `last_activity`, `preferences`)
-VALUES (1,'admin','$2y$10$uFNO0pQKEHSFcus1zSFlveiPCB3EvG9ZlES7XKgJFTAl5JbRGFCWy', md5(rand()), md5(rand()), 'Admin Web',1,1,'custom','2030-01-01 12:00:00', '{"url_minimum_characters":1,"url_maximum_characters":64,"additional_domains":["69"],"biolinks_templates":[],"biolinks_themes":["33","1","2","3","4","5","32","34"],"custom_url":true,"deep_links":true,"no_ads":true,"white_labeling_is_enabled":true,"export":{"pdf":true,"csv":true,"json":true},"removable_branding":true,"custom_branding":true,"statistics":true,"temporary_url_is_enabled":true,"cloaking_is_enabled":true,"app_linking_is_enabled":true,"targeting_is_enabled":true,"seo":true,"utm":true,"fonts":true,"password":true,"sensitive_content":true,"leap_link":true,"api_is_enabled":true,"dofollow_is_enabled":true,"custom_pwa_is_enabled":true,"biolink_blocks_limit":-1,"projects_limit":-1,"splash_pages_limit":-1,"pixels_limit":-1,"qr_codes_limit":-1,"qr_codes_bulk_limit":-1,"biolinks_limit":-1,"links_limit":-1,"files_limit":-1,"vcards_limit":-1,"events_limit":-1,"static_limit":-1,"domains_limit":-1,"payment_processors_limit":-1,"signatures_limit":-1,"teams_limit":-1,"team_members_limit":-1,"affiliate_commission_percentage":10,"track_links_retention":999,"custom_css_is_enabled":true,"custom_js_is_enabled":true,"enabled_biolink_blocks":{"link":true,"heading":true,"paragraph":true,"avatar":true,"image":true,"socials":true,"email_collector":true,"threads":true,"soundcloud":true,"spotify":true,"youtube":true,"twitch":true,"vimeo":true,"tiktok_video":true,"paypal":true,"phone_collector":true,"contact_collector":true,"map":true,"applemusic":true,"tidal":true,"mixcloud":true,"kick":true,"anchor":true,"twitter_profile":true,"twitter_tweet":true,"twitter_video":true,"pinterest_profile":true,"instagram_media":true,"snapchat":true,"rss_feed":true,"custom_html":true,"vcard":true,"image_grid":true,"divider":true,"list":true,"alert":true,"tiktok_profile":true,"vk_video":true,"big_link":true,"faq":true,"typeform":true,"calendly":true,"discord":true,"facebook":true,"reddit":true,"audio":true,"video":true,"iframe":true,"file":true,"countdown":true,"cta":true,"external_item":true,"share":true,"coupon":true,"youtube_feed":true,"timeline":true,"review":true,"image_slider":true,"pdf_document":true,"powerpoint_presentation":true,"excel_spreadsheet":true,"markdown":true,"rumble":true,"telegram":true,"donation":true,"product":true,"service":true},"exclusive_personal_api_keys":false,"documents_model":"gpt-4","documents_per_month_limit":-1,"words_per_month_limit":-1,"images_api":"dall-e-2","images_per_month_limit":-1,"transcriptions_per_month_limit":-1,"transcriptions_file_size_limit":2,"chats_model":"gpt-4","chats_per_month_limit":-1,"chat_messages_per_chat_limit":-1,"chat_image_size_limit":2,"syntheses_api":"openai_audio","syntheses_per_month_limit":-1,"synthesized_characters_per_month_limit":-1,"force_splash_page_on_link":false,"force_splash_page_on_biolink":false,"force_splash_page_on_file":false,"force_splash_page_on_static":false,"force_splash_page_on_vcard":false,"force_splash_page_on_event":false}', NOW(),'',NOW(), '{"default_results_per_page":100,"default_order_type":"DESC","links_default_order_by":"link_id","qr_codes_default_order_by":"qr_code_id","openai_api_key":"","clipdrop_api_key":""}');
+VALUES (1,'admin','$2y$10$uFNO0pQKEHSFcus1zSFlveiPCB3EvG9ZlES7XKgJFTAl5JbRGFCWy', md5(rand()), md5(rand()), 'AltumCode',1,1,'custom','2030-01-01 12:00:00', '{"url_minimum_characters":1,"url_maximum_characters":64,"additional_domains":["69"],"biolinks_templates":[],"biolinks_themes":["33","1","2","3","4","5","32","34"],"custom_url":true,"deep_links":true,"no_ads":true,"white_labeling_is_enabled":true,"export":{"pdf":true,"csv":true,"json":true},"removable_branding":true,"custom_branding":true,"statistics":true,"temporary_url_is_enabled":true,"cloaking_is_enabled":true,"app_linking_is_enabled":true,"targeting_is_enabled":true,"seo":true,"utm":true,"fonts":true,"password":true,"sensitive_content":true,"leap_link":true,"api_is_enabled":true,"dofollow_is_enabled":true,"custom_pwa_is_enabled":true,"biolink_blocks_limit":-1,"projects_limit":-1,"splash_pages_limit":-1,"pixels_limit":-1,"qr_codes_limit":-1,"qr_codes_bulk_limit":-1,"biolinks_limit":-1,"links_limit":-1,"files_limit":-1,"vcards_limit":-1,"events_limit":-1,"static_limit":-1,"domains_limit":-1,"payment_processors_limit":-1,"signatures_limit":-1,"teams_limit":-1,"team_members_limit":-1,"affiliate_commission_percentage":10,"track_links_retention":999,"custom_css_is_enabled":true,"custom_js_is_enabled":true,"enabled_biolink_blocks":{"link":true,"heading":true,"paragraph":true,"avatar":true,"image":true,"socials":true,"email_collector":true,"threads":true,"soundcloud":true,"spotify":true,"youtube":true,"twitch":true,"vimeo":true,"tiktok_video":true,"paypal":true,"phone_collector":true,"contact_collector":true,"map":true,"applemusic":true,"tidal":true,"mixcloud":true,"kick":true,"anchor":true,"twitter_profile":true,"twitter_tweet":true,"twitter_video":true,"pinterest_profile":true,"instagram_media":true,"snapchat":true,"rss_feed":true,"custom_html":true,"vcard":true,"image_grid":true,"divider":true,"list":true,"alert":true,"tiktok_profile":true,"vk_video":true,"big_link":true,"faq":true,"typeform":true,"calendly":true,"discord":true,"facebook":true,"reddit":true,"audio":true,"video":true,"iframe":true,"file":true,"countdown":true,"cta":true,"external_item":true,"share":true,"coupon":true,"youtube_feed":true,"timeline":true,"review":true,"image_slider":true,"pdf_document":true,"powerpoint_presentation":true,"excel_spreadsheet":true,"markdown":true,"rumble":true,"telegram":true,"donation":true,"product":true,"service":true},"exclusive_personal_api_keys":false,"documents_model":"gpt-4","documents_per_month_limit":-1,"words_per_month_limit":-1,"images_api":"dall-e-2","images_per_month_limit":-1,"transcriptions_per_month_limit":-1,"transcriptions_file_size_limit":2,"chats_model":"gpt-4","chats_per_month_limit":-1,"chat_messages_per_chat_limit":-1,"chat_image_size_limit":2,"syntheses_api":"openai_audio","syntheses_per_month_limit":-1,"synthesized_characters_per_month_limit":-1,"force_splash_page_on_link":false,"force_splash_page_on_biolink":false,"force_splash_page_on_file":false,"force_splash_page_on_static":false,"force_splash_page_on_vcard":false,"force_splash_page_on_event":false}', NOW(),'',NOW(), '{"default_results_per_page":100,"default_order_type":"DESC","links_default_order_by":"link_id","qr_codes_default_order_by":"qr_code_id","openai_api_key":"","clipdrop_api_key":""}');
 
 -- SEPARATOR --
 
@@ -121,6 +121,7 @@ KEY `pages_categories_url_language_index` (`url`,`language`)
 CREATE TABLE `pages` (
 `page_id` bigint unsigned NOT NULL AUTO_INCREMENT,
 `pages_category_id` bigint unsigned DEFAULT NULL,
+`plans_ids` text COLLATE utf8mb4_unicode_ci,
 `url` varchar(256) NOT NULL,
 `title` varchar(256) NOT NULL DEFAULT '',
 `description` varchar(256) DEFAULT NULL,
@@ -149,8 +150,8 @@ CONSTRAINT `pages_ibfk_1` FOREIGN KEY (`pages_category_id`) REFERENCES `pages_ca
 -- SEPARATOR --
 
 INSERT INTO `pages` (`pages_category_id`, `url`, `title`, `description`, `content`, `type`, `position`, `order`, `total_views`, `datetime`, `last_datetime`) VALUES
-(NULL, 'https://xead.my.id/', 'Software by Jonathan Zefanya', '', '', 'external', 'bottom', 1, 0, NOW(), NOW()),
-(NULL, 'https://www.php.net', 'Built with PHP', '', '', 'external', 'bottom', 0, 0, NOW(), NOW());
+(NULL, 'https://altumcode.com/', 'Software by AltumCode', '', '', 'external', 'bottom', 1, 0, NOW(), NOW()),
+(NULL, 'https://altumco.de/66biolinks', 'Built with 66biolinks', '', '', 'external', 'bottom', 0, 0, NOW(), NOW());
 
 -- SEPARATOR --
 
@@ -341,7 +342,7 @@ VALUES
 ('flutterwave', '{"is_enabled":false,"secret_key":"","currencies":["USD"]}'),
 ('lemonsqueezy', '{"is_enabled":false,"api_key":"","signing_secret":"","store_id":"","one_time_monthly_variant_id":"","one_time_annual_variant_id":"","one_time_lifetime_variant_id":"","recurring_monthly_variant_id":"","recurring_annual_variant_id":"","currencies":["USD"]}'),
 ('myfatoorah', '{"is_enabled":1,"api_endpoint":"apitest.myfatoorah.com","api_key":"","secret_key":"","currencies":["KWD"]}'),
-('smtp', '{"from_name":"Web Tools","from":"","reply_to_name":"","reply_to":"","cc":"","bcc":"","host":"","encryption":"tls","port":"","auth":0,"username":"","password":"","display_socials":false,"company_details":""}'),
+('smtp', '{"from_name":"AltumCode","from":"","reply_to_name":"","reply_to":"","cc":"","bcc":"","host":"","encryption":"tls","port":"","auth":0,"username":"","password":"","display_socials":false,"company_details":""}'),
 ('custom', '{"body_content":"","head_js":"","head_css":"","head_js_biolink":"","head_css_biolink":"","body_content_biolink":"","head_js_splash_page":"","head_css_splash_page":"","body_content_splash_page":""}'),
 ('theme', '{"light_is_enabled": false, "dark_is_enabled": false}'),
 ('socials', '{"threads":"","youtube":"","facebook":"","x":"","instagram":"","tiktok":"","linkedin":"","whatsapp":"","email":""}'),
@@ -349,12 +350,12 @@ VALUES
 ('business', '{\"invoice_is_enabled\":\"0\",\"name\":\"\",\"address\":\"\",\"city\":\"\",\"county\":\"\",\"zip\":\"\",\"country\":\"\",\"email\":\"\",\"phone\":\"\",\"tax_type\":\"\",\"tax_id\":\"\",\"custom_key_one\":\"\",\"custom_value_one\":\"\",\"custom_key_two\":\"\",\"custom_value_two\":\"\"}'),
 ('webhooks', '{"user_new":"","user_delete":"","payment_new":"","code_redeemed":"","contact":"","cron_start":"","cron_end":"","domain_new":"","domain_update":""}'),
 ('cookie_consent', '{"is_enabled":false,"logging_is_enabled":false,"necessary_is_enabled":true,"analytics_is_enabled":true,"targeting_is_enabled":true,"layout":"bar","position_y":"middle","position_x":"center"}'),
-('links', '{"available_biolink_blocks":{"link":true,"heading":true,"paragraph":true,"avatar":true,"image":true,"socials":true,"email_collector":true,"threads":true,"soundcloud":true,"spotify":true,"youtube":true,"twitch":true,"vimeo":true,"tiktok_video":true,"paypal":true,"phone_collector":true,"contact_collector":true,"map":true,"applemusic":true,"tidal":true,"anchor":true,"twitter_profile":true,"twitter_tweet":true,"twitter_video":true,"pinterest_profile":true,"instagram_media":true,"snapchat":true,"rss_feed":true,"custom_html":true,"vcard":true,"image_grid":true,"divider":true,"list":true,"alert":true,"tiktok_profile":true,"vk_video":true,"big_link":true,"faq":true,"typeform":true,"discord":true,"facebook":true,"reddit":true,"audio":true,"video":true,"iframe":true,"file":true,"countdown":true,"cta":true,"external_item":true,"share":true,"youtube_feed":true,"timeline":true,"review":true,"image_slider":true,"pdf_document":true,"markdown":true,"rumble":true,"telegram":true,"donation":true,"product":true,"service":true},"example_url":"","random_url_length":5,"branding":"Web Tools by Jonathan Zefanya","shortener_is_enabled":1,"biolinks_is_enabled":1,"biolinks_templates_is_enabled":1,"biolinks_themes_is_enabled":"on","biolinks_new_blocks_position":"bottom","biolinks_default_active_tab":"settings","default_biolink_theme_id":null,"default_biolink_template_id":null,"files_is_enabled":1,"vcards_is_enabled":1,"events_is_enabled":1,"static_is_enabled":1,"pixels_is_enabled":1,"splash_page_is_enabled":1,"splash_page_auto_redirect":1,"splash_page_link_unlock_seconds":3,"directory_is_enabled":1,"directory_access":"everyone","directory_display":"all","domains_is_enabled":1,"additional_domains_is_enabled":1,"main_domain_is_enabled":1,"domains_custom_main_ip":"","blacklisted_domains":[],"blacklisted_keywords":[],"google_safe_browsing_is_enabled":0,"google_safe_browsing_api_key":"","google_static_maps_is_enabled":0,"google_static_maps_api_key":"","avatar_size_limit":2,"background_size_limit":2,"favicon_size_limit":2,"seo_image_size_limit":2,"thumbnail_image_size_limit":2,"image_size_limit":2,"audio_size_limit":2,"video_size_limit":2,"file_size_limit":2,"product_file_size_limit":2,"static_size_limit":2}'),
+('links', '{"available_biolink_blocks":{"link":true,"heading":true,"paragraph":true,"avatar":true,"image":true,"socials":true,"email_collector":true,"threads":true,"soundcloud":true,"spotify":true,"youtube":true,"twitch":true,"vimeo":true,"tiktok_video":true,"paypal":true,"phone_collector":true,"contact_collector":true,"map":true,"applemusic":true,"tidal":true,"anchor":true,"twitter_profile":true,"twitter_tweet":true,"twitter_video":true,"pinterest_profile":true,"instagram_media":true,"snapchat":true,"rss_feed":true,"custom_html":true,"vcard":true,"image_grid":true,"divider":true,"list":true,"alert":true,"tiktok_profile":true,"vk_video":true,"big_link":true,"faq":true,"typeform":true,"discord":true,"facebook":true,"reddit":true,"audio":true,"video":true,"iframe":true,"file":true,"countdown":true,"cta":true,"external_item":true,"share":true,"youtube_feed":true,"timeline":true,"review":true,"image_slider":true,"pdf_document":true,"markdown":true,"rumble":true,"telegram":true,"donation":true,"product":true,"service":true},"example_url":"","random_url_length":5,"branding":"66biolinks by AltumCode","shortener_is_enabled":1,"biolinks_is_enabled":1,"biolinks_templates_is_enabled":1,"biolinks_themes_is_enabled":"on","biolinks_new_blocks_position":"bottom","biolinks_default_active_tab":"settings","default_biolink_theme_id":null,"default_biolink_template_id":null,"files_is_enabled":1,"vcards_is_enabled":1,"events_is_enabled":1,"static_is_enabled":1,"pixels_is_enabled":1,"splash_page_is_enabled":1,"splash_page_auto_redirect":1,"splash_page_link_unlock_seconds":3,"directory_is_enabled":1,"directory_access":"everyone","directory_display":"all","domains_is_enabled":1,"additional_domains_is_enabled":1,"main_domain_is_enabled":1,"domains_custom_main_ip":"","blacklisted_domains":[],"blacklisted_keywords":[],"google_safe_browsing_is_enabled":0,"google_safe_browsing_api_key":"","google_static_maps_is_enabled":0,"google_static_maps_api_key":"","avatar_size_limit":2,"background_size_limit":2,"favicon_size_limit":2,"seo_image_size_limit":2,"thumbnail_image_size_limit":2,"image_size_limit":2,"audio_size_limit":2,"video_size_limit":2,"file_size_limit":2,"product_file_size_limit":2,"static_size_limit":2}'),
 ('codes', '{"qr_codes_is_enabled":1,"logo_size_limit":1,"background_size_limit":1,"available_qr_codes":{"text":true,"url":true,"phone":true,"sms":true,"email":true,"whatsapp":true,"facetime":true,"location":true,"wifi":true,"event":true,"vcard":true,"crypto":true,"paypal":true,"upi":true,"epc":true,"pix":true},"qr_codes_branding_logo":"","qr_codes_default_image":""}'),
 ('tools', '{"is_enabled":1,"access":"everyone","available_tools":{"dns_lookup":true,"ip_lookup":true,"reverse_ip_lookup":true,"ssl_lookup":true,"whois_lookup":true,"ping":true,"http_headers_lookup":true,"http2_checker":true,"brotli_checker":true,"safe_url_checker":true,"google_cache_checker":true,"url_redirect_checker":true,"password_strength_checker":true,"meta_tags_checker":true,"website_hosting_checker":true,"file_mime_type_checker":true,"gravatar_checker":true,"text_separator":true,"email_extractor":true,"url_extractor":true,"text_size_calculator":true,"duplicate_lines_remover":true,"text_to_speech":true,"idn_punnycode_converter":true,"case_converter":true,"character_counter":true,"list_randomizer":true,"reverse_words":true,"reverse_letters":true,"emojis_remover":true,"reverse_list":true,"list_alphabetizer":true,"upside_down_text_generator":true,"old_english_text_generator":true,"cursive_text_generator":true,"palindrome_checker":true,"base64_encoder":true,"base64_decoder":true,"base64_to_image":true,"image_to_base64":true,"url_encoder":true,"url_decoder":true,"color_converter":true,"binary_converter":true,"hex_converter":true,"ascii_converter":true,"decimal_converter":true,"octal_converter":true,"morse_converter":true,"number_to_words_converter":true,"paypal_link_generator":true,"signature_generator":true,"mailto_link_generator":true,"utm_link_generator":true,"whatsapp_link_generator":true,"youtube_timestamp_link_generator":true,"slug_generator":true,"lorem_ipsum_generator":true,"password_generator":true,"random_number_generator":true,"uuid_v4_generator":true,"bcrypt_generator":true,"md2_generator":true,"md4_generator":true,"md5_generator":true,"whirlpool_generator":true,"sha1_generator":true,"sha224_generator":true,"sha256_generator":true,"sha384_generator":true,"sha512_generator":true,"sha512_224_generator":true,"sha512_256_generator":true,"sha3_224_generator":true,"sha3_256_generator":true,"sha3_384_generator":true,"sha3_512_generator":true,"html_minifier":true,"css_minifier":true,"js_minifier":true,"json_validator_beautifier":true,"sql_beautifier":true,"html_entity_converter":true,"bbcode_to_html":true,"markdown_to_html":true,"html_tags_remover":true,"user_agent_parser":true,"url_parser":true,"image_optimizer":true,"png_to_jpg":true,"png_to_webp":true,"png_to_bmp":true,"png_to_gif":true,"png_to_ico":true,"jpg_to_png":true,"jpg_to_webp":true,"jpg_to_gif":true,"jpg_to_ico":true,"jpg_to_bmp":true,"webp_to_jpg":true,"webp_to_gif":true,"webp_to_png":true,"webp_to_bmp":true,"webp_to_ico":true,"bmp_to_jpg":true,"bmp_to_gif":true,"bmp_to_png":true,"bmp_to_webp":true,"bmp_to_ico":true,"ico_to_jpg":true,"ico_to_gif":true,"ico_to_png":true,"ico_to_webp":true,"ico_to_bmp":true,"gif_to_jpg":true,"gif_to_ico":true,"gif_to_png":true,"gif_to_webp":true,"gif_to_bmp":true,"youtube_thumbnail_downloader":true,"qr_code_reader":true,"barcode_reader":true,"exif_reader":true,"color_picker":true,"unix_timestamp_to_date":true,"date_to_unix_timestamp":true},"extra_content_is_enabled":true,"share_is_enabled":true,"views_is_enabled":true,"similar_widget_is_enabled":true,"popular_widget_is_enabled":true}'),
 ('notification_handlers', '{"twilio_sid":"","twilio_token":"","twilio_number":"","whatsapp_number_id":"","whatsapp_access_token":"","email_is_enabled":true,"webhook_is_enabled":true,"slack_is_enabled":true,"discord_is_enabled":true,"telegram_is_enabled":true,"microsoft_teams_is_enabled":true,"twilio_is_enabled":false,"twilio_call_is_enabled":false,"whatsapp_is_enabled":false}'),
-('license', '{\"license\":\"xxxxxxxxxxxxx\",\"type\":\"Extended License\"}'),
-('product_info', '{\"version\":\"58.0.0\", \"code\":\"5800\"}');
+('license', '{\"license\":\"Extended License\",\"type\":\"Extended License\"}'),
+('product_info', '{\"version\":\"59.0.0\", \"code\":\"5900\"}');
 
 -- SEPARATOR --
 
@@ -363,14 +364,15 @@ CREATE TABLE `splash_pages` (
 `user_id` int NOT NULL,
 `name` varchar(64) NOT NULL,
 `title` varchar(256) DEFAULT NULL,
-`description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+`description` text,
 `link_unlock_seconds` int unsigned DEFAULT '5',
-`auto_redirect` tinyint DEFAULT '0',
-`settings` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+`auto_redirect` tinyint unsigned DEFAULT '0',
+`settings` text,
 `last_datetime` datetime DEFAULT NULL,
 `datetime` datetime NOT NULL,
 PRIMARY KEY (`splash_page_id`),
-KEY `user_id` (`user_id`)
+KEY `user_id` (`user_id`),
+CONSTRAINT `splash_pages_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- SEPARATOR --
@@ -410,6 +412,7 @@ CREATE TABLE `links` (
 `pixels_ids` text,
 `email_reports` text,
 `email_reports_last_datetime` datetime DEFAULT NULL,
+`email_reports_count` tinyint DEFAULT '0',
 `type` varchar(32) NOT NULL DEFAULT '',
 `subtype` varchar(32) DEFAULT NULL,
 `url` varchar(256) NOT NULL DEFAULT '',
@@ -432,6 +435,7 @@ KEY `links_subtype_index` (`subtype`),
 KEY `links_type_index` (`type`),
 KEY `links_biolinks_themes_biolink_theme_id_fk` (`biolink_theme_id`),
 KEY `links_splash_page_id_index` (`splash_page_id`),
+KEY `links_email_reports_count_index` (`email_reports_count`),
 CONSTRAINT `links_biolinks_themes_biolink_theme_id_fk` FOREIGN KEY (`biolink_theme_id`) REFERENCES `biolinks_themes` (`biolink_theme_id`) ON DELETE SET NULL ON UPDATE CASCADE,
 CONSTRAINT `links_ibfk_2` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE SET NULL ON UPDATE CASCADE,
 CONSTRAINT `links_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -463,14 +467,15 @@ CREATE TABLE `track_links` (
 `user_id` int NOT NULL,
 `link_id` int DEFAULT NULL,
 `biolink_block_id` int DEFAULT NULL,
+`project_id` int DEFAULT NULL,
 `country_code` varchar(8) DEFAULT NULL,
-`continent_code` ENUM('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA') DEFAULT NULL,
+`continent_code` enum('AF','AN','AS','EU','NA','OC','SA') DEFAULT NULL,
 `city_name` varchar(128) DEFAULT NULL,
 `os_name` varchar(16) DEFAULT NULL,
 `browser_name` varchar(32) DEFAULT NULL,
 `referrer_host` varchar(256) DEFAULT NULL,
 `referrer_path` varchar(1024) DEFAULT NULL,
-`device_type` enum('desktop','mobile','tablet') DEFAULT NULL,
+`device_type` enum('mobile','tablet','desktop') DEFAULT NULL,
 `browser_language` varchar(16) DEFAULT NULL,
 `utm_source` varchar(128) DEFAULT NULL,
 `utm_medium` varchar(128) DEFAULT NULL,
@@ -482,11 +487,12 @@ KEY `link_id` (`link_id`),
 KEY `track_links_date_index` (`datetime`),
 KEY `track_links_users_user_id_fk` (`user_id`),
 KEY `track_links_biolink_block_id_index` (`biolink_block_id`),
-KEY `idx_user_id_datetime` (`user_id`, `datetime`),
+KEY `idx_user_datetime` (`user_id`,`datetime`),
+KEY `track_links_projects_project_id_fk` (`project_id`),
 CONSTRAINT `track_links_ibfk_1` FOREIGN KEY (`link_id`) REFERENCES `links` (`link_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT `track_links_projects_project_id_fk` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE SET NULL ON UPDATE CASCADE,
 CONSTRAINT `track_links_users_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
-
 
 -- SEPARATOR --
 
@@ -586,7 +592,7 @@ CREATE TABLE `qr_codes` (
 `qr_code_foreground` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
 `qr_code_background` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
 `qr_code` varchar(64) NOT NULL,
-`settings` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+`settings` text,
 `embedded_data` text COLLATE utf8mb4_unicode_ci,
 `datetime` datetime NOT NULL,
 `last_datetime` datetime DEFAULT NULL,
@@ -597,7 +603,7 @@ KEY `qr_codes_links_link_id_fk` (`link_id`),
 CONSTRAINT `qr_codes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 CONSTRAINT `qr_codes_ibfk_2` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE SET NULL ON UPDATE CASCADE,
 CONSTRAINT `qr_codes_links_link_id_fk` FOREIGN KEY (`link_id`) REFERENCES `links` (`link_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- SEPARATOR --
 
@@ -620,7 +626,7 @@ CREATE TABLE `tools_usage` (
 `total_submissions` bigint unsigned DEFAULT '0',
 `total_ratings` bigint unsigned DEFAULT '0',
 `average_rating` float unsigned DEFAULT '0',
-`data` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+`data` text,
 PRIMARY KEY (`id`),
 UNIQUE KEY `tools_usage_tool_id_idx` (`tool_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -674,6 +680,23 @@ CONSTRAINT `email_reports_ibfk_2` FOREIGN KEY (`link_id`) REFERENCES `links` (`l
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- SEPARATOR --
+
+INSERT INTO `links` (`link_id`, `project_id`, `splash_page_id`, `user_id`, `biolink_theme_id`, `biolink_id`, `domain_id`, `pixels_ids`, `email_reports`, `email_reports_last_datetime`, `type`, `subtype`, `url`, `location_url`, `clicks`, `settings`, `additional`, `start_date`, `end_date`, `is_verified`, `directory_is_enabled`, `is_enabled`, `last_datetime`, `datetime`) VALUES
+(2, NULL, NULL, 1, NULL, NULL, 0, '[]', '[]', NULL, 'biolink', NULL, 'template-mobile-app', NULL, 4, '{\"pwa_file_name\":null,\"pwa_is_enabled\":0,\"pwa_display_install_bar\":0,\"pwa_display_install_bar_delay\":3,\"pwa_theme_color\":\"#000000\",\"pwa_icon\":null,\"verified_location\":\"top\",\"background_type\":\"preset\",\"background_attachment\":\"scroll\",\"background_blur\":0,\"background_brightness\":100,\"background\":\"zero\",\"background_color_one\":null,\"background_color_two\":null,\"favicon\":null,\"text_color\":\"#ffffff\",\"display_branding\":1,\"branding\":{\"name\":\"\",\"url\":\"\"},\"seo\":{\"block\":0,\"title\":\"\",\"meta_description\":\"\",\"meta_keywords\":\"\",\"image\":\"\"},\"utm\":{\"medium\":\"\",\"source\":\"\"},\"font\":\"default\",\"width\":8,\"block_spacing\":2,\"hover_animation\":\"smooth\",\"font_size\":16,\"password\":null,\"sensitive_content\":0,\"leap_link\":\"\",\"custom_css\":\"\",\"custom_js\":\"\",\"share_is_enabled\":1,\"scroll_buttons_is_enabled\":1}', '', NULL, NULL, 0, 1, 1, '2025-07-31 21:35:39', '2025-07-31 21:01:27');
+
+-- SEPARATOR --
+
+INSERT INTO `biolinks_blocks` (`user_id`, `link_id`, `type`, `location_url`, `clicks`, `settings`, `order`, `start_date`, `end_date`, `is_enabled`, `datetime`, `last_datetime`) VALUES
+(1, 2, 'avatar', '', 0, '{\"image\":\"06e5bcf82b1b4642683b8c302336da5f.png\",\"image_alt\":\"\",\"size\":100,\"object_fit\":\"contain\",\"border_radius\":\"round\",\"border_width\":0,\"border_style\":\"solid\",\"border_color\":\"#000000\",\"border_shadow_offset_x\":0,\"border_shadow_offset_y\":0,\"border_shadow_blur\":20,\"border_shadow_spread\":0,\"border_shadow_color\":\"#FFFFFF00\",\"open_in_new_tab\":0,\"display_continents\":[],\"display_countries\":[],\"display_cities\":[],\"display_devices\":[],\"display_languages\":[],\"display_operating_systems\":[],\"display_browsers\":[]}', 0, NULL, NULL, 1, '2025-07-31 21:39:26', '2025-07-31 21:41:11'),
+(1, 2, 'link', 'https://app-store-app-link.com/', 0, '{\"name\":\"Android - play store\",\"open_in_new_tab\":0,\"text_color\":\"#FFFFFF\",\"text_alignment\":\"center\",\"background_color\":\"#5647F5\",\"border_radius\":\"round\",\"border_width\":0,\"border_style\":\"solid\",\"border_color\":\"#000000\",\"border_shadow_offset_x\":0,\"border_shadow_offset_y\":0,\"border_shadow_blur\":20,\"border_shadow_spread\":0,\"border_shadow_color\":\"#00000010\",\"animation\":\"false\",\"animation_runs\":false,\"icon\":\"\",\"image\":\"0aeed08df8caf63a0b5fb245708badad.webp\",\"sensitive_content\":0,\"columns\":1,\"display_continents\":[],\"display_countries\":[],\"display_cities\":[],\"display_devices\":[],\"display_languages\":[],\"display_operating_systems\":[],\"display_browsers\":[]}', 4, NULL, NULL, 1, '2025-07-31 21:21:34', '2025-07-31 21:36:52'),
+(1, 2, 'link', 'https://app-store-app-link.com/', 0, '{\"name\":\"IOS - app store\",\"open_in_new_tab\":0,\"text_color\":\"#FFFFFF\",\"text_alignment\":\"center\",\"background_color\":\"#214DFF\",\"border_radius\":\"round\",\"border_width\":0,\"border_style\":\"solid\",\"border_color\":\"#000000\",\"border_shadow_offset_x\":0,\"border_shadow_offset_y\":0,\"border_shadow_blur\":20,\"border_shadow_spread\":0,\"border_shadow_color\":\"#00000010\",\"animation\":\"false\",\"animation_runs\":false,\"icon\":\"\",\"image\":\"8d65c20696a585964b49c4d4bb5e4236.png\",\"sensitive_content\":0,\"columns\":1,\"display_continents\":[],\"display_countries\":[],\"display_cities\":[],\"display_devices\":[],\"display_languages\":[],\"display_operating_systems\":[],\"display_browsers\":[]}', 3, NULL, NULL, 1, '2025-07-31 21:07:28', '2025-07-31 21:37:05'),
+(1, 2, 'paragraph', NULL, 0, '{\"text\":\"<p class=\\\"ql-align-center text-center\\\">Your app description<\\/p>\",\"text_color\":\"#ffffff\",\"background_color\":\"#00000000\",\"border_radius\":\"rounded\",\"border_width\":0,\"border_style\":\"solid\",\"border_color\":\"#000000\",\"border_shadow_offset_x\":0,\"border_shadow_offset_y\":0,\"border_shadow_blur\":20,\"border_shadow_spread\":0,\"border_shadow_color\":\"#00000000\",\"display_continents\":[],\"display_countries\":[],\"display_cities\":[],\"display_devices\":[],\"display_languages\":[],\"display_operating_systems\":[],\"display_browsers\":[]}', 2, NULL, NULL, 1, '2025-07-31 21:05:12', '2025-07-31 21:05:23'),
+(1, 2, 'heading', NULL, 0, '{\"heading_type\":\"h3\",\"text\":\"Your app name\",\"text_color\":\"#ffffff\",\"text_alignment\":\"center\",\"verified_location\":\"\",\"display_continents\":[],\"display_countries\":[],\"display_cities\":[],\"display_devices\":[],\"display_languages\":[],\"display_operating_systems\":[],\"display_browsers\":[]}', 1, NULL, NULL, 1, '2025-07-31 21:04:51', '2025-07-31 21:06:32');
+
+-- SEPARATOR --
+
+INSERT INTO `biolinks_templates` (`biolink_template_id`, `link_id`, `name`, `url`, `settings`, `is_enabled`, `total_usage`, `order`, `last_datetime`, `datetime`) VALUES
+(1, 2, 'App download', 'http://127.0.0.1/66biolinks/template-mobile-app', '[]', 1, 0, 1, NULL, '2025-07-31 21:44:49');
 
 CREATE TABLE `codes` (
   `code_id` int(10) UNSIGNED NOT NULL,

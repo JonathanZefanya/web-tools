@@ -95,7 +95,7 @@
                                             <?php if(count($data->domains)): ?>
                                                 <select id="domain_id" name="domain_id" class="appearance-none custom-select form-control input-group-text h-100">
                                                     <?php if(settings()->links->main_domain_is_enabled): ?>
-                                                        <option value="" <?= $data->link->domain ? 'selected="selected"' : null ?> data-full-url="<?= SITE_URL ?>"><?= remove_url_protocol_from_url(SITE_URL) ?></option>
+                                                        <option value=" " <?= $data->link->domain ? 'selected="selected"' : null ?> data-full-url="<?= SITE_URL ?>"><?= remove_url_protocol_from_url(SITE_URL) ?></option>
                                                     <?php endif ?>
 
                                                     <?php foreach($data->domains as $row): ?>
@@ -604,16 +604,26 @@
 
 <div class="py-3"></div>
 
+<?php if(settings()->codes->qr_codes_is_enabled || settings()->links->biolinks_is_enabled ||settings()->links->shortener_is_enabled ||settings()->links->files_is_enabled ||settings()->links->vcards_is_enabled ||settings()->links->events_is_enabled ||settings()->links->static_is_enabled): ?>
 <div class="container mt-8">
     <div class="card py-4 index-highly-rounded border-0 bg-gray-900">
         <div class="card-body">
             <div class="row justify-content-between">
+                <?php if(settings()->links->biolinks_is_enabled ||settings()->links->shortener_is_enabled ||settings()->links->files_is_enabled ||settings()->links->vcards_is_enabled ||settings()->links->events_is_enabled ||settings()->links->static_is_enabled): ?>
                 <div class="col-12 col-lg-3 mb-4 mb-lg-0">
                     <div class="text-center d-flex flex-column">
                         <span class="font-weight-bold text-muted mb-3"><?= l('index.stats.links') ?></span>
                         <span class="h1 text-gradient-primary" style="--gradient-one: var(--purple); --gradient-two: var(--pink);"><?= nr($data->total_links, 0, true, true) . '+' ?></span>
                     </div>
                 </div>
+
+                <div class="col-12 col-lg-3 mb-4 mb-lg-0">
+                    <div class="text-center d-flex flex-column">
+                        <span class="font-weight-bold text-muted mb-3"><?= l('index.stats.track_links') ?></span>
+                        <span class="h1 text-gradient-primary" style="--gradient-one: var(--blue); --gradient-two: var(--purple);"><?= nr($data->total_track_links, 0, true, true) . '+' ?></span>
+                    </div>
+                </div>
+                <?php endif ?>
 
                 <?php if(settings()->codes->qr_codes_is_enabled): ?>
                     <div class="col-12 col-lg-3 mb-4 mb-lg-0">
@@ -623,19 +633,13 @@
                         </div>
                     </div>
                 <?php endif ?>
-
-                <div class="col-12 col-lg-3 mb-4 mb-lg-0">
-                    <div class="text-center d-flex flex-column">
-                        <span class="font-weight-bold text-muted mb-3"><?= l('index.stats.track_links') ?></span>
-                        <span class="h1 text-gradient-primary" style="--gradient-one: var(--blue); --gradient-two: var(--purple);"><?= nr($data->total_track_links, 0, true, true) . '+' ?></span>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
 
 <div class="py-3"></div>
+<?php endif ?>
 
 <?php if(settings()->links->pixels_is_enabled): ?>
     <div class="container mt-8">
@@ -943,7 +947,6 @@
 
 <script>
     AOS.init({
-        delay: 100,
         duration: 600
     });
 </script>
@@ -1006,3 +1009,7 @@
     </script>
 <?php endif ?>
 <?php \Altum\Event::add_content(ob_get_clean(), 'javascript') ?>
+
+<?php ob_start() ?>
+    <link href="<?= ASSETS_FULL_URL . 'css/index-custom.css?v=' . PRODUCT_CODE ?>" rel="stylesheet" media="screen,print">
+<?php \Altum\Event::add_content(ob_get_clean(), 'head') ?>

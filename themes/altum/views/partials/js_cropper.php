@@ -37,7 +37,11 @@
 
                   <div class="modal-footer border-0">
                     <button type="button" class="btn btn-light" data-dismiss="modal"><?= l('global.no_crop') ?></button>
-                    <button type="button" class="btn btn-primary" id="crop_image_submit"><?= l('global.crop_selection') ?></button>
+
+                    <button type="button" class="btn btn-primary" id="crop_image_submit">
+                        <?= l('global.crop_selection') ?>
+                        <span id="image_cropper_size" class="small"></span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -52,6 +56,8 @@
         /* remove previous listener to prevent stacking */
         crop_button.replaceWith(crop_button.cloneNode(true));
         const new_crop_button = document.getElementById('crop_image_submit');
+
+        const crop_size_box = document.getElementById('image_cropper_size');
 
         /* handle crop button */
         new_crop_button.addEventListener('click', () => {
@@ -97,6 +103,13 @@
                             aspectRatio: aspect_ratio,
                             viewMode: 2,
                             restore: false,
+                            crop: () => {
+                                /* get cropped box data */
+                                const crop_data = cropper.getData(true);
+
+                                /* update size in modal */
+                                crop_size_box.innerText = '(' + Math.round(crop_data.width) + '×' + Math.round(crop_data.height) + ' px)';
+                            }
                         });
 
                     }).on('hidden.bs.modal', () => {
@@ -105,6 +118,7 @@
                             cropper = null;
                         }
                         current_input = null;
+                        crop_size_box.innerText = '';
                         $(cropper_modal).off('shown.bs.modal hidden.bs.modal');
                     });
 

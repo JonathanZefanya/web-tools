@@ -185,6 +185,24 @@
                     <input id="order" type="number" name="order" class="form-control" value="<?= $data->page->order ?>" />
                     <small class="form-text text-muted"><?= l('admin_resources.order_help') ?></small>
                 </div>
+
+                <div class="form-group">
+                    <label for="plans_ids"><i class="fas fa-fw fa-sm fa-box-open text-muted mr-1"></i> <?= l('admin_resources.plans_ids') ?></label>
+
+                    <div class="row">
+                        <?php foreach($data->plans as $plan): ?>
+                            <div class="col-12 col-lg-6">
+                                <div class="custom-control custom-checkbox my-2">
+                                    <input id="plan_id_<?= $plan->plan_id ?>" name="plans_ids[]" value="<?= $plan->plan_id ?>" type="checkbox" class="custom-control-input" <?= in_array($plan->plan_id, $data->page->plans_ids ?? []) ? 'checked="checked"' : null ?>>
+                                    <label class="custom-control-label d-flex align-items-center" for="plan_id_<?= $plan->plan_id ?>">
+                                        <span class="text-truncate" title="<?= $plan->name ?>"><?= $plan->name ?></span>
+                                    </label>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                    <small class="form-text text-muted"><?= l('admin_resources.plans_ids_help') ?></small>
+                </div>
             </div>
 
             <button type="submit" name="submit" class="btn btn-lg btn-block btn-primary mt-4"><?= l('global.update') ?></button>
@@ -193,6 +211,8 @@
 </div>
 
 <?php include_view(THEME_PATH . 'views/partials/fontawesome_iconpicker_js.php') ?>
+
+<?php include_view(THEME_PATH . 'views/partials/codemirror_js.php') ?>
 
 <?php ob_start() ?>
 <link href="<?= ASSETS_FULL_URL . 'css/libraries/quill.snow.css?v=' . PRODUCT_CODE ?>" rel="stylesheet" media="screen,print">
@@ -309,6 +329,20 @@
     });
     quill.root.innerHTML = document.querySelector('#content').value;
 
+    /* Initiate codemirror */
+    let codemirror_instance = CodeMirror.fromTextArea(document.querySelector('#content'), {
+        lineNumbers: true,
+        lineWrapping: true,
+        mode: 'htmlmixed',
+        theme: <?= \Altum\ThemeStyle::get() == 'light' ? json_encode('default') : json_encode('material') ?>,
+        indentUnit: 4,
+        tabSize: 4,
+        indentWithTabs: true,
+        matchBrackets: true,
+        autoCloseBrackets: true,
+        styleActiveLine: true,
+    });
+
     /* Handle form submission with the editor */
     document.querySelector('#page_update_form').addEventListener('submit', async event => {
         let editor = document.querySelector('input[name="editor"]:checked')?.value ?? 'blocks';
@@ -366,6 +400,9 @@
     document.querySelectorAll('input[name="editor"]').forEach(element => element.addEventListener('change', editor_handler));
     editor_handler();
 
+    document.querySelectorAll('input[name="editor"]').forEach(element => element.addEventListener('change', editor_handler));
+    editor_handler();
+
     type_handler('input[name="type"]', 'data-type');
     document.querySelector('input[name="type"]') && document.querySelectorAll('input[name="type"]').forEach(element => element.addEventListener('change', () => { type_handler('input[name="type"]', 'data-type'); }));
 </script>
@@ -378,4 +415,3 @@
     'path' => 'admin/pages/delete/'
 ]), 'modals'); ?>
 
-<?php include_view(THEME_PATH . 'views/partials/codemirror_js.php') ?>

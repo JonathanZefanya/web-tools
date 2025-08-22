@@ -261,7 +261,7 @@
            Hide on Click Outside
         ------------------------------ */
         spotlight_wrapper.addEventListener('click', event => {
-            if(!spotlight_wrapper.classList.contains('d-none') && !spotlight_modal.contains(e.target)) {
+            if(!spotlight_wrapper.classList.contains('d-none') && !spotlight_modal.contains(event.target)) {
                 spotlight_hide();
             }
         });

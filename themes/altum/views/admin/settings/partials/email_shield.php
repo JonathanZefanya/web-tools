@@ -20,6 +20,13 @@
                 <small class="form-text text-muted"><?= l('admin_settings.email_shield.email_shield_api_key_help') ?></small>
                 <small class="form-text text-muted"><?= l('admin_settings.email_shield.email_shield_api_key_help2') ?></small>
             </div>
+
+            <div class="form-group">
+                <label for="whitelisted_domains"><i class="fas fa-fw fa-sm fa-check-circle text-muted mr-1"></i> <?= l('admin_settings.email_shield.whitelisted_domains') ?></label>
+                <textarea id="whitelisted_domains" name="whitelisted_domains" class="form-control"><?= implode(',', settings()->email_shield->whitelisted_domains ?? []) ?></textarea>
+                <small class="form-text text-muted"><?= l('admin_settings.email_shield.whitelisted_domains_help') ?></small>
+            </div>
+
         </div>
     </div>
 </div>

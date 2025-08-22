@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -58,8 +57,8 @@ class Chats extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($chats, 'include', ['chat_id', 'user_id', 'chat_assistant_id', 'name', 'total_messages', 'used_tokens', 'datetime', 'last_datetime'], sprintf(l('chats.title')));
-        process_export_json($chats, 'include', ['chat_id', 'user_id', 'chat_assistant_id', 'name', 'total_messages', 'used_tokens', 'settings', 'datetime', 'last_datetime'], sprintf(l('chats.title')));
+        process_export_csv($chats, ['chat_id', 'user_id', 'chat_assistant_id', 'name', 'total_messages', 'used_tokens', 'datetime', 'last_datetime'], sprintf(l('chats.title')));
+        process_export_json($chats, ['chat_id', 'user_id', 'chat_assistant_id', 'name', 'total_messages', 'used_tokens', 'settings', 'datetime', 'last_datetime'], sprintf(l('chats.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/pagination', (array) $this))->run(['paginator' => $paginator]);

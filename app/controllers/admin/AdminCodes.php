@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -39,8 +38,8 @@ class AdminCodes extends Controller {
         }
 
         /* Export handler */
-        process_export_json($codes, 'include', ['code_id', 'name', 'type', 'days', 'code', 'discount', 'quantity', 'redeemed', 'datetime']);
-        process_export_csv($codes, 'include', ['code_id', 'name', 'type', 'days', 'code', 'discount', 'quantity', 'redeemed', 'datetime']);
+        process_export_json($codes, ['code_id', 'name', 'type', 'days', 'code', 'discount', 'quantity', 'redeemed', 'datetime']);
+        process_export_csv($codes, ['code_id', 'name', 'type', 'days', 'code', 'discount', 'quantity', 'redeemed', 'datetime']);
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -84,6 +83,8 @@ class AdminCodes extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -92,6 +93,8 @@ class AdminCodes extends Controller {
                     }
                     break;
             }
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

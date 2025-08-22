@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\controllers;
 
 use Altum\Models\Payments;

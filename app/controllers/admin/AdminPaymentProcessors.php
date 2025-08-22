@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -41,8 +40,8 @@ class AdminPaymentProcessors extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($payment_processors, 'include', ['payment_processor_id', 'user_id', 'name', 'processor', 'is_enabled', 'last_datetime', 'datetime'], sprintf(l('payment_processors.title')));
-        process_export_json($payment_processors, 'include', ['payment_processor_id', 'user_id', 'name', 'processor', 'settings', 'is_enabled', 'last_datetime', 'datetime'], sprintf(l('payment_processors.title')));
+        process_export_csv($payment_processors, ['payment_processor_id', 'user_id', 'name', 'processor', 'is_enabled', 'last_datetime', 'datetime'], sprintf(l('payment_processors.title')));
+        process_export_json($payment_processors, ['payment_processor_id', 'user_id', 'name', 'processor', 'settings', 'is_enabled', 'last_datetime', 'datetime'], sprintf(l('payment_processors.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -85,6 +84,8 @@ class AdminPaymentProcessors extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -107,6 +108,8 @@ class AdminPaymentProcessors extends Controller {
 
                     break;
             }
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

@@ -50,7 +50,7 @@
                                         <?php if(count($data->domains)): ?>
                                             <select name="domain_id" class="appearance-none custom-select form-control input-group-text">
                                                 <?php if(settings()->links->main_domain_is_enabled || \Altum\Authentication::is_admin()): ?>
-                                                    <option value="" <?= $data->link->domain ? 'selected="selected"' : null ?> data-full-url="<?= SITE_URL ?>"><?= remove_url_protocol_from_url(SITE_URL) ?></option>
+                                                    <option value=" " <?= $data->link->domain ? 'selected="selected"' : null ?> data-full-url="<?= SITE_URL ?>"><?= remove_url_protocol_from_url(SITE_URL) ?></option>
                                                 <?php endif ?>
 
                                                 <?php foreach($data->domains as $row): ?>
@@ -1275,7 +1275,10 @@
     });
 
     /* Form handling update */
-    $('form[name="update_biolink"],form[name="update_biolink_"]').on('submit', event => {
+    $('form[name="update_biolink"],form[name="update_biolink_"]').on('submit', (event, autosave_data) => {
+        /* Check if autosave or manual */
+        let is_autosave = autosave_data && autosave_data.is_autosave === true;
+
         let form = $(event.currentTarget)[0];
         let data = new FormData(form);
         let notification_container = event.currentTarget.querySelector('.notification-container');
@@ -1296,7 +1299,9 @@
                 display_notifications(data.message, data.status, notification_container);
 
                 /* Auto scroll to notification */
-                notification_container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if(!is_autosave) {
+                    notification_container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
 
                 enable_submit_button(event.currentTarget.querySelector('[type="submit"][name="submit"]'))
 
@@ -1344,17 +1349,17 @@
                             }
 
                             if(value) {
-                                event.currentTarget.querySelector(`[data-image-container="${key}"] img`).setAttribute('src', value);
-                                event.currentTarget.querySelector(`[data-image-container="${key}"] img`).classList.remove('d-none');
-                                event.currentTarget.querySelector(`[data-image-container="${key}"] a`).setAttribute('href', value);
-                                event.currentTarget.querySelector(`[data-image-container="${key}"] a`).classList.remove('d-none');
-                                event.currentTarget.querySelectorAll(`[data-image-container="${key}"]`).forEach(element => element.classList.remove('d-none'));
+                                event.currentTarget.querySelector(`[data-image-container="${key}"] img`)?.setAttribute('src', value);
+                                event.currentTarget.querySelector(`[data-image-container="${key}"] img`)?.classList.remove('d-none');
+                                event.currentTarget.querySelector(`[data-image-container="${key}"] a`)?.setAttribute('href', value);
+                                event.currentTarget.querySelector(`[data-image-container="${key}"] a`)?.classList.remove('d-none');
+                                event.currentTarget.querySelectorAll(`[data-image-container="${key}"]`)?.forEach(element => element.classList.remove('d-none'));
                             } else {
-                                event.currentTarget.querySelector(`[data-image-container="${key}"] img`).setAttribute('src', '');
-                                event.currentTarget.querySelector(`[data-image-container="${key}"] img`).classList.add('d-none');
-                                event.currentTarget.querySelector(`[data-image-container="${key}"] a`).setAttribute('href', '');
-                                event.currentTarget.querySelector(`[data-image-container="${key}"] a`).classList.add('d-none');
-                                event.currentTarget.querySelectorAll(`[data-image-container="${key}"]`).forEach(element => element.classList.add('d-none'));
+                                event.currentTarget.querySelector(`[data-image-container="${key}"] img`)?.setAttribute('src', '');
+                                event.currentTarget.querySelector(`[data-image-container="${key}"] img`)?.classList.add('d-none');
+                                event.currentTarget.querySelector(`[data-image-container="${key}"] a`)?.setAttribute('href', '');
+                                event.currentTarget.querySelector(`[data-image-container="${key}"] a`)?.classList.add('d-none');
+                                event.currentTarget.querySelectorAll(`[data-image-container="${key}"]`)?.forEach(element => element.classList.add('d-none'));
                             }
 
                             if(key == 'background') {
@@ -1418,7 +1423,7 @@
     /* Daterangepicker */
     let locale = <?= json_encode(require APP_PATH . 'includes/daterangepicker_translations.php') ?>;
     $('[data-daterangepicker]').daterangepicker({
-        minDate: new Date(),
+        minDate: "<?= (new \DateTime('', new \DateTimeZone(\Altum\Date::$default_timezone)))->setTimezone(new \DateTimeZone($this->user->timezone))->format('Y-m-d H:i:s'); ?>",
         alwaysShowCalendars: true,
         singleCalendar: true,
         singleDatePicker: true,
@@ -1917,6 +1922,7 @@
             $('select:not([multiple="multiple"]):not([class="input-group-text"]):not([class="custom-select custom-select-sm"]):not([class^="ql"]):not([data-is-not-custom-select])').each(function() {
                 let $select = $(this);
                 $select.select2({
+                    placeholder: <?= json_encode(l('global.no_data')) ?>,
                     dir: <?= json_encode(l('direction')) ?>,
                     minimumResultsForSearch: 5,
                 });

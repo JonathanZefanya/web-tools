@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Response;
@@ -44,6 +43,9 @@ class AdminIndex extends Controller {
     }
 
     public function get_stats_ajax() {
+
+        session_write_close();
+
         if(!empty($_POST)) {
             redirect();
         }

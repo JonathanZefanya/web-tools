@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -21,7 +20,7 @@ class AdminInternalNotificationCreate extends Controller {
         if(!empty($_POST)) {
             set_time_limit(0);
 
-            /* Filter some the variables */
+            /* Filter some of the variables */
             $_POST['title'] = input_clean($_POST['title'], 128);
             $_POST['description'] = input_clean($_POST['description'], 1024);
             $_POST['url'] = get_url($_POST['url'], 512);

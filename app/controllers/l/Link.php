@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -421,6 +420,7 @@ class Link extends Controller {
             'user_id' => $this->user->user_id,
             'link_id' => $this->type == 'link' ? $this->link->link_id : null,
             'biolink_block_id' => $this->type == 'biolink_block' ? $this->link->biolink_block_id : null,
+            'project_id' => $this->link->project_id,
             'continent_code' => $continent_code,
             'country_code' => $country_code,
             'city_name' => $city_name,

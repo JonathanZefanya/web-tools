@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -83,6 +82,10 @@ class BiolinkBlock extends Controller {
                 /* Get the required statistics */
                 $pageviews = [];
                 $pageviews_chart = [];
+                $totals = [
+                    'pageviews' => 0,
+                    'visitors' => 0,
+                ];
 
                 $convert_tz_sql = get_convert_tz_sql('`datetime`', $this->user->timezone);
 
@@ -112,6 +115,9 @@ class BiolinkBlock extends Controller {
                         'pageviews' => $row->pageviews,
                         'visitors' => $row->visitors
                     ];
+
+                    $totals['pageviews'] += $row->pageviews;
+                    $totals['visitors'] += $row->visitors;
                 }
 
                 $pageviews_chart = get_chart_data($pageviews_chart);
@@ -162,7 +168,6 @@ class BiolinkBlock extends Controller {
 
                     case 'referrer_host':
                     case 'continent_code':
-                    case 'country':
                     case 'os':
                     case 'browser':
                     case 'device':
@@ -193,7 +198,7 @@ class BiolinkBlock extends Controller {
                                 `{$columns[$type]}`
                             ORDER BY
                                 `total` DESC
-                            LIMIT 250
+                            
                         ");
 
                         break;
@@ -216,7 +221,32 @@ class BiolinkBlock extends Controller {
                                 `referrer_path`
                             ORDER BY
                                 `total` DESC
-                            LIMIT 250
+                            
+                        ");
+
+                        break;
+
+                    case 'country':
+
+                        $continent_code = isset($_GET['continent_code']) ? input_clean($_GET['continent_code']) : null;
+
+                        $result = database()->query("
+                            SELECT
+                                `country_code`,
+                                " . ($continent_code ? "`continent_code`," : null) . "
+                                COUNT(*) AS `total`
+                            FROM
+                                 `track_links`
+                            WHERE
+                                `biolink_block_id` = {$this->biolink_block->biolink_block_id}
+                                " . ($continent_code ? "AND `continent_code` = '{$continent_code}'" : null) . "
+                                AND (`datetime` BETWEEN '{$datetime['query_start_date']}' AND '{$datetime['query_end_date']}')
+                            GROUP BY
+                                " . ($continent_code ? "`continent_code`," : null) . "
+                                `country_code`
+                            ORDER BY
+                                `total` DESC
+                            
                         ");
 
                         break;
@@ -239,7 +269,7 @@ class BiolinkBlock extends Controller {
                                 `city_name`
                             ORDER BY
                                 `total` DESC
-                            LIMIT 250
+                            
                         ");
 
                         break;
@@ -260,7 +290,7 @@ class BiolinkBlock extends Controller {
                                 `utm_source`
                             ORDER BY
                                 `total` DESC
-                            LIMIT 250
+                            
                         ");
 
                         break;
@@ -283,7 +313,7 @@ class BiolinkBlock extends Controller {
                                 `utm_medium`
                             ORDER BY
                                 `total` DESC
-                            LIMIT 250
+                            
                         ");
 
                         break;
@@ -308,7 +338,7 @@ class BiolinkBlock extends Controller {
                                 `utm_campaign`
                             ORDER BY
                                 `total` DESC
-                            LIMIT 250
+                            
                         ");
 
                         break;
@@ -331,7 +361,7 @@ class BiolinkBlock extends Controller {
                             GROUP BY
                                 `hour`
                             ORDER BY
-                                `hour`
+                                `total` DESC
                         ");
 
                         break;
@@ -386,6 +416,7 @@ class BiolinkBlock extends Controller {
                             'datetime' => $datetime,
                             'pageviews' => $pageviews ?? [],
                             'pageviews_chart' => $pageviews_chart ?? [],
+                            'totals' => $totals,
                             'latest' => $latest,
                             'url' => 'biolink-block/' . $this->biolink_block->biolink_block_id,
                         ];
@@ -455,6 +486,7 @@ class BiolinkBlock extends Controller {
                             'url' => 'biolink-block/' . $this->biolink_block->biolink_block_id,
 
                             'referrer_host' => $referrer_host ?? null,
+                            'continent_code' => $continent_code ?? null,
                             'country_code' => $country_code ?? null,
                             'utm_source' => $utm_source ?? null,
                             'utm_medium' => $utm_medium ?? null,
@@ -489,8 +521,8 @@ class BiolinkBlock extends Controller {
                 }
 
                 /* Export handler */
-                process_export_csv($statistics, 'basic');
-                process_export_json($statistics, 'basic');
+                process_export_csv($statistics);
+                process_export_json($statistics);
 
                 $view = new \Altum\View('link/statistics/statistics_' . $type, (array) $this);
                 $this->add_view_content('statistics', $view->run($data));
@@ -503,6 +535,7 @@ class BiolinkBlock extends Controller {
                     'datetime' => $datetime,
                     'pageviews' => $pageviews,
                     'pageviews_chart' => $pageviews_chart,
+                    'totals' => $totals,
                     'has_data' => $has_data,
                     'url' => 'biolink-block/' . $this->biolink_block->biolink_block_id,
                 ];

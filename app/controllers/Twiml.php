@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\controllers;
 
 defined('ZEFANYA') || die();

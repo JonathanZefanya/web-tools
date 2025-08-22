@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum;
 
 use Altum\Models\Plan;
@@ -251,7 +250,7 @@ class App {
         }
 
         /* Force HTTPS is needed */
-        if(settings()->main->force_https_is_enabled && ($_SERVER['HTTPS'] ?? '') != 'on' && php_sapi_name() != 'cli' && string_starts_with('https://', SITE_URL)) {
+        if(settings()->main->force_https_is_enabled && !is_https_request() && php_sapi_name() != 'cli' && string_starts_with('https://', SITE_URL)) {
             header('Location: https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], true, 301); die();
         }
 

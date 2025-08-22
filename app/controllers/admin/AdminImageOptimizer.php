@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -39,8 +38,8 @@ class AdminImageOptimizer extends Controller {
         }
 
         /* Export handler */
-        process_export_json($image_optimizations, 'include', ['image_optimization_id', 'original_format', 'original_size', 'new_size', 'percentage_difference', 'file', 'path', 'datetime']);
-        process_export_csv($image_optimizations, 'include', ['image_optimization_id', 'original_format', 'original_size', 'new_size', 'percentage_difference', 'file', 'path', 'datetime']);
+        process_export_json($image_optimizations, ['image_optimization_id', 'original_format', 'original_size', 'new_size', 'percentage_difference', 'file', 'path', 'datetime']);
+        process_export_csv($image_optimizations, ['image_optimization_id', 'original_format', 'original_size', 'new_size', 'percentage_difference', 'file', 'path', 'datetime']);
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -84,6 +83,8 @@ class AdminImageOptimizer extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -92,6 +93,8 @@ class AdminImageOptimizer extends Controller {
                     }
                     break;
             }
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

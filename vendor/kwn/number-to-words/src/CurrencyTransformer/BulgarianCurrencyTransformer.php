@@ -3,12 +3,11 @@
 namespace NumberToWords\CurrencyTransformer;
 
 use NumberToWords\Exception\NumberToWordsException;
-use NumberToWords\Grammar\Form;
 use NumberToWords\Language\Bulgarian\BulgarianDictionary;
 use NumberToWords\Language\Bulgarian\BulgarianExponentInflector;
+use NumberToWords\Language\Bulgarian\BulgarianFemaleTripletTransformer;
 use NumberToWords\Language\Bulgarian\BulgarianNounGenderInflector;
 use NumberToWords\Language\Bulgarian\BulgarianTripletTransformer;
-use NumberToWords\Language\GrammaticalGenderAwareInterface;
 use NumberToWords\NumberTransformer\NumberTransformerBuilder;
 use NumberToWords\Service\NumberToTripletsConverter;
 use NumberToWords\TransformerOptions\CurrencyTransformerOptions;
@@ -17,87 +16,69 @@ class BulgarianCurrencyTransformer implements CurrencyTransformer
 {
     public function toWords(int $amount, string $currency, ?CurrencyTransformerOptions $options = null): string
     {
-        $currency = strtoupper($currency);
-
-        if (!array_key_exists($currency, BulgarianDictionary::CURRENCY)) {
-            throw new NumberToWordsException(
-                sprintf('Currency "%s" is not available for "%s" language', $currency, get_class($this))
-            );
-        }
-
-        $currency = BulgarianDictionary::CURRENCY[$currency];
-
         $dictionary = new BulgarianDictionary();
         $nounGenderInflector = new BulgarianNounGenderInflector();
         $numberToTripletsConverter = new NumberToTripletsConverter();
-        $tripletTransformerWholePart =
-            (new BulgarianTripletTransformer($dictionary))
-                ->setGrammaticalGender(
-                    $currency
-                        [BulgarianDictionary::CURRENCY_WHOLE]
-                        [GrammaticalGenderAwareInterface::GRAMMATICAL_GENDER]
-                );
-        $tripletTransformerFractionPart =
-            (new BulgarianTripletTransformer($dictionary))
-                ->setGrammaticalGender(
-                    $currency
-                        [BulgarianDictionary::CURRENCY_FRACTION]
-                        [GrammaticalGenderAwareInterface::GRAMMATICAL_GENDER]
-                );
+        $tripletTransformer = new BulgarianTripletTransformer($dictionary);
+        $femaleTripletTransformer = new BulgarianFemaleTripletTransformer($dictionary);
         $exponentInflector = new BulgarianExponentInflector($nounGenderInflector);
 
-        $decimal = (int) ($amount / 100);
+        $numberTransformer = (new NumberTransformerBuilder())
+            ->withDictionary($dictionary)
+            ->withWordsSeparatedBy($dictionary->getSeparator())
+            ->transformNumbersBySplittingIntoPowerAwareTriplets($numberToTripletsConverter, $tripletTransformer)
+            ->inflectExponentByNumbers($exponentInflector)
+            ->build();
 
+        $decimal = (int) ($amount / 100);
         $fraction = abs($amount % 100);
 
         if ($fraction === 0) {
             $fraction = null;
         }
 
-        $numberTransformerWholePart = (new NumberTransformerBuilder())
-            ->withDictionary($dictionary)
-            ->withWordsSeparatedBy($dictionary->getSeparator())
-            ->transformNumbersBySplittingIntoPowerAwareTriplets(
-                $numberToTripletsConverter,
-                $tripletTransformerWholePart
-            )
-            ->inflectExponentByNumbers($exponentInflector)
-            ->build();
+        $currency = strtoupper($currency);
+
+        if (!array_key_exists($currency, BulgarianDictionary::$currencyNames)) {
+            throw new NumberToWordsException(
+                sprintf('Currency "%s" is not available for "%s" language', $currency, get_class($this))
+            );
+        }
+
+        $currencyNames = BulgarianDictionary::$currencyNames[$currency];
 
         $words = [];
 
-        $words[] = $numberTransformerWholePart->toWords($decimal);
+        $words[] = $numberTransformer->toWords($decimal);
         $words[] = $nounGenderInflector->inflectNounByNumber(
             $decimal,
-            $currency[BulgarianDictionary::CURRENCY_WHOLE][Form::SINGULAR],
-            $currency[BulgarianDictionary::CURRENCY_WHOLE][Form::PLURAL],
-            $currency[BulgarianDictionary::CURRENCY_WHOLE][Form::PLURAL],
+            $currencyNames[0][0],
+            $currencyNames[0][1],
+            $currencyNames[0][1],
         );
 
-        $words[] = BulgarianDictionary::GRAMMATICAL_CONJUNCTION_AND;
-
-        if ($fraction !== null) {
-            $numberTransformerFractionPart = (new NumberTransformerBuilder())
+        $words[] = BulgarianDictionary::$and;
+        if (null !== $fraction) {
+            $centTransformer = (new NumberTransformerBuilder())
                 ->withDictionary($dictionary)
                 ->withWordsSeparatedBy($dictionary->getSeparator())
                 ->transformNumbersBySplittingIntoPowerAwareTriplets(
                     $numberToTripletsConverter,
-                    $tripletTransformerFractionPart
+                    $femaleTripletTransformer
                 )
                 ->inflectExponentByNumbers($exponentInflector)
                 ->build();
 
-            $words[] = $numberTransformerFractionPart->toWords($fraction);
+            $words[] = $centTransformer->toWords($fraction);
             $words[] = $nounGenderInflector->inflectNounByNumber(
                 $fraction,
-                $currency[BulgarianDictionary::CURRENCY_FRACTION][Form::SINGULAR],
-                $currency[BulgarianDictionary::CURRENCY_FRACTION][Form::PLURAL],
-                $currency[BulgarianDictionary::CURRENCY_FRACTION][Form::PLURAL],
+                $currencyNames[1][0],
+                $currencyNames[1][1],
+                $currencyNames[1][1],
             );
         } else {
             $words[] = $dictionary->getZero();
-            $words[] =
-                $currency[BulgarianDictionary::CURRENCY_FRACTION][Form::PLURAL];
+            $words[] = $currencyNames[1][1];
         }
 
         return implode(' ', $words);

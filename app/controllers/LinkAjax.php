@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -195,6 +194,7 @@ class LinkAjax extends Controller {
             'location_url' => $_POST['location_url'],
             'settings' => $settings,
             'datetime' => get_date(),
+            'email_reports_last_datetime' => get_date(),
         ]);
 
         /* Clear the cache */
@@ -509,6 +509,7 @@ class LinkAjax extends Controller {
             'url' => $url,
             'settings' => $settings,
             'datetime' => get_date(),
+            'email_reports_last_datetime' => get_date(),
         ]);
 
         /* Clear the cache */
@@ -587,6 +588,7 @@ class LinkAjax extends Controller {
             'url' => $url,
             'settings' => $settings,
             'datetime' => get_date(),
+            'email_reports_last_datetime' => get_date(),
         ]);
 
         /* Clear the cache */
@@ -658,6 +660,7 @@ class LinkAjax extends Controller {
             'url' => $url,
             'settings' => $settings,
             'datetime' => get_date(),
+            'email_reports_last_datetime' => get_date(),
         ]);
 
         /* Clear the cache */
@@ -803,6 +806,7 @@ class LinkAjax extends Controller {
             'url' => $url,
             'settings' => $settings,
             'datetime' => get_date(),
+            'email_reports_last_datetime' => get_date(),
         ]);
 
         /* Clear the cache */
@@ -1052,6 +1056,8 @@ class LinkAjax extends Controller {
         db()->where('link_id', $_POST['link_id'])->update('links', [
             'project_id' => $_POST['project_id'],
             'email_reports' => json_encode($_POST['email_reports']),
+            'email_reports_count' => count($_POST['email_reports']),
+            'email_reports_last_datetime' => !$link->email_reports_last_datetime ? get_date() : $link->email_reports_last_datetime,
             'splash_page_id' => $_POST['splash_page_id'],
             'domain_id' => $domain_id,
             'pixels_ids' => $_POST['pixels_ids'],
@@ -1629,6 +1635,8 @@ class LinkAjax extends Controller {
         /* Update the record */
         db()->where('link_id', $link->link_id)->update('links', [
             'email_reports' => json_encode($_POST['email_reports']),
+            'email_reports_count' => count($_POST['email_reports']),
+            'email_reports_last_datetime' => !$link->email_reports_last_datetime ? get_date() : $link->email_reports_last_datetime,
             'project_id' => $_POST['project_id'],
             'splash_page_id' => $_POST['splash_page_id'],
             'domain_id' => $domain_id,
@@ -1790,6 +1798,8 @@ class LinkAjax extends Controller {
         db()->where('link_id', $_POST['link_id'])->update('links', [
             'project_id' => $_POST['project_id'],
             'email_reports' => json_encode($_POST['email_reports']),
+            'email_reports_count' => count($_POST['email_reports']),
+            'email_reports_last_datetime' => !$link->email_reports_last_datetime ? get_date() : $link->email_reports_last_datetime,
             'splash_page_id' => $_POST['splash_page_id'],
             'domain_id' => $domain_id,
             'pixels_ids' => $_POST['pixels_ids'],
@@ -2022,6 +2032,8 @@ class LinkAjax extends Controller {
         db()->where('link_id', $_POST['link_id'])->update('links', [
             'project_id' => $_POST['project_id'],
             'email_reports' => json_encode($_POST['email_reports']),
+            'email_reports_count' => count($_POST['email_reports']),
+            'email_reports_last_datetime' => !$link->email_reports_last_datetime ? get_date() : $link->email_reports_last_datetime,
             'splash_page_id' => $_POST['splash_page_id'],
             'domain_id' => $domain_id,
             'pixels_ids' => $_POST['pixels_ids'],
@@ -2221,6 +2233,8 @@ class LinkAjax extends Controller {
         db()->where('link_id', $_POST['link_id'])->update('links', [
             'project_id' => $_POST['project_id'],
             'email_reports' => json_encode($_POST['email_reports']),
+            'email_reports_count' => count($_POST['email_reports']),
+            'email_reports_last_datetime' => !$link->email_reports_last_datetime ? get_date() : $link->email_reports_last_datetime,
             'splash_page_id' => $_POST['splash_page_id'],
             'domain_id' => $domain_id,
             'pixels_ids' => $_POST['pixels_ids'],
@@ -2381,6 +2395,8 @@ class LinkAjax extends Controller {
         db()->where('link_id', $_POST['link_id'])->update('links', [
             'project_id' => $_POST['project_id'],
             'email_reports' => json_encode($_POST['email_reports']),
+            'email_reports_count' => count($_POST['email_reports']),
+            'email_reports_last_datetime' => !$link->email_reports_last_datetime ? get_date() : $link->email_reports_last_datetime,
             'splash_page_id' => $_POST['splash_page_id'],
             'domain_id' => $domain_id,
             'pixels_ids' => $_POST['pixels_ids'],
@@ -2521,6 +2537,7 @@ class LinkAjax extends Controller {
                 'user_id' => $this->user->user_id,
                 'project_id' => $link->project_id,
                 'email_reports' => $link->email_reports,
+                'email_reports_last_datetime' => $link->email_reports_last_datetime,
                 'biolink_theme_id' => $link->biolink_theme_id,
                 'domain_id' => $link->domain_id,
                 'pixels_ids' => $link->pixels_ids,

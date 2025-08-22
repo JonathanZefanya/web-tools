@@ -183,7 +183,9 @@ document.querySelectorAll('[type="submit"][name="submit"]:not([data-is-ajax])').
 /* Enable tooltips everywhere */
 let tooltips_initiate = () => {
     if(typeof $ == 'function') {
-        $('[data-toggle="tooltip"],[data-tooltip]').tooltip({ boundary: 'window' });
+        let tooltips = $('[data-toggle="tooltip"],[data-tooltip]');
+        tooltips.tooltip('dispose');
+        tooltips.tooltip({ boundary: 'window' });
 
         $('[data-tooltip-hide-on-click]').on('click', event => {
             $(event.currentTarget).tooltip('hide');
@@ -519,12 +521,30 @@ document.addEventListener('keydown', event => {
     }
 });
 
+let get_plan_feature_limit_info = (used, total, should_display = true, info_message) => {
+    /* return null if not to be displayed */
+    if (!should_display) return null;
+
+    /* calculate percentage used */
+    let percentage_used = (total === -1 || total === 0) ? 0 : (used / total * 100);
+
+    /* determine remaining percentage or unlimited */
+    let percentage_remaining = (total === -1) ? 'Unlimited' : nr(100 - percentage_used) + '%';
+
+    /* build the final message */
+    return info_message
+        .replace('%1$s', '<strong>' + nr(used) + '</strong>')
+        .replace('%2$s', '<strong>' + (total === -1 ? 'Unlimited' : nr(total)) + '</strong>')
+        .replace('%3$s', '<strong>' + percentage_remaining + '</strong>');
+}
 document.querySelectorAll('input[type="url"]').forEach(input => {
     const fixURL = () => input.value = input.value.trim().replace(/^(?!https?:\/\/)(.+\..+)/i, 'https://$1').replace(/^(https?:\/\/)/i, m => m.toLowerCase());
 
     input.addEventListener('blur', fixURL);
     input.addEventListener('keydown', e => e.key === 'Enter' && fixURL());
 });
+
+
 
 /* Product specific functions */
 const ajax_call_helper = (event, controller, request_type, success_callback = () => {}) => {

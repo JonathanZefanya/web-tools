@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\QrCodes;
 
 use BaconQrCode\Encoder\ByteMatrix;

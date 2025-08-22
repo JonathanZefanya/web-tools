@@ -66,7 +66,7 @@
         "tax_id":"",
         "is_enabled":true,
         "plan_id":"custom",
-        "plan_expiration_date":"2025-12-12 00:00:00",
+        "plan_expiration_date":"<?= date('Y-m-d H:i:s', strtotime('+1 year')) ?>",
         "plan_settings":{
             ...
         },
@@ -74,7 +74,7 @@
         "language":"english",
         "timezone":"UTC",
         "country":null,
-        "datetime": "<?= get_date() ?>"
+        "datetime": "<?= get_date() ?>",
         "last_activity":"2020-01-01 00:00:00",
         "total_logins":10
     }

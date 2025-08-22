@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -39,8 +38,8 @@ class AdminTaxes extends Controller {
         }
 
         /* Export handler */
-        process_export_json($taxes, 'include', ['tax_id', 'name', 'description', 'value', 'value_type', 'type', 'billing_type', 'countries', 'datetime']);
-        process_export_csv($taxes, 'include', ['tax_id', 'name', 'description', 'value', 'value_type', 'type', 'billing_type', 'countries', 'datetime']);
+        process_export_json($taxes, ['tax_id', 'name', 'description', 'value', 'value_type', 'type', 'billing_type', 'countries', 'datetime']);
+        process_export_csv($taxes, ['tax_id', 'name', 'description', 'value', 'value_type', 'type', 'billing_type', 'countries', 'datetime']);
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);

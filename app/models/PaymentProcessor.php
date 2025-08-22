@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Models;
 
 defined('ZEFANYA') || die();

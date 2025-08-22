@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -41,8 +40,8 @@ class AdminBiolinksThemes extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($biolinks_themes, 'include', ['biolink_theme_id', 'name', 'is_enabled', 'last_datetime', 'datetime'], sprintf(l('admin_biolinks_themes.title')));
-        process_export_json($biolinks_themes, 'include', ['biolink_theme_id', 'name', 'settings', 'is_enabled', 'last_datetime', 'datetime'], sprintf(l('admin_biolinks_themes.title')));
+        process_export_csv($biolinks_themes, ['biolink_theme_id', 'name', 'is_enabled', 'last_datetime', 'datetime'], sprintf(l('admin_biolinks_themes.title')));
+        process_export_json($biolinks_themes, ['biolink_theme_id', 'name', 'settings', 'is_enabled', 'last_datetime', 'datetime'], sprintf(l('admin_biolinks_themes.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -85,6 +84,8 @@ class AdminBiolinksThemes extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -125,6 +126,8 @@ class AdminBiolinksThemes extends Controller {
 
                     break;
             }
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

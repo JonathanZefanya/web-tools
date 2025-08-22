@@ -91,6 +91,56 @@ $settings = require THEME_PATH . 'views/link/settings/' . mb_strtolower($data->l
 
     document.querySelector('select[name="domain_id"]') && document.querySelector('select[name="domain_id"]').addEventListener('change', domain_id_handler);
     <?php endif ?>
+
+    /* Set this to true to enable autosave */
+    let enable_autosave = <?= json_encode($this->user->preferences->links_autosave_settings ?? false) ?>;
+
+    /* Autosave feature for update_biolink forms */
+    let autosave_timeout = null;
+    let previous_form_data_map = {};
+
+    /* Serialize FormData to string for comparison */
+    const serialize_form_data = form_element => {
+        let form_data = new FormData(form_element);
+        let form_data_entries = [];
+        for(let [field_name, field_value] of form_data.entries()) {
+            form_data_entries.push(`${field_name}=${field_value}`);
+        }
+        return form_data_entries.sort().join('&');
+    };
+
+    if(enable_autosave) {
+        $('form[name="update_event"], form[name="update_file"], form[name="update_link"], form[name="update_static"], form[name="update_vcard"], form[name="update_biolink"],form[name="update_biolink_"]').on('input change', event => {
+            let form_element = event.currentTarget.form || event.currentTarget.closest('form');
+            if(!form_element) return;
+
+            let form_name = form_element.getAttribute('name');
+            let current_form_data = serialize_form_data(form_element);
+
+            /* Only proceed if data has changed */
+            if(previous_form_data_map[form_name] !== undefined && previous_form_data_map[form_name] === current_form_data) {
+                return;
+            }
+
+            previous_form_data_map[form_name] = current_form_data;
+
+            /* Debounce autosave */
+            if(autosave_timeout) {
+                clearTimeout(autosave_timeout);
+            }
+            autosave_timeout = setTimeout(() => {
+                /* Only autosave if form data actually changed */
+                $(form_element).trigger('submit', [{ is_autosave: true }]);
+            }, 3000);
+        });
+
+        /* Update previous_form_data_map on manual submit to sync state */
+        $('form[name="update_event"], form[name="update_file"], form[name="update_link"], form[name="update_static"], form[name="update_vcard"], form[name="update_biolink"],form[name="update_biolink_"]').on('submit', event => {
+            let form_element = event.currentTarget;
+            let form_name = form_element.getAttribute('name');
+            previous_form_data_map[form_name] = serialize_form_data(form_element);
+        });
+    }
 </script>
 
 <?= $settings->javascript ?>

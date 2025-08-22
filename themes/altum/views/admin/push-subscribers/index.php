@@ -19,7 +19,7 @@
                         <a href="<?= url('admin/push-subscribers?' . $data->filters->get_get() . '&export=json') ?>" target="_blank" class="dropdown-item <?= $this->user->plan_settings->export->json ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->json ? null : get_plan_feature_disabled_info() ?>>
                             <i class="fas fa-fw fa-sm fa-file-code mr-2"></i> <?= sprintf(l('global.export_to'), 'JSON') ?>
                         </a>
-                        <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? 'onclick="window.print();return false;"' : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? null : get_plan_feature_disabled_info() ?>>
+                        <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? $this->user->plan_settings->export->pdf ? 'onclick="event.preventDefault(); window.print();"' : 'disabled pointer-events-all' : get_plan_feature_disabled_info() ?>>
                         <i class="fas fa-fw fa-sm fa-file-pdf mr-2"></i> <?= sprintf(l('global.export_to'), 'PDF') ?>
                     </a>
                     </div>
@@ -81,7 +81,7 @@
                             </div>
 
                             <div class="form-group px-4">
-                                <label for="filters_country" class="small"><?= l('global.country') ?></label>
+                                <label for="filters_country_code" class="small"><?= l('global.country') ?></label>
                                 <select name="country_code" id="filters_country_code" class="custom-select custom-select-sm">
                                     <option value=""><?= l('global.all') ?></option>
                                     <?php foreach(get_countries_array() as $country_code => $country_name): ?>

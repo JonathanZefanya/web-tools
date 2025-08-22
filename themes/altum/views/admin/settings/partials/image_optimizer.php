@@ -9,7 +9,7 @@
             </div>
 
             <div class="form-group custom-control custom-switch">
-                <input id="statistics_is_enabled" name="statistics_is_enabled" type="checkbox" class="custom-control-input" <?= \Altum\Plugin::is_active('email-shield') && settings()->image_optimizer->statistics_is_enabled ? 'checked="checked"' : null?>>
+                <input id="statistics_is_enabled" name="statistics_is_enabled" type="checkbox" class="custom-control-input" <?= \Altum\Plugin::is_active('image-optimizer') && settings()->image_optimizer->statistics_is_enabled ? 'checked="checked"' : null?>>
                 <label class="custom-control-label" for="statistics_is_enabled"><?= l('admin_settings.image_optimizer.statistics_is_enabled') ?></label>
                 <small class="form-text text-muted"><?= l('admin_settings.image_optimizer.statistics_is_enabled_help') ?></small>
             </div>

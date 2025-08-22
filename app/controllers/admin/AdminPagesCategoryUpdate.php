@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -19,7 +18,7 @@ class AdminPagesCategoryUpdate extends Controller {
         }
 
         if(!empty($_POST)) {
-            /* Filter some the variables */
+            /* Filter some of the variables */
             $_POST['url'] = input_clean(get_slug($_POST['url']), 256);
             $_POST['title'] = input_clean($_POST['title'], 256);
             $_POST['description'] = input_clean($_POST['description'], 256);

@@ -385,7 +385,12 @@
                     'messages': [
                         {
                             'role': 'system',
-                            'content': `You are a professional translator that will translate strings from English to ${language_to_translate_to}. You should exclude PHP sprintf type of variables and leave them as they are. You will only return the translated strings back with no additional text. You will also only use ending punctuation marks when used in the original string.`
+                            'content':
+                                `You are a professional translator. Translate the given text from English to ${language_to_translate_to}. ` +
+                                `Keep all PHP sprintf placeholders (e.g., %1$s, %2$d) unchanged. ` +
+                                `Keep HTML tags unchanged. ` +
+                                `Do not add, remove, or modify punctuation except to match the original text. ` +
+                                `Return only the translated text with no explanations, comments, or formatting outside the translation.`
                         },
                         {
                             'role': 'user',
@@ -488,39 +493,54 @@
     let language_main_name = <?= json_encode(\Altum\Language::$main_name) ?>;
     let language_missing_variables = <?= json_encode(l('admin_languages.error_message.missing_variables')) ?>;
 
+    /* counts placeholders: numbered -> unique indexes; unnumbered -> exact occurrences */
+    let count_matched_translation_variables = string => {
+        const safe_string = (string || '');
+
+        /* numbered placeholders like %1$s, %2$s... */
+        const numbered_indexes = [...safe_string.matchAll(/%(\d+)\$s/g)].map(match => parseInt(match[1], 10));
+        if (numbered_indexes.length > 0) {
+            /* allow repeats of the same index */
+            return new Set(numbered_indexes).size;
+        }
+
+        /* unnumbered placeholders like %s (ignore %%s) */
+        const unnumbered_matches = safe_string.match(/(?<!%)%s/g) || [];
+        return unnumbered_matches.length;
+    };
+
     document.querySelectorAll('[data-display-input]').forEach(element => {
         ['change', 'paste', 'keyup'].forEach(event_type => {
             element.addEventListener(event_type, event => {
+                /* get values */
                 let translated_string = event.currentTarget.value.trim();
                 let translated_string_id = event.currentTarget.id;
                 let original_translation_string = document.querySelector(`#${language_main_name}_${translated_string_id}`).value.trim();
 
-                if(translated_string != '') {
+                if (translated_string != '') {
+                    /* counts based on style: numbered -> unique indexes; unnumbered -> occurrences */
                     let original_translation_string_variables = count_matched_translation_variables(original_translation_string);
                     let translated_string_variables = count_matched_translation_variables(translated_string);
 
-                    if(original_translation_string_variables != translated_string_variables) {
-                        /* Display a friendly error */
+                    if (original_translation_string_variables != translated_string_variables) {
+                        /* show error */
                         event.currentTarget.classList.add('is-invalid');
-                        event.currentTarget.nextElementSibling.innerHTML = language_missing_variables.replace('%1$s', original_translation_string_variables).replace('%2$s', translated_string_variables);
+                        event.currentTarget.nextElementSibling.innerHTML = language_missing_variables
+                            .replace('%1$s', original_translation_string_variables)
+                            .replace('%2$s', translated_string_variables);
                     } else {
-                        /* Remove error */
+                        /* clear error */
                         event.currentTarget.classList.remove('is-invalid');
                         event.currentTarget.nextElementSibling.innerHTML = '';
                     }
                 } else {
-                    /* Remove error */
+                    /* clear error for empty input */
                     event.currentTarget.classList.remove('is-invalid');
                     event.currentTarget.nextElementSibling.innerHTML = '';
                 }
-            })
+            });
         });
     });
-
-    let count_matched_translation_variables = string => {
-        const re = /(%\d+\$s|%s)+/g
-        return ((string || '').match(re) || []).length
-    }
 </script>
 <?php \Altum\Event::add_content(ob_get_clean(), 'javascript') ?>
 

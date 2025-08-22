@@ -3,7 +3,6 @@
 namespace Spatie\LaravelPackageTools\Concerns\PackageServiceProvider;
 
 use Carbon\Carbon;
-use Carbon\CarbonImmutable;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
@@ -75,7 +74,7 @@ trait ProcessMigrations
         }
     }
 
-    protected function generateMigrationName(string $migrationFileName, Carbon|CarbonImmutable $now): string
+    protected function generateMigrationName(string $migrationFileName, Carbon $now): string
     {
         $migrationsPath = 'migrations/' . dirname($migrationFileName) . '/';
         $migrationFileName = basename($migrationFileName);

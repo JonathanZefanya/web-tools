@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -19,7 +18,7 @@ class AdminTemplateCreate extends Controller {
         $templates_categories = (new \Altum\Models\TemplatesCategories())->get_templates_categories();
 
         if(!empty($_POST)) {
-            /* Filter some the variables */
+            /* Filter some of the variables */
             $_POST['name'] = input_clean($_POST['name'], 64);
             $_POST['template_category_id'] = array_key_exists($_POST['template_category_id'], $templates_categories) ? (int) $_POST['template_category_id'] : null;
             $_POST['prompt'] = input_clean($_POST['prompt'], 5000);

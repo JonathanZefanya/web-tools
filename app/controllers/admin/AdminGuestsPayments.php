@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -12,7 +11,7 @@ class AdminGuestsPayments extends Controller {
     public function index() {
 
         /* Prepare the filtering system */
-        $filters = (new \Altum\Filters(['user_id', 'guest_payment_id', 'biolink_block_id', 'link_id', 'guest_payment_id', 'project_id', 'type', 'processor'], ['email', 'name'], ['guest_payment_id', 'total_amount', 'datetime']));
+        $filters = (new \Altum\Filters(['guest_payment_id', 'biolink_block_id', 'link_id', 'user_id', 'payment_processor_id', 'project_id', 'type', 'processor', 'status'], ['email', 'name'], ['guest_payment_id', 'total_amount', 'datetime']));
         $filters->set_default_order_by($this->user->preferences->guests_payments_default_order_by, $this->user->preferences->default_order_type ?? settings()->main->default_order_type);
         $filters->set_default_results_per_page($this->user->preferences->default_results_per_page ?? settings()->main->default_results_per_page);
 
@@ -47,8 +46,8 @@ class AdminGuestsPayments extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($guests_payments, 'include', ['guest_payment_id', 'biolink_block_id', 'biolink_block_name', 'link_id', 'payment_processor_id', 'project_id', 'user_id', 'processor', 'payment_id', 'email', 'name', 'total_amount', 'currency', 'status', 'datetime'], sprintf(l('guests_payments.title')));
-        process_export_json($guests_payments, 'include', ['guest_payment_id', 'biolink_block_id', 'biolink_block_name', 'link_id', 'payment_processor_id', 'project_id', 'user_id', 'processor', 'payment_id', 'email', 'name', 'total_amount', 'currency', 'data', 'settings', 'status', 'datetime'], sprintf(l('guests_payments.title')));
+        process_export_csv($guests_payments, ['guest_payment_id', 'biolink_block_id', 'biolink_block_name', 'link_id', 'payment_processor_id', 'project_id', 'user_id', 'processor', 'payment_id', 'email', 'name', 'total_amount', 'currency', 'status', 'datetime'], sprintf(l('guests_payments.title')));
+        process_export_json($guests_payments, ['guest_payment_id', 'biolink_block_id', 'biolink_block_name', 'link_id', 'payment_processor_id', 'project_id', 'user_id', 'processor', 'payment_id', 'email', 'name', 'total_amount', 'currency', 'data', 'settings', 'status', 'datetime'], sprintf(l('guests_payments.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -92,6 +91,8 @@ class AdminGuestsPayments extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -103,6 +104,8 @@ class AdminGuestsPayments extends Controller {
 
                     break;
             }
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

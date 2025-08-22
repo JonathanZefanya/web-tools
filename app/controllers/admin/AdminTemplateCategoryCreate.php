@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -16,7 +15,7 @@ class AdminTemplateCategoryCreate extends Controller {
         }
 
         if(!empty($_POST)) {
-            /* Filter some the variables */
+            /* Filter some of the variables */
             $_POST['name'] = input_clean($_POST['name'], 64);
             $_POST['icon'] = input_clean($_POST['icon'], 64);
             $_POST['emoji'] = input_clean($_POST['emoji'], 64);

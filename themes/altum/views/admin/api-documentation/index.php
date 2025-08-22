@@ -174,7 +174,7 @@
             "referred_by_has_converted": false,
             "last_activity": "2023-01-21 00:25:28",
             "total_logins": 1,
-            "datetime": "<?= get_date() ?>"
+            "datetime": "<?= get_date() ?>",
         }
     ],
     "meta": {
@@ -184,11 +184,11 @@
         "total_pages": 1
     },
     "links": {
-        "first": "<?= SITE_URL ?>admin-api/users?&page=1",
-        "last": "<?= SITE_URL ?>admin-api/users?&page=1",
+        "first": "<?= SITE_URL ?>admin-api/users?page=1",
+        "last": "<?= SITE_URL ?>admin-api/users?page=1",
         "next": null,
         "prev": null,
-        "self": "<?= SITE_URL ?>admin-api/users?&page=1"
+        "self": "<?= SITE_URL ?>admin-api/users?page=1"
     }
 }
                         </div>
@@ -278,7 +278,7 @@
         "referred_by_has_converted": false,
         "last_activity": "2023-01-21 00:25:28",
         "total_logins": 1,
-        "datetime": "<?= get_date() ?>"
+        "datetime": "<?= get_date() ?>",
     }
 }
                         </div>
@@ -623,7 +623,7 @@
             "color": "",
             "status": 1,
             "order": 1,
-            "datetime": "<?= get_date() ?>"
+            "datetime": "<?= get_date() ?>",
         }
     ]
 }
@@ -692,7 +692,7 @@
         "color": "",
         "status": 1,
         "order": 1,
-        "datetime": "<?= get_date() ?>"
+        "datetime": "<?= get_date() ?>",
     }
 }
                         </div>
@@ -758,7 +758,7 @@
             "total_amount": "4.99",
             "currency": "USD",
             "status": true,
-            "datetime": <?= get_date() ?>
+            "datetime": "<?= get_date() ?>",
         }
     ],
     "meta": {
@@ -768,11 +768,11 @@
         "total_pages": 1
     },
     "links": {
-        "first": "<?= SITE_URL ?>admin-api/payments?&page=1",
-        "last": "<?= SITE_URL ?>admin-api/payments?&page=1",
+        "first": "<?= SITE_URL ?>admin-api/payments?page=1",
+        "last": "<?= SITE_URL ?>admin-api/payments?page=1",
         "next": null,
         "prev": null,
-        "self": "<?= SITE_URL ?>admin-api/payments?&page=1"
+        "self": "<?= SITE_URL ?>admin-api/payments?page=1"
     }
 }
                         </div>
@@ -828,7 +828,7 @@
         "total_amount": "4.99",
         "currency": "USD",
         "status": true,
-        "datetime": <?= get_date() ?>
+        "datetime": "<?= get_date() ?>",
     }
 }
                         </div>
@@ -921,7 +921,7 @@
             "custom_index_url": "",
             "is_enabled": true,
             "last_datetime": null,
-            "datetime": "<?= get_date() ?>"
+            "datetime": "<?= get_date() ?>",
         },
     ],
     "meta": {
@@ -931,11 +931,11 @@
         "total_pages": 1
     },
     "links": {
-        "first": "<?= SITE_URL ?>admin-api/domains?&page=1",
-        "last": "<?= SITE_URL ?>admin-api/domains?&page=1",
+        "first": "<?= SITE_URL ?>admin-api/domains?page=1",
+        "last": "<?= SITE_URL ?>admin-api/domains?page=1",
         "next": null,
         "prev": null,
-        "self": "<?= SITE_URL ?>admin-api/domains?&page=1"
+        "self": "<?= SITE_URL ?>admin-api/domains?page=1"
     }
 }
                         </div>
@@ -988,7 +988,7 @@
         "custom_index_url": "",
         "is_enabled": true,
         "last_datetime": null,
-        "datetime": "<?= get_date() ?>"
+        "datetime": "<?= get_date() ?>",
     }
 }
                         </div>

@@ -5,7 +5,7 @@
 
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="d-flex align-items-center">
-                <h3 class="h5 text-truncate m-0"><?= isset($_GET['country_code']) ? sprintf(l('link.statistics.city_name_from_country'), get_country_from_country_code($data->country_code)) : l('global.city') ?></h3>
+                <h3 class="h5 text-truncate m-0"><?= isset($_GET['country_code']) ? sprintf(l('link.statistics.city_name_from_country'), get_country_from_country_code($data->country_code)) : l('global.cities') ?></h3>
 
                 <div class="ml-2">
                     <span data-toggle="tooltip" title="<?= l('link.statistics.city_name_help') ?>">
@@ -27,7 +27,7 @@
                         <a href="<?= url($data->url . '/statistics?' . \Altum\Router::$original_request_query . '&export=json') ?>" target="_blank" class="dropdown-item <?= $this->user->plan_settings->export->json ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->json ? null : get_plan_feature_disabled_info() ?>>
                             <i class="fas fa-fw fa-sm fa-file-code mr-2"></i> <?= sprintf(l('global.export_to'), 'JSON') ?>
                     </a>
-                    <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? 'onclick="window.print();return false;"' : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? null : get_plan_feature_disabled_info() ?>>
+                    <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? $this->user->plan_settings->export->pdf ? 'onclick="event.preventDefault(); window.print();"' : 'disabled pointer-events-all' : get_plan_feature_disabled_info() ?>>
                         <i class="fas fa-fw fa-sm fa-file-pdf mr-2"></i> <?= sprintf(l('global.export_to'), 'PDF') ?>
                     </a>
                     </div>
@@ -45,13 +45,13 @@
         <?php else: ?>
 
         <?php foreach($data->rows as $row): ?>
-            <?php $percentage = round($row->total / $data->total_sum * 100, 1) ?>
+            <?php $percentage = round($row->total / $data->total_sum * 100, 2) ?>
             <?php $country_code = $data->country_code ?: $row->country_code ?? null ?>
 
             <div class="mt-4">
                 <div class="d-flex justify-content-between mb-1">
                     <div class="text-truncate">
-                        <img src="<?= ASSETS_FULL_URL . 'images/countries/' . ($country_code ? mb_strtolower($country_code) : 'unknown') . '.svg' ?>" class="img-fluid icon-favicon mr-1" />
+                        <img src="<?= ASSETS_FULL_URL . 'images/countries/' . ($country_code ? mb_strtolower($country_code) : 'unknown') . '.svg' ?>" class="img-fluid icon-favicon mr-1" data-toggle="tooltip" title="<?= get_country_from_country_code($row->country_code) ?>" />
                         <span class=""><?= $row->city_name ? $row->city_name : l('global.unknown') ?></span>
                     </div>
 

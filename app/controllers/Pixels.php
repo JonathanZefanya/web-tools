@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -32,8 +31,8 @@ class Pixels extends Controller {
         while($row = $pixels_result->fetch_object()) $pixels[] = $row;
 
         /* Export handler */
-        process_export_csv($pixels, 'include', ['pixel_id', 'user_id', 'type', 'name', 'pixel','last_datetime', 'datetime'], sprintf(l('pixels.title')));
-        process_export_json($pixels, 'include', ['pixel_id', 'user_id', 'type', 'name', 'pixel','last_datetime', 'datetime'], sprintf(l('pixels.title')));
+        process_export_csv($pixels, ['pixel_id', 'user_id', 'type', 'name', 'pixel','last_datetime', 'datetime'], sprintf(l('pixels.title')));
+        process_export_json($pixels, ['pixel_id', 'user_id', 'type', 'name', 'pixel','last_datetime', 'datetime'], sprintf(l('pixels.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -83,6 +82,8 @@ class Pixels extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -103,6 +104,8 @@ class Pixels extends Controller {
 
             /* Clear the cache */
             cache()->deleteItem('pixels?user_id=' . $this->user->user_id);
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

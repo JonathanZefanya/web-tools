@@ -27,7 +27,7 @@
                         <a href="<?= url($data->url . '/statistics?' . '?' . \Altum\Router::$original_request_query . '&export=json') ?>" target="_blank" class="dropdown-item <?= $this->user->plan_settings->export->json ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->json ? null : get_plan_feature_disabled_info() ?>>
                             <i class="fas fa-fw fa-sm fa-file-code mr-2"></i> <?= sprintf(l('global.export_to'), 'JSON') ?>
                         </a>
-                        <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? 'onclick="window.print();return false;"' : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? null : get_plan_feature_disabled_info() ?>>
+                        <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? $this->user->plan_settings->export->pdf ? 'onclick="event.preventDefault(); window.print();"' : 'disabled pointer-events-all' : get_plan_feature_disabled_info() ?>>
                             <i class="fas fa-fw fa-sm fa-file-pdf mr-2"></i> <?= sprintf(l('global.export_to'), 'PDF') ?>
                         </a>
                     </div>
@@ -45,12 +45,16 @@
         <?php else: ?>
 
             <?php foreach($data->rows as $row): ?>
-                <?php $percentage = round($row->total / $data->total_sum * 100, 1) ?>
+                <?php $percentage = round($row->total / $data->total_sum * 100, 2) ?>
 
                 <div class="mt-4">
                     <div class="d-flex justify-content-between mb-1">
                         <div class="text-truncate">
-                            <span class=""><?= $row->continent_code ? get_continent_from_continent_code($row->continent_code) : l('global.unknown') ?></span>
+                            <?php if($row->continent_code): ?>
+                                <a href="<?= url((isset($data->link->biolink_block_id) ? 'biolink-block/' . $data->link->biolink_block_id : 'link/' . $data->link->link_id) . '/' . $data->method . '?type=country&continent_code=' . $row->continent_code . '&start_date=' . $data->datetime['start_date'] . '&end_date=' . $data->datetime['end_date']) ?>" title="<?= $row->continent_code ?>" class=""><?= $row->continent_code ? get_continent_from_continent_code($row->continent_code) : l('global.unknown') ?></a>
+                            <?php else: ?>
+                                <span class=""><?= $row->continent_code ? get_continent_from_continent_code($row->continent_code) : l('global.unknown') ?></span>
+                            <?php endif ?>
                         </div>
 
                         <div>

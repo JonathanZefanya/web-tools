@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum;
 
 use Altum\Traits\Paramsable;

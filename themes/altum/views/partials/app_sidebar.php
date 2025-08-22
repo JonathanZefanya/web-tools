@@ -79,6 +79,12 @@
                     </li>
                 <?php endif ?>
 
+                <?php if(settings()->links->biolinks_is_enabled || settings()->links->shortener_is_enabled || settings()->links->files_is_enabled || settings()->links->vcards_is_enabled || settings()->links->events_is_enabled || settings()->links->static_is_enabled): ?>
+                    <li class="<?= in_array(\Altum\Router::$controller, ['LinksStatistics']) ? 'active' : null ?>">
+                        <a href="<?= url('links-statistics') ?>"><i class="fas fa-fw fa-sm fa-chart-bar mr-2"></i> <?= l('links_statistics.menu') ?></a>
+                    </li>
+                <?php endif ?>
+
                 <?php if(settings()->codes->qr_codes_is_enabled): ?>
                     <li class="<?= in_array(\Altum\Router::$controller, ['QrCodes', 'QrCodeUpdate', 'QrCodeCreate']) ? 'active' : null ?>">
                         <a href="<?= url('qr-codes') ?>"><i class="fas fa-fw fa-sm fa-qrcode mr-2"></i> <?= l('qr_codes.menu') ?></a>

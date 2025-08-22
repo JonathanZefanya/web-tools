@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Models;
 
 use Altum\Logger;

@@ -183,6 +183,23 @@
                     <input id="order" type="number" name="order" class="form-control" value="<?= $data->values['order'] ?>" />
                     <small class="form-text text-muted"><?= l('admin_resources.order_help') ?></small>
                 </div>
+
+                <div class="form-group">
+                    <label for="plans_ids"><i class="fas fa-fw fa-sm fa-box-open text-muted mr-1"></i> <?= l('admin_resources.plans_ids') ?></label>
+                    <div class="row">
+                        <?php foreach($data->plans as $plan): ?>
+                            <div class="col-12 col-lg-6">
+                                <div class="custom-control custom-checkbox my-2">
+                                    <input id="plan_id_<?= $plan->plan_id ?>" name="plans_ids[]" value="<?= $plan->plan_id ?>" type="checkbox" class="custom-control-input" <?= in_array($plan->plan_id, $data->values['plans_ids'] ?? []) ? 'checked="checked"' : null ?>>
+                                    <label class="custom-control-label d-flex align-items-center" for="plan_id_<?= $plan->plan_id ?>">
+                                        <span class="text-truncate" title="<?= $plan->name ?>"><?= $plan->name ?></span>
+                                    </label>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                    <small class="form-text text-muted"><?= l('admin_resources.plans_ids_help') ?></small>
+                </div>
             </div>
 
             <button type="submit" name="submit" class="btn btn-lg btn-block btn-primary mt-4"><?= l('global.create') ?></button>

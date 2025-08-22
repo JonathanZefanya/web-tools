@@ -40,7 +40,7 @@
                         <a href="<?= url('projects?' . $data->filters->get_get() . '&export=json') ?>" target="_blank" class="dropdown-item <?= $this->user->plan_settings->export->json ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->json ? null : get_plan_feature_disabled_info() ?>>
                             <i class="fas fa-fw fa-sm fa-file-code mr-2"></i> <?= sprintf(l('global.export_to'), 'JSON') ?>
                         </a>
-                        <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? 'onclick="window.print();return false;"' : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? null : get_plan_feature_disabled_info() ?>>
+                        <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? $this->user->plan_settings->export->pdf ? 'onclick="event.preventDefault(); window.print();"' : 'disabled pointer-events-all' : get_plan_feature_disabled_info() ?>>
                             <i class="fas fa-fw fa-sm fa-file-pdf mr-2"></i> <?= sprintf(l('global.export_to'), 'PDF') ?>
                         </a>
                     </div>
@@ -180,9 +180,15 @@
 
                             <td class="text-nowrap">
                                 <div class="d-flex align-items-center">
-                                    <a href="<?= url('links?project_id=' . $row->project_id) ?>" class="mr-2" data-toggle="tooltip" title="<?= l('links.title') ?>">
-                                        <i class="fas fa-fw fa-link text-muted"></i>
-                                    </a>
+                                    <?php if(settings()->links->biolinks_is_enabled || settings()->links->shortener_is_enabled || settings()->links->files_is_enabled || settings()->links->vcards_is_enabled || settings()->links->events_is_enabled || settings()->links->static_is_enabled): ?>
+                                        <a href="<?= url('links?project_id=' . $row->project_id) ?>" class="mr-2" data-toggle="tooltip" title="<?= l('links.title') ?>">
+                                            <i class="fas fa-fw fa-link text-muted"></i>
+                                        </a>
+
+                                        <a href="<?= url('links-statistics?project_id=' . $row->project_id) ?>" class="mr-2" data-toggle="tooltip" title="<?= l('links_statistics.title') ?>">
+                                            <i class="fas fa-fw fa-chart-bar text-muted"></i>
+                                        </a>
+                                    <?php endif ?>
 
                                     <?php if(settings()->links->biolinks_is_enabled): ?>
                                         <a href="<?= url('data?project_id=' . $row->project_id) ?>" class="mr-2" data-toggle="tooltip" title="<?= l('data.title') ?>">
@@ -235,7 +241,7 @@
                                     <i class="fas fa-fw fa-calendar text-muted"></i>
                                 </span>
 
-                                <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= sprintf(l('global.last_datetime_tooltip'), ($row->last_datetime ? '<br />' . \Altum\Date::get($row->last_datetime, 2) . '<br /><small>' . \Altum\Date::get($row->last_datetime, 3) . '</small>' . '<br /><small>(' . \Altum\Date::get_timeago($row->last_datetime) . ')</small>' : '<br />-')) ?>">
+                                <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= sprintf(l('global.last_datetime_tooltip'), ($row->last_datetime ? '<br />' . \Altum\Date::get($row->last_datetime, 2) . '<br /><small>' . \Altum\Date::get($row->last_datetime, 3) . '</small>' . '<br /><small>(' . \Altum\Date::get_timeago($row->last_datetime) . ')</small>' : '<br />' . l('global.na'))) ?>">
                                     <i class="fas fa-fw fa-history text-muted"></i>
                                 </span>
                             </td>

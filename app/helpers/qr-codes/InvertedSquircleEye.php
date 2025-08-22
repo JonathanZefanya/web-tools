@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\QrCodes;
 
 use BaconQrCode\Renderer\Eye\EyeInterface;

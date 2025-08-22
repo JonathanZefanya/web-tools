@@ -685,7 +685,7 @@
     /* Daterangepicker */
     $('[name="plan_expiration_date"]').daterangepicker({
         startDate: <?= json_encode($data->user->plan_expiration_date) ?>,
-        minDate: new Date(),
+        minDate: "<?= (new \DateTime('', new \DateTimeZone(\Altum\Date::$default_timezone)))->setTimezone(new \DateTimeZone($this->user->timezone))->format('Y-m-d H:i:s'); ?>",
         alwaysShowCalendars: true,
         singleCalendar: true,
         singleDatePicker: true,

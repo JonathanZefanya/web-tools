@@ -96,7 +96,7 @@
             "order": 0,
             "start_date": null,
             "end_date": null,
-            "datetime": "<?= get_date() ?>"
+            "datetime": "<?= get_date() ?>",
         }
     ],
     "meta": {
@@ -106,11 +106,11 @@
         "total_pages": 1
     },
     "links": {
-        "first": "<?= SITE_URL ?>api/links?&page=1",
-        "last": "<?= SITE_URL ?>api/links?&page=1",
+        "first": "<?= SITE_URL ?>api/links?page=1",
+        "last": "<?= SITE_URL ?>api/links?page=1",
         "next": null,
         "prev": null,
-        "self": "<?= SITE_URL ?>api/links?&page=1"
+        "self": "<?= SITE_URL ?>api/links?page=1"
     }
 }
                         </div>
@@ -170,7 +170,7 @@
         "order": 0,
         "start_date": null,
         "end_date": null,
-        "datetime": "<?= get_date() ?>"
+        "datetime": "<?= get_date() ?>",
     }
 }
                         </div>

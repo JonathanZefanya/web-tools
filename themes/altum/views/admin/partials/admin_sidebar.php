@@ -347,11 +347,13 @@
                 </a>
             </li>
 
-            <!-- <li class="<?= in_array(\Altum\Router::$controller, ['AdminImageOptimizer']) ? 'active' : null ?>">
-                <a class="nav-link text-truncate" href="<?= url('admin/image-optimizer') ?>">
-                    <i class="fas fa-fw fa-sm fa-image mr-2"></i> <?= l('admin_image_optimizer.menu') ?>
-                </a>
-            </li> -->
+            <?php if(\Altum\Plugin::is_active('image-optimizer')): ?>
+                <li class="<?= in_array(\Altum\Router::$controller, ['AdminImageOptimizer']) ? 'active' : null ?>">
+                    <a class="nav-link text-truncate" href="<?= url('admin/image-optimizer') ?>">
+                        <i class="fas fa-fw fa-sm fa-image mr-2"></i> <?= l('admin_image_optimizer.menu') ?>
+                    </a>
+                </li>
+            <?php endif ?>
 
             <?php if(\Altum\Plugin::is_active('dynamic-og-images')): ?>
                 <li class="<?= in_array(\Altum\Router::$controller, ['AdminDynamicOgImages']) ? 'active' : null ?>">

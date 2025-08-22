@@ -149,6 +149,13 @@
             </div>
 
             <div class="form-group">
+                <label for="custom_redirect_url"><i class="fas fa-fw fa-sm fa-link text-muted mr-1"></i> <?= l('admin_plans.custom_redirect_url') ?></label>
+                <input type="url" id="custom_redirect_url" name="custom_redirect_url" class="form-control <?= \Altum\Alerts::has_field_errors('custom_redirect_url') ? 'is-invalid' : null ?>" value="" />
+                <?= \Altum\Alerts::output_field_error('custom_redirect_url') ?>
+                <small class="form-text text-muted"><?= l('admin_plans.custom_redirect_url_help') ?></small>
+            </div>
+
+            <div class="form-group">
                 <label for="color"><i class="fas fa-fw fa-sm fa-palette text-muted mr-1"></i> <?= l('admin_plans.color') ?></label>
                 <input type="text" id="color" name="color" class="form-control <?= \Altum\Alerts::has_field_errors('color') ? 'is-invalid' : null ?>" value="" />
                 <?= \Altum\Alerts::output_field_error('color') ?>

@@ -1,6 +1,5 @@
 <?php
 
-
 defined('ZEFANYA') || die();
 
 return [
@@ -100,7 +99,7 @@ return [
 
     /* File upload links */
     'files' => [
-        'whitelisted_file_extensions' => ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif', 'pdf', 'zip', 'rar', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'csv', 'mp3', 'wav', 'mp4', 'webm', 'ogg', 'ogv', 'avi', 'mov', 'mkv'],
+        'whitelisted_file_extensions' => ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif', 'pdf', 'zip', 'rar', 'doc', 'docx']
     ],
 
     /* Static file links */

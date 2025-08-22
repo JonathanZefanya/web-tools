@@ -1,9 +1,9 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Models\Domain;
+use Altum\Response;
 
 defined('ZEFANYA') || die();
 
@@ -58,15 +58,60 @@ class Dashboard extends Controller {
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/pagination', (array) $this))->run(['paginator' => $paginator]);
 
-        /* Get statistics */
-        if(count($links)) {
-            $links_chart = [];
-            $start_date_query = (new \DateTime())->modify('-' . (settings()->main->chart_days ?? 30) . ' day')->format('Y-m-d');
-            $end_date_query = (new \DateTime())->modify('+1 day')->format('Y-m-d');
+        /* Delete Modal */
+        $view = new \Altum\View('links/link_delete_modal', (array) $this);
+        \Altum\Event::add_content($view->run(), 'modals');
 
-            $convert_tz_sql = get_convert_tz_sql('`datetime`', $this->user->timezone);
+        /* Create Link Modal */
+        $domains = (new Domain())->get_available_domains_by_user($this->user);
+        $data = [
+            'domains' => $domains
+        ];
 
-            $track_links_result_query = "
+        $view = new \Altum\View('links/create_link_modals', (array) $this);
+        \Altum\Event::add_content($view->run($data), 'modals');
+
+        /* Existing projects */
+        $projects = (new \Altum\Models\Projects())->get_projects_by_user_id($this->user->user_id);
+
+        /* Prepare the Links View */
+        $data = [
+            'links'             => $links,
+            'pagination'        => $pagination,
+            'filters'           => $filters,
+            'projects'          => $projects,
+            'links_types'       => require APP_PATH . 'includes/links_types.php',
+        ];
+        $view = new \Altum\View('links/links_content', (array) $this);
+        $this->add_view_content('links_content', $view->run($data));
+
+        /* Prepare the view */
+        $data = [
+            'has_links' => count($links)
+        ];
+
+        $view = new \Altum\View('dashboard/index', (array) $this);
+
+        $this->add_view_content('content', $view->run($data));
+
+    }
+
+    public function get_stats_ajax() {
+
+        session_write_close();
+
+        \Altum\Authentication::guard();
+
+        if(!empty($_POST)) {
+            redirect();
+        }
+
+        $start_date_query = (new \DateTime())->modify('-' . (settings()->main->chart_days ?? 30) . ' day')->format('Y-m-d');
+        $end_date_query = (new \DateTime())->modify('+1 day')->format('Y-m-d');
+
+        $convert_tz_sql = get_convert_tz_sql('`datetime`', $this->user->timezone);
+
+        $track_links_result_query = "
                 SELECT
                     COUNT(`id`) AS `pageviews`,
                     SUM(`is_unique`) AS `visitors`,
@@ -82,28 +127,27 @@ class Dashboard extends Controller {
                     `formatted_date`
             ";
 
-            $links_chart = \Altum\Cache::cache_function_result('track_links?user_id=' . $this->user->user_id, 'user_id=' . $this->user->user_id, function() use ($track_links_result_query) {
-                $links_chart = [];
+        $links_chart = \Altum\Cache::cache_function_result('track_links?user_id=' . $this->user->user_id, 'user_id=' . $this->user->user_id, function() use ($track_links_result_query) {
+            $links_chart = [];
 
-                $track_links_result = database()->query($track_links_result_query);
+            $track_links_result = database()->query($track_links_result_query);
 
-                /* Generate the raw chart data and save logs for later usage */
-                while($row = $track_links_result->fetch_object()) {
-                    $label = \Altum\Date::get($row->formatted_date, 5, \Altum\Date::$default_timezone);
+            /* Generate the raw chart data and save logs for later usage */
+            while($row = $track_links_result->fetch_object()) {
+                $label = \Altum\Date::get($row->formatted_date, 5, \Altum\Date::$default_timezone);
 
-                    $links_chart[$label] = [
-                        'pageviews' => $row->pageviews,
-                        'visitors' => $row->visitors
-                    ];
-                }
+                $links_chart[$label] = [
+                    'pageviews' => $row->pageviews,
+                    'visitors' => $row->visitors
+                ];
+            }
 
-                return $links_chart;
-            }, 60 * 60 * settings()->main->chart_cache ?? 12);
+            return $links_chart;
+        }, 60 * 60 * settings()->main->chart_cache ?? 12);
 
-            $links_chart = get_chart_data($links_chart);
-        }
+        $links_chart = get_chart_data($links_chart);
 
-        /* Some statistics for the widgets */
+        /* Widgets stats */
         if(settings()->links->shortener_is_enabled) {
             $link_links_total = \Altum\Cache::cache_function_result('link_links_total?user_id=' . $this->user->user_id, 'user_id=' . $this->user->user_id, function() {
                 return db()->where('user_id', $this->user->user_id)->where('type', 'link')->getValue('links', 'count(*)');
@@ -140,49 +184,21 @@ class Dashboard extends Controller {
             });
         }
 
-        /* Delete Modal */
-        $view = new \Altum\View('links/link_delete_modal', (array) $this);
-        \Altum\Event::add_content($view->run(), 'modals');
-
-        /* Create Link Modal */
-        $domains = (new Domain())->get_available_domains_by_user($this->user);
+        /* Prepare the data */
         $data = [
-            'domains' => $domains
+            'links_chart' => $links_chart,
+
+            /* Widgets */
+            'link_links_total' => $link_links_total ?? null,
+            'file_links_total' => $file_links_total ?? null,
+            'vcard_links_total' => $vcard_links_total ?? null,
+            'biolink_links_total' => $biolink_links_total ?? null,
+            'event_links_total' => $event_links_total ?? null,
+            'static_links_total' => $static_links_total ?? null,
         ];
 
-        $view = new \Altum\View('links/create_link_modals', (array) $this);
-        \Altum\Event::add_content($view->run($data), 'modals');
-
-        /* Existing projects */
-        $projects = (new \Altum\Models\Projects())->get_projects_by_user_id($this->user->user_id);
-
-        /* Prepare the Links View */
-        $data = [
-            'links'             => $links,
-            'pagination'        => $pagination,
-            'filters'           => $filters,
-            'projects'          => $projects,
-            'links_types'       => require APP_PATH . 'includes/links_types.php',
-        ];
-        $view = new \Altum\View('links/links_content', (array) $this);
-        $this->add_view_content('links_content', $view->run($data));
-
-        /* Prepare the view */
-        $data = [
-            'links_chart'               => $links_chart ?? null,
-
-            /* Widgets stats */
-            'event_links_total'         => $event_links_total ?? null,
-            'static_links_total'        => $static_links_total ?? null,
-            'vcard_links_total'         => $vcard_links_total ?? null,
-            'link_links_total'          => $link_links_total ?? null,
-            'file_links_total'          => $file_links_total ?? null,
-            'biolink_links_total'       => $biolink_links_total ?? null,
-        ];
-
-        $view = new \Altum\View('dashboard/index', (array) $this);
-
-        $this->add_view_content('content', $view->run($data));
+        /* Set a nice success message */
+        Response::json('', 'success', $data);
 
     }
 

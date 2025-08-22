@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -42,8 +41,8 @@ class AdminSyntheses extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($syntheses, 'include', ['synthesis_id', 'project_id', 'user_id', 'name', 'input', 'file', 'language', 'format', 'voice_id', 'voice_engine', 'voice_gender',  'characters', 'api_response_time', 'datetime', 'last_datetime'], sprintf(l('syntheses.title')));
-        process_export_json($syntheses, 'include', ['synthesis_id', 'project_id', 'user_id', 'name', 'input', 'file', 'language', 'format', 'voice_id', 'voice_engine', 'voice_gender', 'settings', 'characters', 'api_response_time', 'datetime', 'last_datetime'], sprintf(l('syntheses.title')));
+        process_export_csv($syntheses, ['synthesis_id', 'project_id', 'user_id', 'name', 'input', 'file', 'language', 'format', 'voice_id', 'voice_engine', 'voice_gender',  'characters', 'api_response_time', 'datetime', 'last_datetime'], sprintf(l('syntheses.title')));
+        process_export_json($syntheses, ['synthesis_id', 'project_id', 'user_id', 'name', 'input', 'file', 'language', 'format', 'voice_id', 'voice_engine', 'voice_gender', 'settings', 'characters', 'api_response_time', 'datetime', 'last_datetime'], sprintf(l('syntheses.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -102,6 +101,8 @@ class AdminSyntheses extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -119,6 +120,8 @@ class AdminSyntheses extends Controller {
 
                     break;
             }
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

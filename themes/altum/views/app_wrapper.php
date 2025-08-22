@@ -163,7 +163,8 @@
         $('select:not([multiple="multiple"]):not([class="input-group-text"]):not([class="custom-select custom-select-sm"]):not([class^="ql"]):not([data-is-not-custom-select])').each(function() {
             let $select = $(this);
             $select.select2({
-                dir: <?= json_encode(l('direction')) ?>,
+                placeholder: <?= json_encode(l('global.no_data')) ?>,
+                    dir: <?= json_encode(l('direction')) ?>,
                 minimumResultsForSearch: 5,
             });
 

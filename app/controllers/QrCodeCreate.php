@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -492,7 +491,7 @@ class QrCodeCreate extends Controller {
         $settings['url'] = $settings['url'] ?? $_GET['url'] ?? null;
 
         $values = [
-            'name' => $_POST['name'] ?? $_GET['name'] ?? '',
+            'name' => $_POST['name'] ?? $_GET['name'] ?? generate_prefilled_dynamic_names(l('qr_codes.qr_code')),
             'type' => $_POST['type'] ?? $_GET['type'] ?? array_key_first($available_qr_codes),
             'project_id' => $_POST['project_id'] ?? $_GET['project_id'] ?? '',
             'url_dynamic' => $_POST['url_dynamic'] ?? $_GET['url_dynamic'] ?? null,

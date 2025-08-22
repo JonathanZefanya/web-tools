@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -47,8 +46,8 @@ class AdminImages extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($images, 'include', ['image_id', 'project_id', 'user_id', 'name', 'input', 'image', 'image_url', 'style', 'artist', 'lighting', 'mood', 'size', 'api', 'api_response_time', 'datetime', 'last_datetime'], sprintf(l('images.title')));
-        process_export_json($images, 'include', ['image_id', 'project_id', 'user_id', 'name', 'input', 'image', 'image_url', 'style', 'artist', 'lighting', 'mood', 'size', 'settings', 'api', 'api_response_time', 'datetime', 'last_datetime'], sprintf(l('images.title')));
+        process_export_csv($images, ['image_id', 'project_id', 'user_id', 'name', 'input', 'image', 'image_url', 'style', 'artist', 'lighting', 'mood', 'size', 'api', 'api_response_time', 'datetime', 'last_datetime'], sprintf(l('images.title')));
+        process_export_json($images, ['image_id', 'project_id', 'user_id', 'name', 'input', 'image', 'image_url', 'style', 'artist', 'lighting', 'mood', 'size', 'settings', 'api', 'api_response_time', 'datetime', 'last_datetime'], sprintf(l('images.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -94,6 +93,8 @@ class AdminImages extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -125,6 +126,8 @@ class AdminImages extends Controller {
 
                     break;
             }
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

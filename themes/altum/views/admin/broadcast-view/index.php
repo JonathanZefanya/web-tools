@@ -139,21 +139,21 @@
                 <div class="form-group">
                     <label class="font-weight-bold">
                         <i class="fas fa-fw fa-sm fa-paper-plane text-muted mr-1"></i>
-                        <?= sprintf(l('admin_broadcasts.last_sent_email_datetime'), ($data->broadcast->last_sent_email_datetime ? \Altum\Date::get($data->broadcast->last_sent_email_datetime, 2) . ' - <small>' . \Altum\Date::get($data->broadcast->last_sent_email_datetime, 3) . '</small>' : '-')) ?>
+                        <?= sprintf(l('admin_broadcasts.last_sent_email_datetime'), ($data->broadcast->last_sent_email_datetime ? \Altum\Date::get($data->broadcast->last_sent_email_datetime, 2) . ' - <small>' . \Altum\Date::get($data->broadcast->last_sent_email_datetime, 3) . '</small>' : l('global.na'))) ?>
                     </label>
                 </div>
 
                 <div class="form-group">
                     <label class="font-weight-bold">
                         <i class="fas fa-fw fa-sm fa-clock text-muted mr-1"></i>
-                        <?= sprintf(l('global.datetime_tooltip'), ($data->broadcast->datetime ? \Altum\Date::get($data->broadcast->datetime, 2) . ' - <small>' . \Altum\Date::get($data->broadcast->datetime, 3) . '</small>' : '-')) ?>
+                        <?= sprintf(l('global.datetime_tooltip'), ($data->broadcast->datetime ? \Altum\Date::get($data->broadcast->datetime, 2) . ' - <small>' . \Altum\Date::get($data->broadcast->datetime, 3) . '</small>' : l('global.na'))) ?>
                     </label>
                 </div>
 
                 <div class="form-group">
                     <label class="font-weight-bold">
                         <i class="fas fa-fw fa-sm fa-history text-muted mr-1"></i>
-                        <?= sprintf(l('global.last_datetime_tooltip'), ($data->broadcast->last_datetime ? \Altum\Date::get($data->broadcast->last_datetime, 2) . ' - <small>' . \Altum\Date::get($data->broadcast->last_datetime, 3) . '</small>' : '-')) ?>
+                        <?= sprintf(l('global.last_datetime_tooltip'), ($data->broadcast->last_datetime ? \Altum\Date::get($data->broadcast->last_datetime, 2) . ' - <small>' . \Altum\Date::get($data->broadcast->last_datetime, 3) . '</small>' : l('global.na'))) ?>
                     </label>
                 </div>
 

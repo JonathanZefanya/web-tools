@@ -87,7 +87,7 @@
                     <div id="quill"></div>
                 </div>
                 <div class="bg-gray-100 rounded p-3" id="editorjs"></div>
-                <textarea name="content" id="content" class="form-control d-none" style="height: 15rem;" data-code-editor data-mode="htmlmixed"><?= e(bootstrap_to_quilljs($data->blog_post->content)) ?></textarea>
+                <textarea name="content" id="content" class="form-control d-none" style="height: 15rem;"><?= e(bootstrap_to_quilljs($data->blog_post->content)) ?></textarea>
             </div>
 
             <div class="form-group">
@@ -135,6 +135,8 @@
         </form>
     </div>
 </div>
+
+<?php include_view(THEME_PATH . 'views/partials/codemirror_js.php') ?>
 
 <?php ob_start() ?>
 <link href="<?= ASSETS_FULL_URL . 'css/libraries/quill.snow.css?v=' . PRODUCT_CODE ?>" rel="stylesheet" media="screen,print">
@@ -251,6 +253,20 @@
     });
     quill.root.innerHTML = document.querySelector('#content').value;
 
+    /* Initiate codemirror */
+    let codemirror_instance = CodeMirror.fromTextArea(document.querySelector('#content'), {
+        lineNumbers: true,
+        lineWrapping: true,
+        mode: 'htmlmixed',
+        theme: <?= \Altum\ThemeStyle::get() == 'light' ? json_encode('default') : json_encode('material') ?>,
+        indentUnit: 4,
+        tabSize: 4,
+        indentWithTabs: true,
+        matchBrackets: true,
+        autoCloseBrackets: true,
+        styleActiveLine: true,
+    });
+
     /* Handle form submission with the editor */
     document.querySelector('#blog_post_update_form').addEventListener('submit', async event => {
         let editor = document.querySelector('input[name="editor"]:checked')?.value ?? 'blocks';
@@ -317,4 +333,3 @@
     'path' => 'admin/blog-posts/delete/'
 ]), 'modals'); ?>
 
-<?php include_view(THEME_PATH . 'views/partials/codemirror_js.php') ?>

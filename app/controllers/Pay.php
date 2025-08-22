@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -251,6 +250,32 @@ class Pay extends Controller {
                             'redeemed_days' => $this->code->days,
                             'datetime' => get_date(),
                         ]);
+                    }
+
+                    /* Send admin notification if enabled */
+                    if (settings()->email_notifications->new_code_redeemed && !empty(settings()->email_notifications->emails)) {
+
+                        $email_template = get_email_template(
+                            [
+                                '{{CODE}}' => $this->code->code,
+                            ],
+                            l('global.emails.admin_new_code_redeemed_notification.subject'),
+                            [
+                                '{{CODE}}' => $this->code->code,
+                                '{{REDEEMED_DAYS}}' => nr($this->code->days),
+                                '{{NAME}}' => $this->user->name,
+                                '{{EMAIL}}' => $this->user->email,
+                                '{{PLAN_NAME}}' => $this->plan->name,
+                                '{{USER_LINK}}' => url('admin/user-view/' . $this->user->user_id),
+                            ],
+                            l('global.emails.admin_new_code_redeemed_notification.body')
+                        );
+
+                        send_mail(
+                            explode(',', settings()->email_notifications->emails),
+                            $email_template->subject,
+                            $email_template->body
+                        );
                     }
 
                     /* Clear the cache */
@@ -926,7 +951,15 @@ class Pay extends Controller {
                     '{{EMAIL}}' => $this->user->email,
                     '{{PLAN_NAME}}' => $plan->name,
                     '{{PAYMENT_FREQUENCY}}' => l('plan.custom_plan.' . $_POST['payment_frequency']),
-                    '{{PAYMENT_LINK}}' => url('admin/payments?id=' . $payment_id)
+                    '{{PAYMENT_TYPE}}' => l('pay.custom_plan.' . $_POST['payment_type'] . '_type'),
+                    '{{PAYMENT_ID}}' => $payment_id,
+                    '{{EXTERNAL_PAYMENT_ID}}' => $payment_unique_id,
+                    '{{PAYMENT_LINK}}' => url('admin/payments?id=' . $payment_id),
+                    '{{DATE}}' => get_date(),
+                    '{{DATE_TIMEZONE}}' => \Altum\Date::$default_timezone,
+                    '{{CODE}}' => $code ?: l('global.none'),
+                    '{{DISCOUNT_AMOUNT}}' => $discount_amount,
+                    '{{PAYMENT_STATUS}}' => l('account_payments.status_pending'),
                 ],
                 l('global.emails.admin_new_payment_notification.body')
             );

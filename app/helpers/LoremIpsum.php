@@ -1,6 +1,5 @@
 <?php
 
-
 namespace joshtronic;
 
 defined('ZEFANYA') || die();

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\PaymentGateways;
 
 /* Helper class for Coinbase */

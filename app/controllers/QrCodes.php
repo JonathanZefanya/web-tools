@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -40,8 +39,8 @@ class QrCodes extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($qr_codes, 'include', ['qr_code_id', 'user_id', 'project_id', 'type', 'name', 'qr_code', 'qr_code_url', 'qr_code_logo', 'qr_code_logo_url', 'qr_code_background', 'qr_code_background_url', 'qr_code_foreground', 'qr_code_foreground_url', 'last_datetime', 'datetime'], sprintf(l('qr_codes.title')));
-        process_export_json($qr_codes, 'include', ['qr_code_id', 'user_id', 'project_id', 'type', 'name', 'qr_code', 'qr_code_url', 'qr_code_logo', 'qr_code_logo_url', 'qr_code_background', 'qr_code_background_url', 'qr_code_foreground', 'qr_code_foreground_url', 'embedded_data', 'settings','last_datetime', 'datetime'], sprintf(l('qr_codes.title')));
+        process_export_csv($qr_codes, ['qr_code_id', 'user_id', 'project_id', 'type', 'name', 'qr_code', 'qr_code_url', 'qr_code_logo', 'qr_code_logo_url', 'qr_code_background', 'qr_code_background_url', 'qr_code_foreground', 'qr_code_foreground_url', 'last_datetime', 'datetime'], sprintf(l('qr_codes.title')));
+        process_export_json($qr_codes, ['qr_code_id', 'user_id', 'project_id', 'type', 'name', 'qr_code', 'qr_code_url', 'qr_code_logo', 'qr_code_logo_url', 'qr_code_background', 'qr_code_background_url', 'qr_code_foreground', 'qr_code_foreground_url', 'embedded_data', 'settings','last_datetime', 'datetime'], sprintf(l('qr_codes.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -162,6 +161,8 @@ class QrCodes extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -194,6 +195,8 @@ class QrCodes extends Controller {
 
                     break;
             }
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

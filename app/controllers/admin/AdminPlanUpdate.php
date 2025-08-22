@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -244,6 +243,7 @@ class AdminPlanUpdate extends Controller {
                     $_POST['status'] = (int) $_POST['status'];
                     $_POST['order'] = (int) $_POST['order'];
                     $_POST['taxes_ids'] = json_encode($_POST['taxes_ids'] ?? []);
+                    $_POST['settings']['custom_redirect_url'] = get_url($_POST['custom_redirect_url']);
 
                     /* Prices */
                     $prices = [

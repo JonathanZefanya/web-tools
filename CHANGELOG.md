@@ -2,6 +2,56 @@
 
 Semua perubahan penting pada proyek **Web Tools** akan didokumentasikan di file ini. Proyek ini telah menerima **6 pembaruan** sejak rilis perdananya pada 10 Februari 2025.
 
+## [5.0.0] - 23-08-2025
+### ✨ Ditambahkan (Added)
+- Menerapkan halaman statistik di seluruh akun yang mencakup semua tautan yang ada.
+- Menerapkan granularitas proyek untuk halaman statistik di seluruh akun yang mencakup semua tautan yang ada di dalam proyek tertentu.
+- Menerapkan pemuatan statistik dinamis untuk dasbor, sehingga sangat cepat bagi pengguna.
+- Menerapkan kemampuan untuk mengatur tautan Terima Kasih khusus setelah pengguna berhasil membayar paket.
+- Menerapkan kemampuan untuk mengirim ulang aktivasi email secara massal melalui panel admin.
+- Menerapkan templat pra-definisi baru untuk halaman biolink: Aplikasi seluler.
+
+### 🚀 Ditingkatkan (Improved)
+- Meningkatkan ikhtisar statistik dengan 2 widget baru: total tampilan halaman & pengunjung.
+- Meningkatkan statistik kunjungan per jam, kini diurutkan berdasarkan total, bukan per jam.
+- Meningkatkan ekspor data CSV pengendali notifikasi agar memuat semua pengaturan pengendali.
+- Meningkatkan cronjob Laporan Email agar berkinerja tinggi saat melakukan kueri ke database.
+- Meningkatkan kinerja pembuatan statistik negara.
+- Meningkatkan kinerja untuk pemilihan massal frontend & pemrosesan massal backend (misalnya, hapus massal).
+- Blok audio untuk halaman biolink telah ditingkatkan agar mendukung format WAV.
+- Pembuatan kode QR telah ditingkatkan dengan menghasilkan nama-nama pra-isi yang dinamis dan menarik.
+- Implementasi Google Safe Browsing telah ditingkatkan untuk mendukung lebih banyak jenis ancaman.
+- Halaman Pembayaran Tamu telah ditingkatkan agar dapat menampilkan pembayaran yang tertunda.
+- Widget statistik pada sub-halaman telah ditingkatkan agar tidak dibatasi hingga 250 entri tabel.
+- Notifikasi email admin telah ditingkatkan ketika ada pembayaran baru - detail pembayaran telah ditambahkan ke email.
+- Penggunaan sumber daya ekspor CSV & JSON telah ditingkatkan (kinerjanya).
+- Tombol buat di halaman sumber daya telah ditingkatkan - sekarang akan menampilkan tautan untuk meningkatkan paket jika paket mencapai batasnya.
+- Prompt AI telah ditingkatkan untuk terjemahan bahasa otomatis.
+- Halaman presentasi afiliasi telah ditingkatkan agar terlihat lebih baik (plugin afiliasi).
+- Pemuatan CSS telah ditingkatkan & dioptimalkan di beranda dan di seluruh aplikasi.
+- Plugin pelindung email telah ditingkatkan untuk mendukung domain yang masuk daftar putih.
+- Peningkatan terjemahan bahasa di panel admin untuk mendukung penggunaan beberapa variabel dinamis dalam terjemahan.
+- Peningkatan variabel yang digunakan di seluruh produk, seperti panel admin - pembuatan siaran - untuk mendukung klik untuk menyalin demi kemudahan penggunaan variabel dinamis.
+- Peningkatan implementasi persetujuan cookie untuk memancarkan peristiwa JS, sehingga Anda dapat terhubung ke pembaruan secara terprogram.
+
+### 🐞 Diperbaiki (Fixed)
+- Memperbaiki tombol salin blok kupon Biolink yang tidak menyalin dengan benar.
+- Memperbaiki blok linimasa Biolink yang tidak menyimpan data dengan benar saat pembuatan.
+- Memperbaiki pengaturan tema panel admin untuk mode gelap - font tidak tersimpan dengan benar.
+- Memperbaiki penundaan halaman arahan dalam animasi yang tidak berfungsi dengan baik.
+- Memperbaiki masalah dengan tombol cetak ke PDF.
+- Memperbaiki beberapa modul pemilih tanggal yang tidak mempertimbangkan zona waktu akun.
+- Memperbaiki halaman sumber daya panel admin yang memuat modal hapus tertentu dalam HTML lebih dari yang diperlukan.
+
+### ✨ Ditambahkan (Added)
+- Menambahkan kemampuan untuk menyalin URL hasil secara otomatis setelah tautan dibuat.
+- Menambahkan kemampuan untuk mengunduh file yang diunggah melalui Blok Tautan Statis.
+- Menambahkan opsi untuk mengizinkan atau melarang penggunaan alias email oleh pengguna.
+- Menambahkan kemampuan untuk mengatur ukuran unggahan maksimum avatar profil melalui panel admin.
+- Menambahkan kemampuan untuk menunggu respons saat mengirim notifikasi webhook (berguna dalam kasus tertentu).
+- Menambahkan kemampuan untuk mengubah karakter pemisah judul (`title separator`) langsung dari panel admin.
+- Menambahkan tautan akses cepat ke halaman statistik dari beberapa fitur di panel admin.
+
 ## [4.0.0] - 23-07-2025
 
 ### ✨ Ditambahkan (Added)

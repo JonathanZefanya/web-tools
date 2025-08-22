@@ -88,7 +88,7 @@
             "continent_code": "EU",
             "country_code": "IT",
             "city_name": "Rome",
-            "datetime": "<?= get_date() ?>"
+            "datetime": "<?= get_date() ?>",
         },
     ],
     "meta": {
@@ -98,11 +98,11 @@
         "total_pages": 1
     },
     "links": {
-        "first": "<?= SITE_URL ?>api/logs?&page=1",
-        "last": "<?= SITE_URL ?>api/logs?&page=1",
+        "first": "<?= SITE_URL ?>api/logs?page=1",
+        "last": "<?= SITE_URL ?>api/logs?page=1",
         "next": null,
         "prev": null,
-        "self": "<?= SITE_URL ?>api/logs?&page=1"
+        "self": "<?= SITE_URL ?>api/logs?page=1"
     }
 }
                         </div>

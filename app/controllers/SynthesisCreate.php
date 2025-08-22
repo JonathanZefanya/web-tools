@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -148,7 +147,7 @@ class SynthesisCreate extends Controller {
         /* Formats */
         $ai_formats = require \Altum\Plugin::get('aix')->path . 'includes/ai_syntheses_' . $this->user->plan_settings->syntheses_api . '_formats.php';
 
-        /* Filter some the variables */
+        /* Filter some of the variables */
         $_POST['language'] = !empty($_POST['language']) && array_key_exists($_POST['language'], $ai_languages) ? $_POST['language'] : 'en-US';
         $_POST['voice_id'] = !empty($_POST['voice_id']) && array_key_exists($_POST['voice_id'], $ai_voices) ? $_POST['voice_id'] : 'Joanna';
         $_POST['voice_engine'] = !empty($_POST['voice_engine']) && in_array($_POST['voice_engine'], $ai_engines) ? $_POST['voice_engine'] : reset($ai_engines);

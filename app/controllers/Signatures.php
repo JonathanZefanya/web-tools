@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -45,8 +44,8 @@ class Signatures extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($signatures, 'include', ['signature_id', 'project_id', 'user_id', 'name', 'datetime', 'last_datetime'], sprintf(l('signatures.title')));
-        process_export_json($signatures, 'include', ['signature_id', 'project_id', 'user_id', 'name', 'settings', 'datetime', 'last_datetime'], sprintf(l('signatures.title')));
+        process_export_csv($signatures, ['signature_id', 'project_id', 'user_id', 'name', 'datetime', 'last_datetime'], sprintf(l('signatures.title')));
+        process_export_json($signatures, ['signature_id', 'project_id', 'user_id', 'name', 'settings', 'datetime', 'last_datetime'], sprintf(l('signatures.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -164,6 +163,8 @@ class Signatures extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -182,6 +183,8 @@ class Signatures extends Controller {
 
             /* Clear the cache */
             cache()->deleteItem('signatures?user_id=' . $this->user->user_id);
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

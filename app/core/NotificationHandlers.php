@@ -91,7 +91,7 @@ class NotificationHandlers {
         );
     }
 
-    private static function handle_webhook(object $notification_handler, array $notification_data) {
+    public static function handle_webhook(object $notification_handler, array $notification_data) {
         fire_and_forget('post', $notification_handler->settings->webhook, $notification_data);
     }
 

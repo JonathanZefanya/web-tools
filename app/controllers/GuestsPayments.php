@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -18,12 +17,12 @@ class GuestsPayments extends Controller {
         \Altum\Authentication::guard();
 
         /* Prepare the filtering system */
-        $filters = (new \Altum\Filters(['guest_payment_id', 'biolink_block_id', 'link_id', 'payment_processor_id', 'project_id', 'type', 'processor'], ['email', 'name'], ['guest_payment_id', 'total_amount', 'datetime']));
+        $filters = (new \Altum\Filters(['guest_payment_id', 'biolink_block_id', 'link_id', 'user_id', 'payment_processor_id', 'project_id', 'type', 'processor', 'status'], ['email', 'name'], ['guest_payment_id', 'total_amount', 'datetime']));
         $filters->set_default_order_by($this->user->preferences->guests_payments_default_order_by, $this->user->preferences->default_order_type ?? settings()->main->default_order_type);
         $filters->set_default_results_per_page($this->user->preferences->default_results_per_page ?? settings()->main->default_results_per_page);
 
         /* Prepare the paginator */
-        $total_rows = database()->query("SELECT COUNT(*) AS `total` FROM `guests_payments` WHERE `user_id` = {$this->user->user_id} AND `status` = 1 {$filters->get_sql_where()}")->fetch_object()->total ?? 0;
+        $total_rows = database()->query("SELECT COUNT(*) AS `total` FROM `guests_payments` WHERE `user_id` = {$this->user->user_id} {$filters->get_sql_where()}")->fetch_object()->total ?? 0;
         $paginator = (new \Altum\Paginator($total_rows, $filters->get_results_per_page(), $_GET['page'] ?? 1, url('guests-payments?' . $filters->get_get() . '&page=%d')));
 
         /* Get the data list for the user */
@@ -34,7 +33,6 @@ class GuestsPayments extends Controller {
             LEFT JOIN `biolinks_blocks` ON `biolinks_blocks`.`biolink_block_id` = `guests_payments`.`biolink_block_id`
             WHERE 
                 `guests_payments`.`user_id` = {$this->user->user_id} 
-              AND `status` = 1 
               {$filters->get_sql_where('guests_payments')} 
                 
             {$filters->get_sql_order_by('guests_payments')} 
@@ -48,8 +46,8 @@ class GuestsPayments extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($guests_payments, 'include', ['guest_payment_id', 'biolink_block_id', 'biolink_block_name', 'link_id', 'payment_processor_id', 'project_id', 'user_id', 'processor', 'payment_id', 'email', 'name', 'total_amount', 'currency', 'status', 'datetime'], sprintf(l('guests_payments.title')));
-        process_export_json($guests_payments, 'include', ['guest_payment_id', 'biolink_block_id', 'biolink_block_name', 'link_id', 'payment_processor_id', 'project_id', 'user_id', 'processor', 'payment_id', 'email', 'name', 'total_amount', 'currency', 'data', 'settings', 'status', 'datetime'], sprintf(l('guests_payments.title')));
+        process_export_csv($guests_payments, ['guest_payment_id', 'biolink_block_id', 'biolink_block_name', 'link_id', 'payment_processor_id', 'project_id', 'user_id', 'processor', 'payment_id', 'email', 'name', 'total_amount', 'currency', 'status', 'datetime'], sprintf(l('guests_payments.title')));
+        process_export_json($guests_payments, ['guest_payment_id', 'biolink_block_id', 'biolink_block_name', 'link_id', 'payment_processor_id', 'project_id', 'user_id', 'processor', 'payment_id', 'email', 'name', 'total_amount', 'currency', 'data', 'settings', 'status', 'datetime'], sprintf(l('guests_payments.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/pagination', (array) $this))->run(['paginator' => $paginator]);
@@ -96,6 +94,8 @@ class GuestsPayments extends Controller {
 
             set_time_limit(0);
 
+            session_write_close();
+
             switch($_POST['type']) {
                 case 'delete':
 
@@ -111,6 +111,8 @@ class GuestsPayments extends Controller {
 
                     break;
             }
+
+            session_start();
 
             /* Set a nice success message */
             Alerts::add_success(l('bulk_delete_modal.success_message'));

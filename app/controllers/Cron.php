@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Logger;
@@ -376,7 +375,7 @@ class Cron extends Controller {
             WHERE 
                 `users`.`status` = 1
                 AND `links`.`is_enabled` = 1 
-                AND JSON_LENGTH(`links`.`email_reports`) > 0
+                AND `links`.`email_reports_count` > 0
 				AND DATE_ADD(`links`.`email_reports_last_datetime`, INTERVAL {$days_interval} DAY) <= '{$date}'
             LIMIT 25
         ");

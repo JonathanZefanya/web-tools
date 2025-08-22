@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -53,6 +52,7 @@ class AccountPreferences extends Controller {
             $_POST['openai_api_key'] = input_clean($_POST['openai_api_key'] ?? null);
 
             $_POST['links_auto_copy_link'] = isset($_POST['links_auto_copy_link']);
+            $_POST['links_autosave_settings'] = isset($_POST['links_autosave_settings']);
 
 
             /* Tracking */
@@ -95,6 +95,7 @@ class AccountPreferences extends Controller {
                     'openai_api_key' => $_POST['openai_api_key'],
 
                     'links_auto_copy_link' => $_POST['links_auto_copy_link'],
+                    'links_autosave_settings' => $_POST['links_autosave_settings'],
 
                     'excluded_ips' => $_POST['excluded_ips'],
                 ]);

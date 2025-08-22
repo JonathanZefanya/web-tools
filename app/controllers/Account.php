@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -89,7 +88,12 @@ class Account extends Controller {
             }
 
             /* Email shield plugin */
-            if(\Altum\Plugin::is_active('email-shield') && settings()->email_shield->is_enabled && !\Altum\Plugin\EmailShield::validate($email_domain)) {
+            if(
+                \Altum\Plugin::is_active('email-shield')
+                && settings()->email_shield->is_enabled
+                && !in_array($email_domain, settings()->email_shield->whitelisted_domains)
+                && !\Altum\Plugin\EmailShield::validate($email_domain)
+            ) {
                 Alerts::add_field_error('email', l('register.error_message.blacklisted_domain'));
             }
 

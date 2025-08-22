@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -12,7 +11,7 @@ class AdminTaxCreate extends Controller {
     public function index() {
 
         if(!empty($_POST)) {
-            /* Filter some the variables */
+            /* Filter some of the variables */
             $_POST['name'] = input_clean($_POST['name'], 64);
             $_POST['description'] = input_clean($_POST['description'], 256);
             $_POST['value'] = (float) $_POST['value'];

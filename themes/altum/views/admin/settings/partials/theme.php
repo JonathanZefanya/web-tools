@@ -456,7 +456,7 @@ $fonts = [
                                 name="<?= $mode . '_font_family' ?>"
                                 value="default"
                                 class="custom-control-input"
-                            <?= settings()->theme->{$mode . '_font_family'} == 'default' ? 'checked="checked"' : null ?>
+                                <?= settings()->theme->{$mode . '_font_family'} == 'default' ? 'checked="checked"' : null ?>
                         >
 
                         <div class="card">
@@ -474,7 +474,7 @@ $fonts = [
                                     name="<?= $mode . '_font_family' ?>"
                                     value="<?= $font_family ?>"
                                     class="custom-control-input"
-                                <?= settings()->theme->{$mode . '_font_family'} == $font_family ? 'checked="checked"' : null ?>
+                                    <?= settings()->theme->{$mode . '_font_family'} == $font_family ? 'checked="checked"' : null ?>
                             >
 
                             <div class="card" style="font-family: <?= $font_family ?> !important;">
@@ -492,7 +492,7 @@ $fonts = [
                                 name="<?= $mode . '_font_family' ?>"
                                 value="custom"
                                 class="custom-control-input"
-                            <?= settings()->theme->{$mode . '_font_family'} == 'custom' ? 'checked="checked"' : null ?>
+                                <?= !in_array(settings()->theme->{$mode . '_font_family'}, $fonts) ? 'checked="checked"' : null ?>
                         >
 
                         <div class="card">
@@ -506,7 +506,7 @@ $fonts = [
 
             <div class="form-group" id="<?= $mode . '_font_family_container' ?>">
                 <label for="<?= $mode . '_font_family_custom' ?>"><?= l('admin_settings.theme.font_family') ?></label>
-                <input id="<?= $mode . '_font_family_custom' ?>" name="<?= $mode . '_font_family_custom' ?>" type="text" class="form-control" value="<?= settings()->theme->{$mode . '_font_family_custom'} ?? null ?>" />
+                <input id="<?= $mode . '_font_family_custom' ?>" name="<?= $mode . '_font_family_custom' ?>" type="text" class="form-control" value="<?= settings()->theme->{$mode . '_font_family'} ?? null ?>" />
                 <small class="form-text text-muted"><?= l('admin_settings.theme.font_family_help') ?></small>
             </div>
 

@@ -42,11 +42,11 @@
                 </td>
 
                 <td class="text-nowrap">
-                    <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= l('global.order') . '<br />-' ?>">
+                    <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= l('global.order') . '<br />' . l('global.na') ?>">
                         <i class="fas fa-fw fa-sort text-muted"></i>
                     </span>
 
-                    <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= sprintf(l('global.datetime_tooltip'), (null ? \Altum\Date::get(null, 2) . ' - <small>' . \Altum\Date::get(null, 3) . '</small>' : '<br />-')) ?>">
+                    <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= sprintf(l('global.datetime_tooltip'), (null ? \Altum\Date::get(null, 2) . ' - <small>' . \Altum\Date::get(null, 3) . '</small>' : '<br />' . l('global.na'))) ?>">
                         <i class="fas fa-fw fa-calendar text-muted"></i>
                     </span>
                 </td>
@@ -84,11 +84,11 @@
             </td>
 
             <td class="text-nowrap">
-                <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= l('global.order') . '<br />-' ?>">
+                <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= l('global.order') . '<br />' . l('global.na') ?>">
                     <i class="fas fa-fw fa-sort text-muted"></i>
                 </span>
 
-                <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= sprintf(l('global.datetime_tooltip'), (null ? \Altum\Date::get(null, 2) . ' - <small>' . \Altum\Date::get(null, 3) . '</small>' : '<br />-')) ?>">
+                <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= sprintf(l('global.datetime_tooltip'), (null ? \Altum\Date::get(null, 2) . ' - <small>' . \Altum\Date::get(null, 3) . '</small>' : '<br />' . l('global.na'))) ?>">
                     <i class="fas fa-fw fa-calendar text-muted"></i>
                 </span>
             </td>
@@ -125,11 +125,11 @@
             </td>
 
             <td class="text-nowrap">
-                <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= l('global.order') . '<br />-' ?>">
+                <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= l('global.order') . '<br />' . l('global.na') ?>">
                     <i class="fas fa-fw fa-sort text-muted"></i>
                 </span>
 
-                <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= sprintf(l('global.datetime_tooltip'), (null ? \Altum\Date::get(null, 2) . ' - <small>' . \Altum\Date::get(null, 3) . '</small>' : '<br />-')) ?>">
+                <span class="mr-2" data-toggle="tooltip" data-html="true" title="<?= sprintf(l('global.datetime_tooltip'), (null ? \Altum\Date::get(null, 2) . ' - <small>' . \Altum\Date::get(null, 3) . '</small>' : '<br />' . l('global.na'))) ?>">
                     <i class="fas fa-fw fa-calendar text-muted"></i>
                 </span>
             </td>

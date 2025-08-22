@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Language;
@@ -36,6 +35,18 @@ class Page extends Controller {
         /* Redirect if the page does not exist */
         if(!$page) {
             redirect('not-found');
+        }
+
+        $page->plans_ids = json_decode($page->plans_ids ?? '');
+
+        if(!empty($page->plans_ids)) {
+            if(!is_logged_in()) {
+                redirect('not-found');
+            };
+
+            if(!in_array(user()->plan_id, $page->plans_ids)) {
+                redirect('not-found');
+            }
         }
 
         /* Get the page category */

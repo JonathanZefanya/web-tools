@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Response;
@@ -114,6 +113,13 @@ class Spotlight extends Controller {
                 $available_pages[] = [
                     'name' => l('links.menu.static'),
                     'url'  => 'links?type=static'
+                ];
+            }
+
+            if(settings()->links->biolinks_is_enabled || settings()->links->shortener_is_enabled || settings()->links->files_is_enabled || settings()->links->vcards_is_enabled || settings()->links->events_is_enabled || settings()->links->static_is_enabled) {
+                $available_pages[] = [
+                    'name' => l('links_statistics.title'),
+                    'url'  => 'links-statistics'
                 ];
             }
 

@@ -283,6 +283,12 @@
                         <label class="custom-control-label" for="links_auto_copy_link"><?= l('account_preferences.links_auto_copy_link') ?></label>
                         <?= \Altum\Alerts::output_field_error('links_auto_copy_link') ?>
                     </div>
+
+                    <div class="form-group custom-control custom-switch">
+                        <input id="links_autosave_settings" name="links_autosave_settings" type="checkbox" class="custom-control-input" <?= $this->user->preferences->links_autosave_settings ? 'checked="checked"' : null ?>>
+                        <label class="custom-control-label" for="links_autosave_settings"><?= l('account_preferences.links_autosave_settings') ?></label>
+                        <?= \Altum\Alerts::output_field_error('links_autosave_settings') ?>
+                    </div>
                 </div>
 
                 <button class="btn btn-block btn-gray-200 mb-4" type="button" data-toggle="collapse" data-target="#tracking_settings_container" aria-expanded="false" aria-controls="tracking_settings_container">

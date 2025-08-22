@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum;
 
 /* Simple wrapper for phpFastCache */
@@ -35,6 +34,8 @@ class Cache {
     }
 
     public static function cache_function_result($key, $tag, $function_to_cache, $cached_seconds = CACHE_DEFAULT_SECONDS) {
+        if(!$cached_seconds) return $function_to_cache();
+
         /* Try to check if the user posts exists via the cache */
         $cache_instance = cache()->getItem($key);
 

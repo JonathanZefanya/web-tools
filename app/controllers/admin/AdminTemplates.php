@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -43,8 +42,8 @@ class AdminTemplates extends Controller {
         }
 
         /* Export handler */
-        process_export_json($templates, 'include', ['template_id', 'template_category_id', 'name', 'prompt', 'settings', 'icon', 'order', 'total_usage', 'is_enabled', 'datetime', 'last_datetime']);
-        process_export_csv($templates, 'include', ['template_id', 'template_category_id', 'name', 'prompt', 'icon', 'order', 'total_usage', 'is_enabled', 'datetime', 'last_datetime']);
+        process_export_json($templates, ['template_id', 'template_category_id', 'name', 'prompt', 'settings', 'icon', 'order', 'total_usage', 'is_enabled', 'datetime', 'last_datetime']);
+        process_export_csv($templates, ['template_id', 'template_category_id', 'name', 'prompt', 'icon', 'order', 'total_usage', 'is_enabled', 'datetime', 'last_datetime']);
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);

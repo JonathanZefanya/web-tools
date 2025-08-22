@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -323,6 +322,7 @@ class BiolinkBlockAjax extends Controller {
             'animation_runs' => 'repeat-1',
             'icon' => '',
             'image' => '',
+            'sensitive_content' => false,
 
             /* Display settings */
             'display_continents' => [],
@@ -483,6 +483,7 @@ class BiolinkBlockAjax extends Controller {
             'animation_runs' => 'repeat-1',
             'icon' => '',
             'image' => '',
+            'sensitive_content' => false,
 
             /* Display settings */
             'display_continents' => [],
@@ -3150,9 +3151,9 @@ class BiolinkBlockAjax extends Controller {
             ];
         }
 
-        $type = $items;
+        $type = 'timeline';
         $settings = json_encode([
-            'items' => [],
+            'items' => $items,
             'title_color' => '#ffffff',
             'date_color' => '#ffffff',
             'description_color' => '#ffffff',

@@ -34,7 +34,7 @@ class GenericNumberTransformer implements NumberTransformer
             $number *= -1;
         }
 
-        if ($this->tripletTransformer !== null || $this->powerAwareTripletTransformer !== null) {
+        if (null !== $this->tripletTransformer || null !== $this->powerAwareTripletTransformer) {
             $words = array_merge($words, $this->getWordsBySplittingIntoTriplets($number));
         }
 
@@ -48,32 +48,28 @@ class GenericNumberTransformer implements NumberTransformer
 
         foreach ($triplets as $i => $triplet) {
             if ($triplet > 0) {
-                if ($this->tripletTransformer !== null) {
+                if (null !== $this->tripletTransformer) {
                     $words[] = $this->tripletTransformer->transformToWords($triplet);
                 }
 
-                if ($this->powerAwareTripletTransformer !== null) {
-                    $tripletTransformResult = $this->powerAwareTripletTransformer->transformToWords(
+                if (null !== $this->powerAwareTripletTransformer) {
+                    $words[] = $this->powerAwareTripletTransformer->transformToWords(
                         $triplet,
                         count($triplets) - $i - 1
                     );
-
-                    if ($tripletTransformResult !== null) {
-                        $words[] = $tripletTransformResult;
-                    }
                 }
 
-                if ($this->exponentInflector !== null) {
+                if (null !== $this->exponentInflector) {
                     $words[] = $this->exponentInflector->inflectExponent($triplet, count($triplets) - $i - 1);
                 }
 
-                if ($this->exponentGetter !== null) {
+                if (null !== $this->exponentGetter) {
                     $words[] = $this->exponentGetter->getExponent(count($triplets) - $i - 1);
                 }
             }
         }
 
-        if ($this->exponentSeparator !== null && count($words) > 2) {
+        if (null !== $this->exponentSeparator && count($words) > 2) {
             for ($i = 2; $i <= count($words) - 2; $i += 2) {
                 array_splice($words, $i++, 0, $this->exponentSeparator);
             }

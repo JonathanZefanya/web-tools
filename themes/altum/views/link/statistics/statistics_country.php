@@ -13,7 +13,7 @@
 
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="d-flex align-items-center">
-                <h3 class="h5 text-truncate m-0"><?= l('global.countries') ?></h3>
+                <h3 class="h5 text-truncate m-0"><?= isset($_GET['continent_code']) ? sprintf(l('link.statistics.country_from_continent_code'), get_continent_from_continent_code($data->continent_code)) : l('global.countries') ?></h3>
 
                 <div class="ml-2">
                     <span data-toggle="tooltip" title="<?= l('link.statistics.country_help') ?>">
@@ -35,7 +35,7 @@
                         <a href="<?= url($data->url . '/statistics?' . \Altum\Router::$original_request_query . '&export=json') ?>" target="_blank" class="dropdown-item <?= $this->user->plan_settings->export->json ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->json ? null : get_plan_feature_disabled_info() ?>>
                             <i class="fas fa-fw fa-sm fa-file-code mr-2"></i> <?= sprintf(l('global.export_to'), 'JSON') ?>
                     </a>
-                    <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? 'onclick="window.print();return false;"' : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? null : get_plan_feature_disabled_info() ?>>
+                    <a href="#" class="dropdown-item <?= $this->user->plan_settings->export->pdf ? null : 'disabled pointer-events-all' ?>" <?= $this->user->plan_settings->export->pdf ? $this->user->plan_settings->export->pdf ? 'onclick="event.preventDefault(); window.print();"' : 'disabled pointer-events-all' : get_plan_feature_disabled_info() ?>>
                         <i class="fas fa-fw fa-sm fa-file-pdf mr-2"></i> <?= sprintf(l('global.export_to'), 'PDF') ?>
                     </a>
                     </div>
@@ -54,7 +54,7 @@
 
             <?php $countries_map = [] ?>
             <?php foreach($data->rows as $row): ?>
-                <?php $percentage = round($row->total / $data->total_sum * 100, 1) ?>
+                <?php $percentage = round($row->total / $data->total_sum * 100, 2) ?>
                 <?php $countries_map[$row->country_code] = ['pageviews' => $row->total]; ?>
 
                 <div class="mt-4">

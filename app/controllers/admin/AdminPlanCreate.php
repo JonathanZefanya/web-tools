@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -21,7 +20,7 @@ class AdminPlanCreate extends Controller {
         $biolinks_themes = (new \Altum\Models\BiolinksThemes())->get_biolinks_themes();
 
         if(!empty($_POST)) {
-            /* Filter some the variables */
+            /* Filter some of the variables */
             $_POST['name'] = input_clean($_POST['name'], 64);
             $_POST['description'] = input_clean($_POST['description'], 256);
 
@@ -126,8 +125,10 @@ class AdminPlanCreate extends Controller {
             }
 
             foreach(array_keys(require APP_PATH . 'includes/notification_handlers.php') as $notification_handler) {
-                $_POST['settings']['notification_handlers_' . $notification_handler . '_limit'] = (int) $_POST['notification_handlers_' . $notification_handler . '_limit'];
+                $settings['notification_handlers_' . $notification_handler . '_limit'] = (int) $_POST['notification_handlers_' . $notification_handler . '_limit'];
             }
+
+            $settings['custom_redirect_url'] = get_url($_POST['custom_redirect_url']);
 
             $_POST['settings'] = json_encode($settings);
 

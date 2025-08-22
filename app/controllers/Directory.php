@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 defined('ZEFANYA') || die();
@@ -57,8 +56,8 @@ class Directory extends Controller {
         }
 
         /* Export handler */
-        process_export_csv($links, 'include', ['url', 'full_url', 'clicks', 'is_verified'], sprintf(l('links.title')));
-        process_export_json($links, 'include', ['url', 'full_url', 'clicks', 'is_verified'], sprintf(l('links.title')));
+        process_export_csv($links, ['url', 'full_url', 'clicks', 'is_verified'], sprintf(l('links.title')));
+        process_export_json($links, ['url', 'full_url', 'clicks', 'is_verified'], sprintf(l('links.title')));
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/pagination', (array) $this))->run(['paginator' => $paginator]);

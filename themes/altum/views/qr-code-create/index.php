@@ -49,21 +49,6 @@
                             <?= \Altum\Alerts::output_field_error('name') ?>
                         </div>
 
-                        <?php if(settings()->links->projects_is_enabled): ?>
-                        <div class="form-group">
-                            <div class="d-flex flex-column flex-xl-row justify-content-between">
-                                <label for="project_id"><i class="fas fa-fw fa-sm fa-project-diagram text-muted mr-1"></i> <?= l('projects.project_id') ?></label>
-                                <a href="<?= url('project-create') ?>" target="_blank" class="small mb-2"><i class="fas fa-fw fa-sm fa-plus mr-1"></i> <?= l('projects.create') ?></a>
-                            </div>
-                            <select id="project_id" name="project_id" class="custom-select">
-                                <option value=""><?= l('global.none') ?></option>
-                                <?php foreach($data->projects as $row): ?>
-                                    <option value="<?= $row->project_id ?>" <?= ($data->values['project_id'] ?? null) == $row->project_id ? 'selected="selected"' : null?>><?= $row->name ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <?php endif ?>
-
                         <div class="form-group d-lg-none">
                             <label for="type"><i class="fas fa-fw fa-qrcode fa-sm text-muted mr-1"></i> <?= l('qr_codes.input.type') ?></label>
                             <select id="type" name="type" class="custom-select">
@@ -945,6 +930,21 @@
                                     <?php endforeach ?>
                                 </select>
                             </div>
+
+                            <?php if(settings()->links->projects_is_enabled): ?>
+                                <div class="form-group">
+                                    <div class="d-flex flex-column flex-xl-row justify-content-between">
+                                        <label for="project_id"><i class="fas fa-fw fa-sm fa-project-diagram text-muted mr-1"></i> <?= l('projects.project_id') ?></label>
+                                        <a href="<?= url('project-create') ?>" target="_blank" class="small mb-2"><i class="fas fa-fw fa-sm fa-plus mr-1"></i> <?= l('projects.create') ?></a>
+                                    </div>
+                                    <select id="project_id" name="project_id" class="custom-select">
+                                        <option value=""><?= l('global.none') ?></option>
+                                        <?php foreach($data->projects as $row): ?>
+                                            <option value="<?= $row->project_id ?>" <?= ($data->values['project_id'] ?? null) == $row->project_id ? 'selected="selected"' : null?>><?= $row->name ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            <?php endif ?>
                         </div>
 
                         <button type="submit" name="submit" class="btn btn-block btn-primary mt-4"><?= l('global.create') ?></button>

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum\Controllers;
 
 use Altum\Alerts;
@@ -41,8 +40,8 @@ class AdminAffiliatesWithdrawals extends Controller {
         }
 
         /* Export handler */
-        process_export_json($affiliates_withdrawals, 'include', ['id', 'user_id', 'amount', 'note', 'is_paid', 'datetime']);
-        process_export_csv($affiliates_withdrawals, 'include', ['id', 'user_id', 'amount', 'note', 'is_paid', 'datetime']);
+        process_export_json($affiliates_withdrawals, ['id', 'user_id', 'amount', 'note', 'is_paid', 'datetime']);
+        process_export_csv($affiliates_withdrawals, ['id', 'user_id', 'amount', 'note', 'is_paid', 'datetime']);
 
         /* Prepare the pagination view */
         $pagination = (new \Altum\View('partials/admin_pagination', (array) $this))->run(['paginator' => $paginator]);

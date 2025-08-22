@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum;
 
 defined('ZEFANYA') || die();
@@ -243,6 +242,10 @@ class CustomHooks {
 
         if(!settings()->links->shortener_is_enabled){
             $prefixes = array_merge($prefixes, ['link_create.']);
+        }
+
+        if(!settings()->links->biolinks_is_enabled && !settings()->links->shortener_is_enabled && !settings()->links->files_is_enabled && !settings()->links->vcards_is_enabled && !settings()->links->events_is_enabled && !settings()->links->static_is_enabled) {
+            $prefixes = array_merge($prefixes, ['links_statistics.']);
         }
 
         if(!\Altum\Plugin::is_active('aix') || !settings()->aix->documents_is_enabled) {

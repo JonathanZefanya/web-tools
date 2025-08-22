@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Altum;
 
 defined('ZEFANYA') || die();
@@ -261,6 +260,14 @@ class Router {
                     'no_authentication_check' => true,
                     'has_view' => false,
                     'no_browser_language_detection' => true,
+                ]
+            ],
+
+            'links-statistics' => [
+                'controller' => 'LinksStatistics',
+                'settings' => [
+                    'wrapper' => 'app_wrapper',
+                    'ads' => true,
                 ]
             ],
 
@@ -1795,7 +1802,11 @@ class Router {
         }
 
         /* Check for a custom index url redirect in case there is no link requested  */
-        if(!isset(self::$params[0]) && !isset(self::$params[1]) && self::$path == 'l' && $original_url_host != $request_url_host && isset(self::$data['domain']) && self::$data['domain']->custom_index_url && !self::$data['domain']->link_id) {
+        if(isset(self::$data['domain']) && !self::$data['domain']->custom_index_url) {
+            self::$data['domain']->custom_index_url = url();
+        }
+
+        if(!isset(self::$params[0]) && !isset(self::$params[1]) && self::$path == 'l' && $original_url_host != $request_url_host && isset(self::$data['domain']) && !self::$data['domain']->link_id) {
             header('Location: ' . self::$data['domain']->custom_index_url);
             die();
         }

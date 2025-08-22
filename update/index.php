@@ -50,7 +50,7 @@ if($product_info) {
                 <h1>Update</h1>
                 <p class="subheader d-flex flex-row">
                     <span class="text-muted">
-                        <a href="<?= PRODUCT_URL ?>" target="_blank" class="text-gray-500"><?= PRODUCT_NAME ?></a> by <a href="https://xead.my.id/" target="_blank" class="text-gray-500">Jonathan Zefanya</a>
+                        <a href="<?= PRODUCT_URL ?>" target="_blank" class="text-gray-500"><?= PRODUCT_NAME ?></a> by <a href="https://altumco.de/site" target="_blank" class="text-gray-500">AltumCode</a>
                     </span>
                 </p>
             </div>
@@ -89,7 +89,7 @@ if($product_info) {
                     <div class="card-body">
                         <section id="welcome" style="display: none">
                             <h2 class="mb-4">Welcome 👋</h2>
-                            <p>Thank you for choosing the <a href="https://xead.my.id/" target="_blank">Jonathan Zefanya</a> Apps.</p>
+                            <p>Thank you for choosing the <a href="https://altumco.de/site" target="_blank">AltumCode</a> brand 🤗.</p>
 
                             <p>Please note, by proceeding with the update, you consent to the privacy policy and terms of service of <?= PRODUCT_NAME ?>, which are mentioned in their respective pages on <a href="<?= PRODUCT_URL ?>" target="_blank"><?= PRODUCT_URL ?></a> 📜.</p>
 

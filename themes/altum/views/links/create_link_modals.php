@@ -35,7 +35,7 @@
                                     <?php if(count($data->domains)): ?>
                                         <select name="domain_id" class="appearance-none custom-select form-control input-group-text">
                                             <?php if(settings()->links->main_domain_is_enabled || \Altum\Authentication::is_admin()): ?>
-                                                <option value=""><?= remove_url_protocol_from_url(SITE_URL) ?></option>
+                                                <option value=" "><?= remove_url_protocol_from_url(SITE_URL) ?></option>
                                             <?php endif ?>
 
                                             <?php foreach($data->domains as $row): ?>
@@ -106,7 +106,7 @@
                                     <?php if(count($data->domains)): ?>
                                         <select name="domain_id" class="appearance-none custom-select form-control input-group-text">
                                             <?php if(settings()->links->main_domain_is_enabled || \Altum\Authentication::is_admin()): ?>
-                                                <option value=""><?= remove_url_protocol_from_url(SITE_URL) ?></option>
+                                                <option value=" "><?= remove_url_protocol_from_url(SITE_URL) ?></option>
                                             <?php endif ?>
 
                                             <?php foreach($data->domains as $row): ?>
@@ -182,7 +182,7 @@
                                     <?php if(count($data->domains)): ?>
                                         <select name="domain_id" class="appearance-none custom-select form-control input-group-text">
                                             <?php if(settings()->links->main_domain_is_enabled || \Altum\Authentication::is_admin()): ?>
-                                                <option value=""><?= remove_url_protocol_from_url(SITE_URL) ?></option>
+                                                <option value=" "><?= remove_url_protocol_from_url(SITE_URL) ?></option>
                                             <?php endif ?>
 
                                             <?php foreach($data->domains as $row): ?>
@@ -252,7 +252,7 @@
                                     <?php if(count($data->domains)): ?>
                                         <select name="domain_id" class="appearance-none custom-select form-control input-group-text">
                                             <?php if(settings()->links->main_domain_is_enabled || \Altum\Authentication::is_admin()): ?>
-                                                <option value=""><?= remove_url_protocol_from_url(SITE_URL) ?></option>
+                                                <option value=" "><?= remove_url_protocol_from_url(SITE_URL) ?></option>
                                             <?php endif ?>
 
                                             <?php foreach($data->domains as $row): ?>
@@ -322,7 +322,7 @@
                                     <?php if(count($data->domains)): ?>
                                         <select name="domain_id" class="appearance-none custom-select form-control input-group-text">
                                             <?php if(settings()->links->main_domain_is_enabled || \Altum\Authentication::is_admin()): ?>
-                                                <option value=""><?= remove_url_protocol_from_url(SITE_URL) ?></option>
+                                                <option value=" "><?= remove_url_protocol_from_url(SITE_URL) ?></option>
                                             <?php endif ?>
 
                                             <?php foreach($data->domains as $row): ?>
@@ -401,7 +401,7 @@
                                     <?php if(count($data->domains)): ?>
                                         <select name="domain_id" class="appearance-none custom-select form-control input-group-text">
                                             <?php if(settings()->links->main_domain_is_enabled || \Altum\Authentication::is_admin()): ?>
-                                                <option value=""><?= remove_url_protocol_from_url(SITE_URL) ?></option>
+                                                <option value=" "><?= remove_url_protocol_from_url(SITE_URL) ?></option>
                                             <?php endif ?>
 
                                             <?php foreach($data->domains as $row): ?>
