@@ -25,7 +25,7 @@
                     <i class="fas fa-fw fa-sm fa-times mr-1"></i> Dismiss notification
                 </button>
 
-                <a href="https://altumco.de/club" target="_blank" class="btn btn-sm btn-primary font-weight-bold ml-3">
+                <a href="https://xead.my.id" target="_blank" class="btn btn-sm btn-primary font-weight-bold ml-3">
                     <i class="fas fa-fw fa-sm fa-check-circle mr-1"></i> Extend your support
                 </a>
             </div>

@@ -16,7 +16,7 @@
         </div>
 
         <div class="mb-3">
-            <span>You can now download it and update as per the <a href="<?= PRODUCT_DOCUMENTATION_URL ?>" target="_blank">documentation</a> of the product, or <a href="https://altumcode.com/contact" target="_blank">hire me (altumcode)</a> to update it for you.</span>
+            <span>You can now download it and update as per the <a href="<?= PRODUCT_DOCUMENTATION_URL ?>" target="_blank">documentation</a> of the product, or <a href="https://xead.my.id" target="_blank">hire me (xead)</a> to update it for you.</span>
         </div>
 
         <div>
@@ -24,11 +24,11 @@
                 <i class="fas fa-fw fa-sm fa-times mr-1"></i> Dismiss notification
             </button>
 
-            <a href="https://altumco.de/<?= PRODUCT_KEY ?>-changelog" target="_blank" class="btn btn-sm btn-dark ml-3">
+            <a href="https://xead.my.id/<?= PRODUCT_KEY ?>-changelog" target="_blank" class="btn btn-sm btn-dark ml-3">
                 <i class="fas fa-fw fa-sm fa-scroll mr-1"></i> View changelog
             </a>
 
-            <a href="https://altumco.de/downloads" target="_blank" class="btn btn-sm btn-primary font-weight-bold ml-3">
+            <a href="https://github.com/JonathanZefanya/web-tools" target="_blank" class="btn btn-sm btn-primary font-weight-bold ml-3">
                 <i class="fas fa-fw fa-sm fa-download mr-1"></i> Download updates
             </a>
         </div>
