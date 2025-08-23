@@ -150,8 +150,8 @@ CONSTRAINT `pages_ibfk_1` FOREIGN KEY (`pages_category_id`) REFERENCES `pages_ca
 -- SEPARATOR --
 
 INSERT INTO `pages` (`pages_category_id`, `url`, `title`, `description`, `content`, `type`, `position`, `order`, `total_views`, `datetime`, `last_datetime`) VALUES
-(NULL, 'https://altumcode.com/', 'Software by AltumCode', '', '', 'external', 'bottom', 1, 0, NOW(), NOW()),
-(NULL, 'https://altumco.de/66biolinks', 'Built with 66biolinks', '', '', 'external', 'bottom', 0, 0, NOW(), NOW());
+(NULL, 'https://xead.my.id.com/', 'Software by Jonathan Zefanya', '', '', 'external', 'bottom', 1, 0, NOW(), NOW()),
+(NULL, 'https://https://github.com/JonathanZefanya/web-tools', 'Built with PHP', '', '', 'external', 'bottom', 0, 0, NOW(), NOW());
 
 -- SEPARATOR --
 

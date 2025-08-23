@@ -33,7 +33,7 @@ if(file_exists(ROOT . 'install/installed')) {
                 <h1>Installation</h1>
                 <p class="subheader d-flex flex-row">
                     <span class="text-muted">
-                        <a href="<?= PRODUCT_URL ?>" target="_blank" class="text-gray-500"><?= PRODUCT_NAME ?></a> by <a href="https://altumco.de/site" target="_blank" class="text-gray-500">AltumCode</a>
+                        <a href="<?= PRODUCT_URL ?>" target="_blank" class="text-gray-500"><?= PRODUCT_NAME ?></a> by <a href="https://github.com/JonathanZefanya" target="_blank" class="text-gray-500">Jonathan Zefanya</a>
                     </span>
                 </p>
             </div>
@@ -77,7 +77,7 @@ if(file_exists(ROOT . 'install/installed')) {
                         <section id="welcome" style="display: none">
                             <h2 class="mb-4">Welcome</h2>
 
-                            <p>Thank you for choosing the <a href="https://altumco.de/site" target="_blank">AltumCode</a> brand 🤗.</p>
+                            <p>Thank you for choosing the <a href="https://github.com/JonathanZefanya" target="_blank">JonathanZefanya</a> brand 🤗.</p>
 
                             <p>By continuing with the installation process, you are agreeing to the privacy policy and terms of service of <?= PRODUCT_NAME ?>, which are mentioned in their respective pages on <a href="<?= PRODUCT_URL ?>" target="_blank"><?= PRODUCT_URL ?></a> 📜.</p>
 
