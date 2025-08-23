@@ -1,7 +1,6 @@
 <?php defined('ZEFANYA') || die() ?>
 
 <div>
-    <div class="alert alert-info mb-3"><?= sprintf(l('admin_settings.documentation'), '<a href="' . PRODUCT_DOCUMENTATION_URL . '#notification-handlers" target="_blank">', '</a>') ?></div>
 
     <?php foreach(require APP_PATH . 'includes/available_notification_handlers.php' as $type => $value): ?>
         <div class="form-group custom-control custom-switch">
