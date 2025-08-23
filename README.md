@@ -54,10 +54,11 @@ Ikuti langkah-langkah ini buat install **Web Tools** di server kamu.
 
 ### 3. Mulai Instalasi
 
-1.  Buka alamat web kamu dan akses `/install` (misal: `domainkamu.com/install`).
-2.  Atur izin (CHMOD) file dan folder sesuai petunjuk instalasi. Biasanya pakai `755`, `775`, atau `777`, tergantung server.
-3.  Ikuti instruksi di layar instalasi.
-4.  Kalau instalasi sukses, kamu bakal dapat info login admin. Simpan baik-baik ya!
+1.  Buka Folder `install` lalu hapus file yang bernama `installed`
+2.  Buka alamat web kamu dan akses `/install` (misal: `domainkamu.com/install`).
+3.  Atur izin (CHMOD) file dan folder sesuai petunjuk instalasi. Biasanya pakai `755`, `775`, atau `777`, tergantung server.
+4.  Ikuti instruksi di layar instalasi.
+5.  Kalau instalasi sukses, kamu bakal dapat info login admin. Simpan baik-baik ya!
 
 -----
 
