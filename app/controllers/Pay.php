@@ -1817,7 +1817,7 @@ class Pay extends Controller {
                 $midtrans_payment_id = md5($this->user->user_id . $this->plan_id . $_POST['payment_type'] . $_POST['payment_frequency'] . $this->user->email . get_date());
 
                 /* Build Midtrans API URL */
-                $midtrans_api_url = 'https://api' . (settings()->midtrans->mode == 'sandbox' ? 'sandbox' : '') . '.midtrans.com/v1/payment-links';
+                $midtrans_api_url = 'https://api' . (settings()->midtrans->mode == 'sandbox' ? '.sandbox' : '') . '.midtrans.com/v1/payment-links';
 
                 /* Prepare API headers */
                 $midtrans_headers = [
