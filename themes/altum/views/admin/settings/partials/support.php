@@ -16,12 +16,6 @@
             <input id="status" name="status" type="text" class="form-control disabled <?= ($is_active ? 'is-valid' : 'is-invalid') ?>" value="<?= sprintf(l('admin_settings.support.status.' . ($is_active ? 'active' : 'inactive')), $expiry_datetime->format('Y-m-d H:i:s')) ?>" readonly="readonly" />
             <small class="form-text <?= $is_active ? 'text-muted' : 'text-danger' ?>"><?= l('admin_settings.support.status.' . ($is_active ? 'active' : 'inactive') . '.help') ?></small>
         </div>
-
-        <?php if(!$is_active): ?>
-        <a href="https://altumco.de/club" target="_blank" class="btn btn-block btn-success mb-3"><?= l('admin_settings.support.extend') ?></a>
-    <?php endif ?>
-    <?php else: ?>
-        <a href="https://altumco.de/club" target="_blank" class="btn btn-block btn-success mb-3"><?= l('admin_settings.support.extend') ?></a>
     <?php endif ?>
 
     <div class="form-group">
